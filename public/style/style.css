@@ -1,0 +1,156 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.container_pai {
+  width: 100%;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url(../style/assets/images/fundoTheRanch.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home {
+  width: 100%;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1a1513;
+  height: 70px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 70px;
+  margin-right: 40px;
+  width: auto;
+}
+
+.button a {
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  border: none;
+  font-weight: 600;
+}
+
+.logo img {
+  width: 70px;
+}
+
+.meio_home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.carrossel {
+  display: flex;
+  width: 1920px;
+  height: 450px;
+}
+
+.contato {
+  display: flex;
+  width: 50px;
+  height: 200px;
+  flex-direction: column;
+}
+
+.contato img {
+  border-radius: 90%;
+  height: 40px;
+  width: 40px;
+  padding: 4px;
+}
+
+/* footer */
+
+.footer {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  height: 100px;
+  background-color: #1a1513;
+}
+
+.elementos_footer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.elemento_filho_footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 30px;
+  align-items: center;
+  padding-top: 25px;
+}
+
+.contatos {
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  justify-content: space-around;
+}
+
+.contatos div {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.contatos img {
+  height: 30px;
+}
+
+.contatos span {
+  text-decoration: underline;
+  margin-left: 10px;
+}
+
+.contatos p {
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.localizacao img {
+  height: 50px;
+  margin-right: 50px;
+}
+
+.localizacao {
+  display: flex;
+  color: white;
+  align-items: center;
+  font-size: 20px;
+  text-align: center;
+}
+
+.logo_nova {
+  height: 120px;
+  padding-top: 60px;
+}
+
+.copy {
+  background-color: #1a1513;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 9px;
+  padding: 0 0 30px 0;
+  font-weight: 700;
+}
