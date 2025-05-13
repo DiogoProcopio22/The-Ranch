@@ -1,77 +1,193 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Ranch</title>
-    <link rel="stylesheet" href="/style/style.css">
-    <link rel="shortcut icon" href="../assets/logoTheRanch(branca).png" type="image/x-icon">
+    <title>The Ranch | Página Inicial</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="icon" href="style/assets/icons/logoTheRanch(branca).png">
 </head>
 
 <body>
+    <!-- HOME -->
+    <div class="container_pai">
 
-<!-- HOME -->
-<div class="container_pai">
-    <div class="home">
-        <nav>
-            <div class="logo">
-                <img src="../assets/logoTheRanch(branca).png" alt="">
-            </div>
-            <div class="button">
-                <a href="index.html">Página Inicial</a>
-                <a href="origem.html">Origem</a>
-                <a href="login.html">Login</a>
-            </div>
-        </nav>
-            <div class="meio_home">
-            <div>
-                <div class="carrossel">
-                        <img src="../public/style/assets/images/carrossel/1.png" alt="">
-                </div>
-            </div>
-    </div>
-</div>
-  
-<!-- FOOTER -->
-<div class="footer">
-    <div class="elementos_footer">
-        <div class="elemento_filho_footer">
-            <div class="contatos">
-                <div>
-                    <img src="assets/icon/email.png">
-                    <span>theranch@gmail.com</span>
-                </div>
-                <div>
-                    <img src="assets/icon/telefone.png">
-                    <p>11 8765-4321</p>
-                </div>
-                <div>
-                    <img src="assets/icon/whatsapp.png">
-                    <p>11 98765-4321</p>
-                </div>
-            </div>
+        <div id="index" class="home">
+                <nav>
+                    <div class="logo_nav">
+                        <a href="#"><img src="style/assets/icons/logoTheRanch(branca).png" alt="Logo The Ranch"></a>
+                    </div>
+                    <ul>
+                        
+                        <li><a href="#" id="selecionado">Página Inicial</a></li>
+                        <li><a href="origem.html">Origem</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    
+                    </ul>
+                </nav>
 
+                <!-- CARROSSEL -->
+                <div class="slider">
+                    <!-- Radio buttons -->
+                    <input type="radio" name="radio-btn" id="radio1" checked>
+                    <input type="radio" name="radio-btn" id="radio2">
+                    <input type="radio" name="radio-btn" id="radio3">
+                    <input type="radio" name="radio-btn" id="radio4">
 
-            <div class="localizacao">
-                <img src="assets/icon/localização.png">
-                <div>
-                    <p> Rua Haddock Lobo, 595 - Cerqueira César,</p>
-                    <p>São Paulo - SP, 01414-001</p>
+                    <!-- Slides -->
+                    <div class="carrossel">
+                        <div class="slide">
+                            <img src="style/assets/images/pagina_inicial/carrossel/1.png" alt="Imagem 1">
+                        </div>
+                        <div class="slide">
+                            <img src="style/assets/images/pagina_inicial/carrossel/2.png" alt="Imagem 2">
+                        </div>
+                        <div class="slide">
+                            <img src="style/assets/images/pagina_inicial/carrossel/3.png" alt="Imagem 3">
+                        </div>
+                        <div class="slide">
+                            <img src="style/assets/images/pagina_inicial/carrossel/4.png" alt="Imagem 4">
+                        </div>
+                    </div>
+
+                    <!-- Navegação manual -->
+                    <div class="manual_nav">
+                        <label for="radio1" class="manual_btn"></label>
+                        <label for="radio2" class="manual_btn"></label>
+                        <label for="radio3" class="manual_btn"></label>
+                        <label for="radio4" class="manual_btn"></label>
+                    </div>
                 </div>
-            </div>
-            
-            <img src="../assets/logoTheRanch(branca).png" alt="" class="logo_nova">
-            
+
+                <!-- BEM-VINDO -->
+                 <div class="copytheranch">
+                    <p>© 2025 THE RANCH</p>
+                 </div>
+                <div class="bemvindo">
+                    <p>Seja Bem-vindo(a)</p>
+                </div>
+                <div class="melhor_site">
+                    <p>ao melhor site sertanejo do Brasil!</p>
+                </div>
+                <!-- FIM BEM-VINDO -->
+                
+                <!-- O QUE É THE RANCH -->
+                <div class="oque">
+                    <img src="style/assets/images/pagina_inicial/oQueÉFundo-pb.png" alt="">
+                    
+                    <div class="titulo">
+                        <p>O que é The Ranch?</p>
+                    </div>
+
+                    <div class="significado1">
+                        <p> "Ranch" significa fazenda em inglês. E se tem um lugar que simboliza o sertanejo, é o campo. É ali que nasceram os primeiros acordes, os causos, as modas de viola e a vida simples que inspira tantas canções.</p>
+                    </div>
+                    <div class="significado2">
+                        <p>  O The Ranch é isso: uma homenagem à alma do sertanejo – que brota da terra, do interior, da lida, e se transforma em música. <br><br>
+                            Aqui, a paixão pela música se transforma em uma experiência interativa feita para você que vive o sertanejo de corpo e alma. 
+                            Queremos te levar por uma jornada que conecta gerações, contando histórias de artistas que marcaram época, 
+                            apresentando novos talentos e celebrando cada acorde que ecoa nas nossas memórias. <br><br>
+                            <b>Te convidamos então a participar dessa família!</b></p>
+                    </div>
+
+                    <div class="oqimg">
+                        <img src="style/assets/images/pagina_inicial/oQueÉTheRanch.png" alt="">
+                    </div>
+
+                </div>
+
+                <!-- QUIZZES -->
+                 <div class="quizzes">
+                    <img src="style/assets/images/pagina_inicial/fundoConteudo-pb.png" alt="">
+
+                    <div class="amigos">
+                 <img src="style/assets/images/pagina_inicial/conteudoAmigos.png" alt="">
+                    </div>
+                    <div class="sertanejos">
+                        <img src="style/assets/images/pagina_inicial/sertanejosConteudo.png" alt="">
+                    </div>
+
+                    <div class="artistas_iconicos">
+                        <p>Artistas <b>Icônicos</b></p>
+                    </div>
+                    <div class="quizzes_interativos">
+                        <p><b>Quizzes</b> Interativos</p>
+                    </div>
+                    <div class="raizes_sertanejo">
+                        <p><b>Raízes</b> do Sertanejo</p>
+                    </div>
+
+                    <div class="artistas_text">
+                        <p>Saiba mais sobre os principais nomes do sertanejo.</p>
+                    </div>
+                    <div class="quizzes_text">
+                        <p>Descubra se você realmente é fã do gênero musical mais ouvido do país.</p>
+                    </div>
+                    <div class="raizes_text">
+                        <p>Entenda um pouco mais como surgiu esse estilo de vida que amamos!</p>
+                    </div>
+
+                </div>
+
+                <!-- CRIAR CONTA -->
+                <div class="criar_conta">
+                    <img src="style/assets/images/pagina_inicial/criarContaFundo-pb.png" alt="">
+
+                </div>
+
         </div>
-        
+
+            <!-- FOOTER -->
+            <div class="footer">
+                <div class="elementos_footer">
+                    <div class="elemento_filho_footer">
+                        <div class="contatos">
+                            <div>
+                                <img src="style/assets/icons/email.png" alt="Ícone Email">
+                                <span>theranch@gmail.com</span>
+                            </div>
+                            <div>
+                                <img src="style/assets/icons/telefone.png" alt="Ícone Telefone">
+                                <p>11 8765-4321</p>
+                            </div>
+                            <div>
+                                <img src="style/assets/icons/whatsapp.png" alt="Ícone WhatsApp">
+                                <p>11 98765-4321</p>
+                            </div>
+                        </div>
+
+                        <div class="localizacao">
+                            <img src="style/assets/icons/localizacao.png" alt="Ícone Localização">
+                            <div>
+                                <p>Rua Haddock Lobo, 595 - Cerqueira César,</p>
+                                <p>São Paulo - SP, 01414-001</p>
+                            </div>
+                        </div>
+                       <a href="#"><img src="style/assets/icons/logoTheRanch(branca).png" alt="Logo The Ranch" class="logo_footer"></a>
+                    </div>
+                </div>
+
+                <div class="copy">
+                    <h1>THE RANCH © 2025. Todos os direitos reservados. Desenvolvido por Diogo Procopio.</h1>
+                </div>
+            </div>
+    
     </div>
-    <div class="copy">
-        <h1>THE RANCH © 2025. Todos os direitos reservados. Desenvolvido por Diogo Procopio.</h1>
-    </div>
-</div>
-</div>
 
 </body>
 
 </html>
+
+<script>
+
+        var contador = 1;
+        setInterval(() => {
+            document.getElementById('radio' + contador).checked = true;
+            contador++;
+
+            if (contador > 4) contador = 1;
+        }, 4000);
+
+</script>
+

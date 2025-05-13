@@ -1,13 +1,31 @@
+
+/* IMPORTAÇÃO DAS FONTES */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@100..900&display=swap');
+
 * {
   padding: 0;
   margin: 0;
   border: 0;
 }
 
-.container_pai {
+body {
+  margin: 0;
+  padding: 0;
   width: 100%;
   height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.container_pai {
+  width: 100%;
+  height: 4000px;
   background-image: url(../style/assets/images/fundoTheRanch.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -15,10 +33,12 @@
 
 .home {
   width: 100%;
-  height: 800px;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
+
+/* NAVBAR - INÍCIO */
 
 nav {
   display: flex;
@@ -27,55 +47,333 @@ nav {
   height: 70px;
 }
 
-.button {
+/* #selecionado:hover:after {
+  width: 100%;
+} */
+
+#selecionado {
+  text-decoration: underline;
+}
+
+/* nav ul li:after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0.5%;
+  background-color: white;
+  bottom: 5%;
+  transition: 0.2s;
+} */
+
+nav ul {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 70px;
   margin-right: 40px;
   width: auto;
+  list-style-type: none;
 }
 
-.button a {
+nav ul a {
   color: white;
-  font-size: 18px;
   text-decoration: none;
   border: none;
-  font-weight: 600;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 700;
+  font-size: 90%;
 }
 
-.logo img {
-  width: 70px;
+.logo_nav img {
+  width: 100px;
+  margin-top: -20px;
+  margin-left: 15px;
 }
 
-.meio_home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+/* NAVBAR - FIM */
+
+/* INICIO CARROSSEL */
+
+.slider {
+    width: 100%;
+    height: 11.5%;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider input {
+  display: none;
 }
 
 .carrossel {
+    display: flex;
+    width: 400%;
+    transition: 0.5s;
+}
+
+.slide {
+    width: 100%;;
+}
+
+.slide img {
+    width: 100%;
+    margin-top: 30px;
+    height: auto;
+    object-fit: cover;
+    box-shadow: 0px 0px 20px 2px black;
+}
+
+.manual_nav {
   display: flex;
-  width: 1920px;
-  height: 450px;
+  position: absolute;
+  margin-top: -35px;
+  margin-left: 44%;  
 }
 
-.contato {
+.manual_btn {
+  border: 1px solid white;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+  margin-right: 30px;
+}
+
+.manual_btn:hover {
+    background-color: white;
+}
+
+#radio1:checked ~ .carrossel {
+    margin-left: 0%;
+}
+
+#radio2:checked ~ .carrossel {
+    margin-left: -100%;
+}
+
+#radio3:checked ~ .carrossel {
+    margin-left: -200%;
+}
+
+#radio4:checked ~ .carrossel {
+    margin-left: -300%;
+}
+
+/* FIM CARROSSEL */
+
+/* TÍTULO BEM-VINDO - INÍCIO */
+
+.copytheranch {
   display: flex;
-  width: 50px;
-  height: 200px;
-  flex-direction: column;
+  justify-content: flex-end;
+  margin-right: 20px;
+  margin-top: -1%;
+  color: #000000e5;
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
+  font-weight: 250;
 }
 
-.contato img {
-  border-radius: 90%;
-  height: 40px;
-  width: 40px;
-  padding: 4px;
+.bemvindo {
+  display: flex;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 700;
+  font-size: 80px;
+  justify-content: center;
+  margin-top: 5%;
 }
 
-/* footer */
+.melhor_site {
+  display: flex;
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 50px;
+  justify-content: center;
+}
+
+/* TÍTULO BEM-VINDO - INÍCIO */
+
+/* O QUE É - INÍCIO*/
+
+.oque {
+  height: 22%;
+  margin-top: 150px;
+}
+
+.oque img {
+  width: 100%;
+  height: 100%;
+  opacity: 20%;
+}
+
+.oque .titulo {
+  display: flex;
+  margin-top: -800px;
+  margin-left: 50px;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 700;
+  font-size: 80px;
+}
+
+.oque .significado1 {
+  margin: 50px;
+  font-family: "Inter", sans-serif;
+  font-weight: 250;
+  font-size: 30px;
+}
+
+.oque .significado2 {
+  margin: 50px;
+  font-family: "Inter", sans-serif;
+  font-weight: 250;
+  font-size: 30px;
+  margin-right: 550px;
+}
+
+.oque .oqimg {
+  width: 450px;
+  margin-left: 1000px;
+  margin-top: -400px;
+}
+
+.oque .oqimg img {
+  opacity: 100%;
+  width: 100%;
+  box-shadow: 0px 0px 20px 2px black;
+  border-radius: 5px;
+}
+
+/* O QUE É - FIM*/
+
+/* QUIZZES - INÍCIO */
+
+.quizzes {
+  height: 25%;
+}
+
+.quizzes img {
+  width: 100%;
+  height: 100%;
+  opacity: 10%;
+}
+
+.quizzes .amigos {
+  width: 35%;
+  margin-left: 6%;
+  margin-top: -55%;
+}
+
+.quizzes .amigos img {
+  opacity: 100%;
+  width: 100%;
+  box-shadow: 0px 0px 20px 2px black;
+  border-radius: 5px;
+}
+
+.quizzes .sertanejos {
+  width: 30%;
+  margin-left: 30%;
+  margin-top: -5%;
+}
+
+.quizzes .sertanejos img {
+  opacity: 100%;
+  width: 100%;
+  box-shadow: 0px 0px 20px 2px black;
+  border-radius: 5px;
+}
+
+.quizzes .artistas_iconicos {
+  display: flex;
+  width: 20%;
+  height: 6%;
+  background-color: #1A1513;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 35px;
+  margin-left: 47%;
+  margin-top: -32%;
+}
+
+.quizzes .artistas_text {
+  width: 30%;
+  height: 10%;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 180%;
+  margin-left: 47%;
+  margin-top: -34%;
+}
+
+.quizzes .quizzes_interativos {
+  display: flex;
+  width: 23%;
+  height: 6%;
+  background-color: #1A1513;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 35px;
+  margin-left: 63%;
+  margin-top: 12%;
+}
+
+.quizzes .quizzes_text {
+  width: 35%;
+  height: 10%;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 180%;
+  margin-left: 63%;
+  margin-top: 9.5%;
+}
+
+.quizzes .raizes_sertanejo {
+  display: flex;
+  width: 23%;
+  height: 6%;
+  background-color: #1A1513;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 35px;
+  margin-left: 10%;
+  margin-top: 15%;
+}
+
+.quizzes .raizes_text {
+  width: 35%;
+  height: 10%;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 180%;
+  margin-left: 10%;
+  margin-top: 12%;
+}
+
+/* QUIZZES - FIM */
+
+/* CRIAR CONTA - INÍCIO */
+
+.criar_conta {
+  height: 30%;
+}
+
+.criar_conta img {
+  width: 100%;
+  height: 100%;
+  opacity: 20%;
+}
+
+/* CRIAR CONTA - FIM */
+
+/* INICIO FOOTER */
 
 .footer {
   font-family: Arial, Helvetica, sans-serif;
@@ -103,7 +401,6 @@ nav {
   display: flex;
   flex-direction: column;
   height: 70%;
-  justify-content: space-around;
 }
 
 .contatos div {
@@ -113,7 +410,7 @@ nav {
 }
 
 .contatos img {
-  height: 30px;
+  height: 25px;
 }
 
 .contatos span {
@@ -124,11 +421,12 @@ nav {
 .contatos p {
   font-size: 20px;
   margin-left: 10px;
+  margin: 5px;
 }
 
 .localizacao img {
-  height: 50px;
-  margin-right: 50px;
+  height: 40px;
+  margin-left: -60px;
 }
 
 .localizacao {
@@ -139,7 +437,7 @@ nav {
   text-align: center;
 }
 
-.logo_nova {
+.logo_footer {
   height: 120px;
   padding-top: 60px;
 }
@@ -150,7 +448,9 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 9px;
+  font-size: 7px;
   padding: 0 0 30px 0;
   font-weight: 700;
 }
+
+/* FIM FOOTER */
