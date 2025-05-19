@@ -25,7 +25,7 @@ html {
 .container_pai {
   width: 100%;
   height: 800px;
-  background-image: url(assets/images/fundoTheRanch.png);
+  background-image: url(assets/images/login&cadastro/fundoCadastro.png);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -46,8 +46,10 @@ nav {
 nav ul {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 70px;
-  width: 45%;
+  margin-right: 40px;
+  width: auto;
   list-style-type: none;
 }
 
@@ -60,10 +62,6 @@ nav ul a {
   font-size: 90%;
 }
 
-.icone_perfil img {
-    width: 50%
-}
-
 .logo_nav img {
   width: 100px;
   margin-top: -20px;
@@ -72,48 +70,107 @@ nav ul a {
 
 /* NAVBAR - FIM */
 
-/* CENTRO */
+/* MEIO LOGIN - INÍCIO */
 
-.centro {
-    width: 100%;
-    height: 700px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
-.verVoce { 
+.formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  height: 90%;
+  background-color: #1a1513d2;
+  border-radius: 30px;
+}
+
+.formulario input::placeholder {
+    color: white;
+}
+
+.formulario h1 {
+  color: white;
   font-family: "Roboto Slab", sans-serif;
-  font-weight: 800;
-  font-size: 85px;
-  padding-left: 5%;
+  font-weight: 700;
+  font-size: 80px;
+  padding-top: 5%;
 }
 
-.linha {
-    width: 70%;
-    height: 1%;
-    margin-left: 5%;
-    background-color: #1a1513;
+input {
+  width: 60%;
+  height: 6%;
+  background-color: transparent;
+  border: #ffffff solid 1px;
+  border-radius: 50px;
+  padding-left: 3%;
+  color: #ffffffd0;
+  font-size: 20px;
 }
 
-.navegar {
+#input_nome {
   margin-top: 3%;
-  padding-left: 5%;
+}
+
+.escolha {
   font-family: "Inter", sans-serif;
   font-weight: 500;
-  font-size: 40px;
+  font-size: 25px;
+  margin-top: 1%;
+  color: white;
 }
 
-.cantores {
-    width: 50%;
-    margin-top: 4%;
-    margin-left: 50%;
-    position: absolute;
+#select_estilo {
+  width: 50%;
+  height: 4%;
+  background-color: transparent;
+  border: #ffffff solid 1px;
+  border-radius: 50px;
+  padding-left: 3%;
+  color: white;
+  font-size: 16px;
+  margin-top: 2%;
 }
 
-.cantores img {
-    width: 100%;
+option {
+  background-color: #1a1513;
 }
+
+.cadastrar {
+  background-color: #ffff;
+  color: #1a1513;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  width: 40%;
+  height: 8%;
+  margin-top: 5%;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.temConta {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  margin-top: 1%;
+  color: white;
+}
+
+.temConta a {
+  color: white;
+}
+
+/* MEIO LOGIN - INÍCIO */
 
 /* INICIO FOOTER */
 

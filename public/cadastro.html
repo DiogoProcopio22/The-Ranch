@@ -8,53 +8,59 @@
 
   <title>The Ranch | Cadastro</title>
 
-  <link rel="stylesheet" href="style/login.css" />
+  <link rel="stylesheet" href="style/cadastro.css" />
   <link rel="icon" href="style/assets/icons/logoTheRanch(branca).png">
 </head>
 
 <body>
   
 <div class="container_pai">
-    <div id="index" class="home">
+
+    <div class="home">
         <nav>
             <div class="logo_nav">
                 <a href="index.html"><img src="style/assets/icons/logoTheRanch(branca).png" alt="Logo The Ranch"></a>
             </div>
-            <div class="button">
-                <a href="index.html">Página Inicial</a>
-                <a href="origem.html">Origem</a>
-                <a href="login.html">Login</a>
-            </div>
+            <ul>
+                
+                <li><a href="index.html">Página Inicial</a></li>
+                <li><a href="origem.html">Origem</a></li>
+                <li><a href="login.html"><b>Login</b></a></li>
+            
+            </ul>
         </nav>
 
-        <div class="container">
+        <div class="container_pai">
 
-      <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
-        <div class="formulario">
-          <div class="campo">
-            <span>Código de ativação:</span>
-            <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
+          <div class="login">
+              <div class="formulario">
+                  
+                <h1>Criar Conta</h1>
+                  
+                  <input id="input_nome" type="text" placeholder="Nome:" />
+                    <br>
+                  <input id="input_nascimento" type="date" placeholder="Nascimento:" />
+                    <br>
+                  <input id="input_email" type="text" placeholder="Email:" />
+                    <br>
+                  <input id="input_senha" type="password" placeholder="Senha:" />
+                    <br>
+                  <input id="input_confirmacao" type="password" placeholder="Confirmar senha:" />
+                    <br>
+
+                    <p class="escolha">Escolha um estilo sertanejo preferido:</p>
+                    <select  id="select_estilo">
+                      <option value="#">Selecione</option>
+                      <option value="universitario">Universitário</option>
+                      <option value="modao">Modão</option>
+                      <option value="agronejo">Agronejo</option>
+                      <option value="raiz">Raíz</option>
+                    </select>
+                <a href="login.html" class="cadastrar">Cadastrar-se</a>
+                    <p class="temConta"><b>Já tem uma conta?</b> <a href="login.html">Faça o login</a></p>
+
+              </div>
           </div>
-          <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
-          </div>
-          <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
-          </div>
-          <div class="campo">
-            <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" />
-          </div>
-          <div class="campo">
-            <span>Confirmação da Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="******" />
-          </div>
-          <button class="botao">Cadastrar</button>
-        </div>
-      </div>
 
         </div>
 
@@ -86,7 +92,7 @@
                             <p>São Paulo - SP, 01414-001</p>
                         </div>
                     </div>
-                    <a href="#index"><img src="style/assets/icons/logoTheRanch(branca).png" alt="Logo The Ranch" class="logo_footer"></a>
+                    <a href="index.html"><img src="style/assets/icons/logoTheRanch(branca).png" alt="Logo The Ranch" class="logo_footer"></a>
                 </div>
             </div>
 
