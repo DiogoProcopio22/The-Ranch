@@ -79,14 +79,71 @@ nav ul a {
 
 /* NAVBAR - FIM */
 
-/* CENTRO */
+/* HISTÓRIA */
 
-.centro {
-    width: 100%;
-    height: 100%;
+.historia {
+    margin-top: 5%;
+    font-family: "Roboto Slab", sans-serif;
+    font-weight: 700;
+    font-size: 80px;
+    display: flex;
+    justify-content: center;
+    color: #1a1513;
+}
+
+.texto_historia {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 30px;
+    margin-left: 5%;
+    margin-right: 4%;
+    text-align: justify;
+}
+
+.cornelioPires {
+    position: absolute;
+    width: 18%;
+    margin-left: 70%;
+    margin-top: 20%;
+    box-shadow: 0px 0px 20px 0px;
+    border-radius: 10px;
+}
+
+.texto_historia .p1 {
+    margin-top: 4%;
+}
+
+.texto_historia .p2 {
+    padding-right: 25%;
+    margin-top: 3%;
+}
+
+.texto_historia .p3 {
+    padding-left: 30%;
+    padding-top: 3%;
+}
+
+.tonicoEtinoco {
+    position: absolute;
+    width: 24%;
+    margin-right: 65%;
+    margin-top: 50%;
+    box-shadow: 0px 0px 20px 0px;
+    border-radius: 10px;
+}
+
+.texto_historia .p4 {
+    margin-top: 3%;
+}
+
+.cantores {
+  position: absolute;
+  width: 100%;
+  margin-top: 157%;
+  margin-left: -1%;
 }
 
 
