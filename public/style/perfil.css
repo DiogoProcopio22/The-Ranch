@@ -24,7 +24,7 @@ html {
 
 .container_pai {
   width: 100%;
-  height: 800px;
+  height: 100%;
   background-image: url(assets/images/fundoTheRanch.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -87,87 +87,48 @@ nav ul a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
-
-/* INICIO FOOTER */
-
-.footer {
-  font-family: Arial, Helvetica, sans-serif;
+.fundo {
   width: 100%;
-  height: 100px;
-  background-color: #1a1513;
+  height: 90%;
+  opacity: 40%;
 }
 
-.elementos_footer {
-  display: flex;
-  width: 100%;
-  height: 100%;
+.logo_perfil {
+  position: absolute;
+  width: 12%;
+  padding-right: 30%;
+  padding-bottom: 20%;
 }
 
-.elemento_filho_footer {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 30px;
-  align-items: center;
-  padding-top: 25px;
+.informacoes {
+  position: absolute;
+  padding-left: 17%;
+  margin-bottom: 10%;
 }
 
-.contatos {
-  display: flex;
-  flex-direction: column;
-  height: 70%;
+h1 {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 800;
+  font-size: 70px;
 }
 
-.contatos div {
-  display: flex;
-  align-items: center;
-  color: white;
+h3 {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+  margin-top: 4%;
 }
 
-.contatos img {
-  height: 25px;
+.email {
+
 }
 
-.contatos span {
-  text-decoration: underline;
-  margin-left: 10px;
+.idade {
+
 }
 
-.contatos p {
-  font-size: 20px;
-  margin-left: 10px;
-  margin: 5px;
+.estilo {
 }
-
-.localizacao img {
-  height: 40px;
-  margin-left: -60px;
-}
-
-.localizacao {
-  display: flex;
-  color: white;
-  align-items: center;
-  font-size: 20px;
-  text-align: center;
-}
-
-.logo_footer {
-  height: 120px;
-  padding-top: 60px;
-}
-
-.copy {
-  background-color: #1a1513;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 7px;
-  padding: 0 0 30px 0;
-  font-weight: 700;
-}
-
-/* FIM FOOTER */
