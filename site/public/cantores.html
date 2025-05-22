@@ -41,11 +41,11 @@
         </div>
             
         <div class="estilo1">
-            <a href="universitario.html"><img src="style/assets/images/cantores_gerais/universitario.png" class="e1"></a>
-            <a href="modao.html"><img src="style/assets/images/cantores_gerais/modao.png" class="e2"></a>   
+            <a onclick="selecao_cantor('Cristiano Araújo')"><img src="style/assets/images/cantores_gerais/universitario.png" class="e1"></a>
+            <a onclick="selecao_cantor('Enzo Rabelo')"><img src="style/assets/images/cantores_gerais/modao.png" class="e2"></a>   
         </div>
         <div class="estilo2">
-            <a href="agronejo.html"><img src="style/assets/images/cantores_gerais/agronejo.png" class="e3"></a>
+            <a onclick="selecao_cantor('Felipe Araújo')"><img src="style/assets/images/cantores_gerais/agronejo.png" class="e3"></a>
             <a href="raiz.html"><img src="style/assets/images/cantores_gerais/raiz.png" class="e4"></a> 
         </div>
 
@@ -93,3 +93,15 @@
 </body>
 
 </html>
+
+<script>
+
+    function selecao_cantor(Artista) {
+        
+        sessionStorage.Artista = Artista;
+        window.location = "./cadaCantor.html"
+
+        console.log(Artista)
+    }
+
+</script>

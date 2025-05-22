@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>The Ranch | Cantor</title>
+
+  <link rel="stylesheet" href="style/cadaCantor.css" />
+  <link rel="icon" href="style/assets/icons/chapeu.png">
+</head>
+
+<body>
+  
+<div class="container_pai">
+
+    <div class="home">
+        <nav>
+            <div class="logo_nav">
+                <a href="home.html"><img src="style/assets/icons/logoTheRanch(branca).png" alt="Logo The Ranch"></a>
+            </div>
+            <ul>
+                
+                <li><a href="home.html">Home</a></li>
+                <li><a href="cantores.html" id="selecionado"><b>Cantores</b></a></li>
+                <li><a href="quiz.html">Quiz</a></li>
+                <li><a href="historia.html">História</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a class="icone_perfil" href="perfil.html"><img src="style/assets/icons/perfil.png"></a></li>
+                   
+            </ul>
+
+        </nav>
+
+                <div class="informacoes">
+                    
+                    <img class="banner_cantor" id="banner_cantor">
+                    
+                    <h3>Biografia</h3>
+
+                    <p class="p1" id="biografia">
+                             
+                    </p>
+
+                    <p class="nasc">Nascimento: <span id="nascimento"></span> 
+                    (<span id="local_nascimento"></span>)<br>
+
+                    <p class="atividade">Período em atividade: <span id="atividade"></span></p>
+
+                    <p class="musicas">Algumas músicas:
+                    <span id="musicas"></span></p>
+
+                    <h4>Principal Hit</h4>
+
+                    <p class="hit" id="hit"></p>
+
+                    <img src="style/assets/icons/logo_spotify.png" class="spotify">
+                    <img src="style/assets/icons/logo_youtube.png" class="youtube">
+
+                    <p class="streams"><i>+<span id="streams"></span> Milhões de streams</i></p>
+                    <p class="views"><i>+<span id="views"></span> Milhões de views</i></p>
+    
+                    <img class="cantor" id="foto_cantor">
+
+                </div>
+
+    </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="elementos_footer">
+                <div class="elemento_filho_footer">
+                    <div class="contatos">
+                        <div>
+                            <img src="style/assets/icons/email.png" alt="Ícone Email">
+                            <span>theranch@gmail.com</span>
+                        </div>
+                        <div>
+                            <img src="style/assets/icons/telefone.png" alt="Ícone Telefone">
+                            <p>11 8765-4321</p>
+                        </div>
+                        <div>
+                            <img src="style/assets/icons/whatsapp.png" alt="Ícone WhatsApp">
+                            <p>11 98765-4321</p>
+                        </div>
+                    </div>
+
+                    <div class="localizacao">
+                        <img src="style/assets/icons/localizacao.png" alt="Ícone Localização">
+                        <div>
+                            <p>Rua Haddock Lobo, 595 - Cerqueira César,</p>
+                            <p>São Paulo - SP, 01414-001</p>
+                        </div>
+                    </div>
+                    <a href="#"><img src="style/assets/icons/logoTheRanch(branca).png" alt="Logo The Ranch" class="logo_footer"></a>
+                </div>
+            </div>
+
+            <div class="copy">
+                <h1>THE RANCH © 2025. Todos os direitos reservados. Desenvolvido por Diogo Procopio.</h1>
+            </div>
+        </div>
+    
+</div>
+
+</body>
+
+</html>
+
+<script>
+
+    var Artista = sessionStorage.Artista;
+
+
+
+   async function informacoesArtista() {
+        const resposta = await fetch(`/usuarios/dadosArtista/${Artista}`);
+
+        const dados = await resposta.json();
+
+        banner_cantor.src  = dados[0].banner;
+        biografia.innerHTML = dados[0].biografia;
+        nascimento.innerHTML = dados[0].dtNasc;
+        local_nascimento.innerHTML = dados[0].localNasc;
+        atividade.innerHTML = dados[0].atividade;
+        musicas.innerHTML = dados[0].algumasMusicas;
+        hit.innerHTML = dados[0].principalHit;
+        streams.innerHTML = dados[0].spotify;
+        views.innerHTML = dados[0].youtube;
+        foto_cantor.src = dados[0].foto;
+
+        console.log(dados)
+    }
+
+    informacoesArtista()
+
+
+
+</script>
