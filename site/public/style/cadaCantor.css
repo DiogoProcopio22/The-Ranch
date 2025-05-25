@@ -110,56 +110,68 @@ nav ul a {
 }
 
 .nasc {
+  font-weight: 400;
+  margin-top: 5%;
+}
+
+.local_nasc {
+  font-weight: 400;
   margin-top: 5%;
 }
 
 .atividade {
+  font-weight: 400;
   margin-top: 5%;
 }
 
 .musicas {
+  font-weight: 400;
   margin-top: 5%;
 }
 
 .informacoes h4 {
-  font-size: 50px;
-  margin-top: 12%;
+  font-size: 70px;
+  margin-top: 15%;
   margin-left: 40%;
 }
 
 .hit {
+  font-size: 35px;
+  font-weight: 600;
   margin-top: 2%;
   margin-left: 40%;
 }
 
-.spotify {
-  width: 5%;
+.plataformas {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
   margin-left: 40%;
   margin-top: 5%;
 }
 
-.streams {
-  font-size: 30px;
-  margin-left: 46%;
-  margin-top: -9%;
+.plataformas img {
+  width: 15%;
+  height: 15%;
 }
 
-.youtube {
-  width: 5%;
-  margin-left: 40%;
+.plataformas .views {
+  position: absolute;
+  margin-left: 5%;
+  margin-top: 5%;
+  font-weight: 500;
 }
-
-.views {
-  font-size: 30px;
-  margin-left: 46%;
-  margin-top: 2.5%;
+.plataformas .streams {
+  position: absolute;
+  margin-left: 5%;
+  margin-top: 1%;
+  font-weight: 500;
 }
 
 .cantor {
-  position: absolute;
-  width: 30%;
+  margin-top: -28%;
+  width: 35%;
   box-shadow: 0px 0px 20px 0px;
-  margin-top: 120%;
   border-radius: 10%;
 }
 

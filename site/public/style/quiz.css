@@ -87,6 +87,22 @@ nav ul a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+.centro img {
+  width: 100%;
+}
+
+.container {
+  position: absolute;
+  background-color: aqua;
+  width: 80%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
 }
 
 
