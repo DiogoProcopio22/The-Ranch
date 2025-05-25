@@ -24,7 +24,7 @@ html {
 
 .container_pai {
   width: 100%;
-  height: 3000px;
+  height: 1800px;
   background-image: url(assets/images/fundoTheRanch.png);
   background-repeat: no-repeat;
   background-size: cover;
@@ -92,7 +92,7 @@ nav ul a {
 
 .fundo {
 
-  height: 100%;
+  height: 96%;
   opacity: 20%;
 }
 
@@ -127,10 +127,10 @@ nav ul a {
   margin-left: 10%;
 }
 
-.solo {
+.cantores_agronejo {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
   height: 1600px;
   position: absolute;
   font-weight: 700;
@@ -140,189 +140,52 @@ nav ul a {
   font-weight: 600;
 }
 
-.solo img { 
+.cantores_agronejo img { 
   border-radius: 10%;
   width: 100%;
-  margin-left: 60%;
+  margin-left: 50%;
   box-shadow: 0px 0px 20px 0px black;
 }
 
-.solo img:hover {
+.cantores_agronejo img:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
 
-.solo p {
-  font-size: 30px;
+.cantores_agronejo p {
+  font-size: 20px;
   text-align: left;
-  margin-left: 11%;
+  margin-left: 5%;
   margin-top: 3%;
   width: 20%;
 }
 
-.solo a {
+.cantores_agronejo a {
   width: 15%;
 }
 
-.solo1 {
+.agro1 {
   margin-top: 5%;
   display: flex;
   flex-direction: row;
 }
-.solo2 {
+.agro2 {
   margin-top: 5%;
   display: flex;
   flex-direction: row;
 }
-.solo3 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.solo4 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.solo5 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.solo6 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.solo7 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.solo8 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.solo9 {
+.agro3 {
   margin-top: 5%;
   display: flex;
   flex-direction: row;
 }
 
-
-.duplas {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  height: 2500px;
-  margin-left: 48%;
-  position: absolute;
-  font-weight: 700;
-  font-size: 40px;
-  margin-top: 15%;
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
+.agro3 img {
+  width: 72%;
 }
 
-.duplas img { 
-  border-radius: 10%;
-  width: 100%;
-  margin-left: 80%;
-  box-shadow: 0px 0px 20px 0px black;
-}
-
-.duplas img:hover {
-  cursor: pointer;
-  transform: scale(1.1);
-}
-
-.duplas p {
-  font-size: 23px;
-  text-align: left;
-  margin-left: 14%;
-  margin-top: 4%;
-  width: 20%;
-}
-
-.duplas a {
-  width: 15%;
-}
-
-.duplas1 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.duplas2 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.duplas3 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.duplas4 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.duplas5 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.duplas6 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.duplas7 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.duplas8 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.duplas9 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.duplas10 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.duplas11 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.duplas12 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.duplas13 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.duplas14 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
-}
-.duplas15 {
-  margin-top: 5%;
-  display: flex;
-  flex-direction: row;
+.agro3 p {
+  margin-left: 4%;
 }
 
 
