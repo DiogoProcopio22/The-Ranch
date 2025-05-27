@@ -109,24 +109,29 @@ nav ul a {
     margin-top: 3%;
 }
 
+.nome {
+  font-weight: 400;
+  margin-top: 3%;
+}
+
 .nasc {
   font-weight: 400;
-  margin-top: 5%;
+  margin-top: 4%;
 }
 
 .local_nasc {
   font-weight: 400;
-  margin-top: 5%;
+  margin-top: 3%;
 }
 
 .atividade {
   font-weight: 400;
-  margin-top: 5%;
+  margin-top: 3%;
 }
 
 .musicas {
   font-weight: 400;
-  margin-top: 5%;
+  margin-top: 4%;
 }
 
 .informacoes h4 {

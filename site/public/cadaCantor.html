@@ -24,7 +24,7 @@
             <ul>
                 
                 <li><a href="home.html">Home</a></li>
-                <li><a href="universitario.html" id="selecionado"><b>Cantores</b></a></li>
+                <li><a href="cantores.html" id="selecionado"><b>Cantores</b></a></li>
                 <li><a href="quiz.html">Quiz</a></li>
                 <li><a href="historia.html">História</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
@@ -40,9 +40,9 @@
                     
                     <h3>Biografia</h3>
 
-                    <p class="p1" id="biografia">
-                             
-                    </p>
+                    <p class="p1" id="biografia"></p>
+
+                    <p class="nome"><b>Nome Completo:</b> <span id="nome"></span></p>
 
                     <p class="nasc"><b>Data Nascimento:</b> <span id="nascimento"></span></p>
 
@@ -131,6 +131,7 @@
 
         banner_cantor.src  = dados[0].banner;
         biografia.innerHTML = dados[0].biografia;
+        nome.innerHTML = dados[0].nomeCompleto;
         nascimento.innerHTML = dados[0].dtNasc;
         local_nascimento.innerHTML = dados[0].localNasc;
         atividade.innerHTML = dados[0].atividade;
