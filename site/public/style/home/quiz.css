@@ -1,0 +1,322 @@
+/* IMPORTAÇÃO DAS FONTES */
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@100..900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.container_pai {
+  width: 100%;
+  height: 3000px;
+  background-image: url(../assets/images/fundoTheRanch.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAVBAR - INÍCIO */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1a1513;
+  height: 70px;
+}
+
+#selecionado {
+  text-decoration: underline;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+  width: 45%;
+  list-style-type: none;
+}
+
+nav ul a {
+  color: white;
+  text-decoration: none;
+  border: none;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 90%;
+}
+
+.icone_perfil img {
+    width: 50%
+}
+
+.logo_nav img {
+  width: 100px;
+  margin-top: -20px;
+  margin-left: 15px;
+}
+
+/* NAVBAR - FIM */
+
+.principal {
+  width: 100%;
+  height: 800px;
+  display: flex;
+  justify-content: center;
+}
+
+.banner_quiz {
+  width: 100%;
+  opacity: 30%;
+}
+
+.principal h1 {
+  position: absolute;
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 85px;
+  width: 70%;
+  text-align: center;
+  font-weight: 400;
+  margin-top: 15%;
+  color: #1a1513;
+}
+.principal h2 {
+  position: absolute;
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 85px;
+  width: 70%;
+  text-align: center;
+  font-weight: 400;
+  margin-top: 20%;
+  color: #1a1513;
+}
+
+.principal p {
+  position: absolute;
+  font-family: "Inter", sans-serif;
+  font-size: 35px;
+  font-weight: 800;
+  margin-top: 28%;
+  color: #1a1513;
+}
+
+.quizzes {
+  width: 90%;
+  height: 2000px;
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+}
+
+.quizzes img {
+  width: 45%;
+  border-radius: 30px;
+  box-shadow: 0px 0px 20px 0px black;
+}
+
+.quizzes img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: 0.5s;
+}
+
+.quizzes h3 {
+  font-family: "Roboto Slab", sans-serif;
+  font-size: 60px;
+  font-weight: 800;
+  color: #1a1513;
+  position: absolute;
+}
+
+.quizzes p {
+  font-family: "Inter", sans-serif;
+  font-size: 35px;
+  font-weight: 500;
+  color: #1a1513;
+  position: absolute;
+}
+
+.conhecimentosGerais {
+  margin-bottom: 8%;
+  display: flex;
+  align-items: center;
+}
+
+.conhecimentosGerais h3 {
+  margin-left: 43%;
+  margin-bottom: 10%;
+  width: 45%;
+}
+
+.conhecimentosGerais p {
+  margin-left: 43%;
+  margin-top: 10%;
+  width: 50%;
+}
+
+.completeAmusica {
+  margin-bottom: 8%;
+  display: flex;
+  align-items: center;
+}
+
+.completeAmusica h3 {
+  margin-right: 43%;
+  margin-bottom: 8%;
+  width: 45%;
+  text-align: right;
+}
+
+.completeAmusica p {
+  margin-right: 50%;
+  margin-top: 6%;
+  text-align: right;
+}
+
+.completeAmusica img {
+  margin-left: 55%;
+}
+
+.quemCanta {
+  margin-bottom: 8%;
+  display: flex;
+  align-items: center;
+}
+
+.quemCanta h3 {
+  margin-left: 43%;
+  margin-bottom: 8%;
+  width: 45%;
+}
+
+.quemCanta p {
+  margin-left: 43%;
+  margin-top: 6%;
+  width: 50%;
+}
+
+.ondeNasceu {
+  margin-bottom: 8%;
+  display: flex;
+  align-items: center;
+}
+
+.ondeNasceu h3 {
+  margin-right: 43%;
+  margin-bottom: 8%;
+  width: 45%;
+  text-align: right;
+}
+
+.ondeNasceu p {
+  margin-right: 50%;
+  margin-top: 6%;
+  text-align: right;
+}
+
+.ondeNasceu img {
+  margin-left: 55%;
+}
+
+/* INICIO FOOTER */
+
+.footer {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  height: 100px;
+  background-color: #1a1513;
+}
+
+.elementos_footer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.elemento_filho_footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 30px;
+  align-items: center;
+  padding-top: 25px;
+}
+
+.contatos {
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+}
+
+.contatos div {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.contatos img {
+  height: 25px;
+}
+
+.contatos span {
+  text-decoration: underline;
+  margin-left: 10px;
+}
+
+.contatos p {
+  font-size: 20px;
+  margin-left: 10px;
+  margin: 5px;
+}
+
+.localizacao img {
+  height: 40px;
+  margin-left: -60px;
+}
+
+.localizacao {
+  display: flex;
+  color: white;
+  align-items: center;
+  font-size: 20px;
+  text-align: center;
+}
+
+.logo_footer {
+  height: 120px;
+  padding-top: 60px;
+}
+
+.copy {
+  background-color: #1a1513;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 7px;
+  padding: 0 0 30px 0;
+  font-weight: 700;
+}
+
+/* FIM FOOTER */

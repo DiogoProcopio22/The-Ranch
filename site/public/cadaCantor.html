@@ -8,7 +8,7 @@
 
   <title>The Ranch | Cantor</title>
 
-  <link rel="stylesheet" href="style/cadaCantor.css" />
+  <link rel="stylesheet" href="style/home/cantores/cadaCantor.css" />
   <link rel="icon" href="style/assets/icons/chapeu.png">
 </head>
 
@@ -121,8 +121,6 @@
 <script>
 
     var Artista = sessionStorage.Artista;
-
-
 
    async function informacoesArtista() {
         const resposta = await fetch(`/usuarios/dadosArtista/${Artista}`);
