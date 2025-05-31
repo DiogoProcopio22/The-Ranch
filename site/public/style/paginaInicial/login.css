@@ -114,23 +114,26 @@ input {
   margin-top: 3%;
 }
 
-.entrar {
-  background-color: #ffff;
-  color: #1a1513;
-  font-family: "Inter", sans-serif;
-  font-weight: 600;
-  font-size: 40px;
-  width: 40%;
-  height: 12%;
-  margin-top: 5%;
-  border-radius: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
+.Erros_senha{
+    color: white;
+    align-self: left;
+    font-size: 20px;
 }
 
-.entrar:hover {
+#button_entrar {
+    width: 30%;
+    height: 10%;
+    align-self: center;
+    margin-top: 5%;
+    border-radius: 30px;
+    color: #1a1513;
+    font-weight: 600;
+    font-size: 20px;
+    font-family: "Inter", sans-serif;
+}
+
+#button_entrar:hover {
+  cursor: pointer;
   transform: scale(1.1);
 }
 

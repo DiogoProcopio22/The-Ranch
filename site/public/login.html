@@ -37,14 +37,18 @@
                   
                 <h1>Login</h1>
                   
-                  <input class="input" id="input_email" type="text" placeholder="Email:" />
+                  <input class="input" id="input_email_login" type="text" placeholder="Email:" required>
                     <br>
-                  <input class="input" id="input_senha" type="password" placeholder="Senha:" />
+                  <input class="input" id="input_email_senha" type="password" placeholder="Senha:" required>
                     <br>
-                <a href="home.html" class="entrar">Entrar</a>
+
+                    <p id="erros_senha_login" class="Erros_senha"></p>
+                <button onclick="ValidarLogin()" id="button_entrar">Entrar</button>
+                
                     <p class="temConta"><b>Não tem uma conta?</b> <a href="cadastro.html">Cadastre-se</a></p>
 
               </div>
+
           </div>
 
         </div>
@@ -91,3 +95,48 @@
 </body>
 
 </html>
+
+<script>
+
+function ValidarLogin() {
+    const email = document.getElementById("input_email_login").value;
+    const senha = document.getElementById("input_email_senha").value;
+
+    if (email === "" || senha === "") {
+        alert("Preencha todos os campos!");
+        return;
+    }
+
+    fetch('/login/checar', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            email: email,
+            senha: senha
+        })
+    })
+    .then(resposta => {
+        if (!resposta.ok) {
+            throw new Error(`Erro na requisição: ${resposta.status}`);
+        }
+        return resposta.json();
+    })
+    .then(resposta => {
+        if (resposta.length === 1) {
+            // Login bem-sucedido
+            const usuario = resposta[0];
+
+            sessionStorage.setItem('idUsuario', usuario.idUsuario);
+            sessionStorage.setItem('email', usuario.email);
+            sessionStorage.setItem('nome', usuario.nome);
+
+            alert(`Bem-vindo(a), ${usuario.nome}!`);
+            window.location.href = "home.html"; // redireciona pra home
+        } else {
+            document.getElementById("erros_senha_login").innerText = "Email ou senha inválidos!";
+        }
+    })
+}
+
+
+</script>

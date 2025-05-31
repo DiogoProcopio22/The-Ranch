@@ -16,7 +16,7 @@
   
 <div class="container_pai">
 
-    <div class="home">
+  <div class="home">
         <nav>
             <div class="logo_nav">
                 <a href="index.html"><img src="style/assets/icons/logoTheRanch(branca).png" alt="Logo The Ranch"></a>
@@ -30,41 +30,63 @@
             </ul>
         </nav>
 
-        <div class="container_pai">
+    <div class="container_pai">
 
-          <div class="login">
-              <div class="formulario">
+      <div class="cadastro">
+
+              <div class="alerta_erro">
+                <div class="card_erro" id="cardErro">
+                  <span id="mensagem_erro"></span>
+                </div>
+              </div>
+
+        <div class="formulario">
                   
                 <h1>Criar Conta</h1>
                   
-                  <input id="input_nome" type="text" placeholder="Nome:" />
-                    <br>
-                  <input id="input_nascimento" type="date" placeholder="Nascimento:" />
-                    <br>
-                  <input id="input_email" type="text" placeholder="Email:" />
-                    <br>
-                  <input id="input_senha" type="password" placeholder="Senha:" />
-                    <br>
-                  <input id="input_confirmacao" type="password" placeholder="Confirmar senha:" />
-                    <br>
-
-                    <p class="escolha">Escolha um estilo sertanejo preferido:</p>
-                    <select  id="select_estilo">
-                      <option value="#">Selecione</option>
-                      <option value="universitario">Universitário</option>
-                      <option value="modao">Modão</option>
-                      <option value="agronejo">Agronejo</option>
-                      <option value="raiz">Raíz</option>
-                    </select>
-                <a href="login.html" class="cadastrar">Cadastrar-se</a>
-                    <p class="temConta"><b>Já tem uma conta?</b> <a href="login.html">Faça o login</a></p>
-
-              </div>
+          <div class="campo">
+            <input id="input_nome" type="text" placeholder="Seu nome" />
+          </div>
+          <div class="campo">
+            <input id="input_nascimento" type="date" placeholder="Nascimento:" />
+          </div>
+          <div class="campo">
+            <input id="input_email" type="text" placeholder="Email:" />
+          </div>
+          <div class="campo">
+            <input id="input_senha" type="password" placeholder="Senha:" />
+          </div>
+          <div class="campo">
+            <input id="confirmacao_senha_input" type="password" placeholder="Confirmar senha:" />
+          </div>
+          <div class="campo">
+            <p class="escolha">Escolha um estilo sertanejo preferido:</p>
+            <select id="select_estilo">
+              <option value="#">Selecione</option>
+              <option value="1">Universitário</option>
+              <option value="2">Modão</option>
+              <option value="3">Agronejo</option>
+              <option value="4">Raíz</option>
+            </select>
           </div>
 
+                <button class="cadastrar" onclick="cadastrar()">Cadastrar</button>
+            <p class="temConta"><b>Já tem uma conta?</b> <a href="login.html">Faça o login</a></p>
+
+            
+        <!-- </div>
+
+        <div id="div_aguardar" class="loading-div">
+          <img src="./assets/circle-loading.gif" id="loading-gif" />
         </div>
 
-    </div>
+        <div id="div_erros_login"></div> -->
+
+      </div>
+
+     </div>
+
+  </div>
 
         <!-- FOOTER -->
         <div class="footer">
@@ -106,3 +128,87 @@
 </body>
 
 </html>
+
+<script>
+
+  function cadastrar() {
+
+    var nome = input_nome.value;
+    var nascimento = input_nascimento.value;
+    var email = input_email.value;
+    var senha = input_senha.value;
+    var confirmacaoSenha = confirmacao_senha_input.value;
+    var estilo = select_estilo.value;
+    
+    if (
+      nome == "" ||
+      nascimento == "" ||
+      email == "" ||
+      senha == "" ||
+      confirmacaoSenha == "" ||
+      estilo == ""
+    ) {
+      // cardErro.style.display = "block";
+      // mensagem_erro.innerHTML =
+      //   "(Mensagem de erro para todos os campos em branco)";
+
+      //finalizarAguardar();
+      return false;
+    } else if (nome.length <= 1) {
+      mensagem_erro.innerHTML = "(Seu nome deve conter mais de 1 letra!)";
+    } else if (email.indexOf("@") ==  -1 && email.indexOf(".") ==  -1) {
+      mensagem_erro.innerHTML = "(Seu email deve conter '@' e '.')";
+    } else if (senha.length <= 6) {
+      mensagem_erro.innerHTML = "(Sua senha deve conter pelo menos 6 dígitos!)";
+    } else if (confirmacaoSenha != senha) {
+      mensagem_erro.innerHTML = "(As senhas inseridas são diferentes!)";
+     } //else {
+    //   setInterval(sumirMensagem, 5000);
+    // }
+
+    // Enviando o valor da nova input
+    fetch("/cadastro/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nomeServer: nome,
+        dtNascServer: nascimento,
+        emailServer: email,
+        senhaServer: senha,
+        estiloServer: estilo
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          // cardErro.style.display = "block";
+
+          // mensagem_erro.innerHTML =
+          //   "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          //limparFormulario();
+          //finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+       // finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  // function sumirMensagem() {
+  //   cardErro.style.display = "none";
+  // }
+
+</script>

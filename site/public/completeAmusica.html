@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Quiz | Complete a Música</title>
+
+  <link rel="stylesheet" href="style/home/completeAmusica.css" />
+  <link rel="icon" href="style/assets/icons/chapeu.png">
+</head>
+
+<body onload="onloadEsconder()">
+  
+<div class="container_pai">
+
+    <div class="home">
+        <nav>
+            <div class="logo_nav">
+                <a href="home.html"><img src="style/assets/icons/logoTheRanch(branca).png" alt="Logo The Ranch"></a>
+            </div>
+            <ul>
+                
+                <li><a href="home.html">Home</a></li>
+                <li><a href="cantores.html">Cantores</a></li>
+                <li><a href="quiz.html" id="selecionado"><b>Quiz</b></a></li>
+                <li><a href="historia.html">História</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a class="icone_perfil" href="perfil.html"><img src="style/assets/icons/perfil.png"></a></li>
+                   
+            </ul>
+
+        </nav>
+    </div>
+
+    <div class="container_quiz">
+
+        <h1>Complete a música...</h1>
+
+    <div class="fundo_quiz">
+
+        <div id="pontuacaoEJogo">
+            <button id="iniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+            
+            <div id="pontuacao" class="flexColumn width-fit-content">
+                <div id="pontuacaoDuranteJogo" class="flexColumn padding-8">
+                    <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
+                    <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
+                </div>
+                <div id="pontuacaoFinalJogo" class="flexColumn padding-8">
+                    <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
+                        <span id="spanPontuacaoFinal">***</span>
+                    </span>
+                    <span id="msgFinal" class="width-fit-content">***</span>
+                </div>
+                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+            </div>
+
+            <div id="jogo" class="width-fit-content flexColumn">
+
+                <div id="infoQuestao" class="padding-8">
+                    <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
+                        questões.</span>
+                </div>
+
+                <div id="perguntaDaQuestaoAtual" class="padding-8">
+                    <span id="spanQuestaoExibida" class="pergunta"></span>
+                </div>
+
+                <div id="infoAlternativas" class="padding-8">
+                    <span><em>Escolha uma opção dentre as abaixo:</em></span>
+                </div>
+
+                <div id="opcoes" class="flexColumn padding-8">
+                    <span class="option">
+                        <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                        <label for="primeiraOpcao" id="labelOpcaoUm"></label>
+                    </span>
+                    <span class="option">
+                        <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                        <label for="segundaOpcao" id="labelOpcaoDois"></label>
+                    </span>
+                    <span class="option">
+                        <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                        <label for="terceiraOpcao" id="labelOpcaoTres"></label>
+                    </span>
+                    <span class="option">
+                        <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                        <label for="quartaOpcao" id="labelOpcaoQuatro"></label>
+                    </span>
+                </div>
+
+                <div id="botoes" class="padding-8">
+                    <button onclick="submeter()" id="btnSubmeter">Confirmar</button>
+                    <button onclick="avancar()" id="btnProx" disabled>Próxima Pergunta</button>
+                    <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+                </div>
+
+        </div>
+    </div>
+    </div>
+
+    </div>
+    
+</div>
+
+</body>
+
+</html>
+<script>
+    const listaDeQuestoes = [
+
+        {
+            pergunta: "1. Podemos ser um caso indefinido ou nada mais...",
+            alternativaA: "(A) E vai saber se um dia seremos nós",
+            alternativaB: "(B) Apenas bons amigos, namorar, casar, ter filhos ",
+            alternativaC: "(C) Um minuto, uma hora, não importa o tempo",
+            alternativaD: "(D)  Adoro esse perigo, mexe demais comigo",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "2. Tão longe do chão...",
+            alternativaA: "(A) Serei os teus pés",
+            alternativaB: "(B) Se entrega pra mim",
+            alternativaC: "(C) Minha alma viajante",
+            alternativaD: "(D) Te amando feito um louco",
+            alternativaCorreta: "alternativaA"
+        },
+
+        {
+            pergunta: "3. Lembrei de tudo entre nós, do amor vivido...",
+            alternativaA: "(A) Um fio de cabelo no meu paletó",
+            alternativaB: "(B) Aquele restinho do perfume dela que ficou no frasco",
+            alternativaC: "(C) A gente começa a esperar por quem ama",
+            alternativaD: "(D) Aquele fio de cabelo comprido",
+            alternativaCorreta: "alternativaD"
+        },
+
+        {
+            pergunta: "4. E aquela loucura de mudar pra Salvador...",
+            alternativaA: "(A) Esquece, eu nem gosto de calor",
+            alternativaB: "(B) Eu sou paciente, coração é meu doutor",
+            alternativaC: "(C) Esquece, jantar fora é bem melhor",
+            alternativaD: "(D) Já tomei, funcionou",
+            alternativaCorreta: "alternativaA"
+        },
+
+        {
+            pergunta: "5. Dois meses juntinho dela eternamente serão lembrados...",
+            alternativaA: "(A) Jamais eu esquecerei Aparecida do Taboado",
+            alternativaB: "(B) Se alguém fala em Mato Grosso eu sinto o peito despedaçado",
+            alternativaC: "(C) Pedaço da minha vida, lembranças do meu passado",
+            alternativaD: "(D) Deixei minha própria vida 60 dias apaixonado",
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            pergunta: "6. Qualquer coisa que não fosse com você...",
+            alternativaA: "(A) Poderia estar agora no espaço",
+            alternativaB: "(B) Me causaria tédio",
+            alternativaC: "(C) Eu nem sei",
+            alternativaD: "(D) Em um módulo lunar, oh, que chato",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "7. Sou fã do seu jeito...",
+            alternativaA: "(A) Sou fã dos seus olhos",
+            alternativaB: "(B) E com você, sou fã da vida",
+            alternativaC: "(C) Sou fã da sua roupa",
+            alternativaD: "(D) Quero convencer seu coração",
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            pergunta: "8. Vai encontrar alguém que você ame...",
+            alternativaA: "(A) E vai sentir a dor da indiferença",
+            alternativaB: "(B) E que te faça o que fez comigo",
+            alternativaC: "(C) Apesar de tudo que vivi, eu me deixei levar",
+            alternativaD: "(D) Me deixando assim",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "9. Vai por mim, igual nós dois não tem...",
+            alternativaA: "(A) Seu coração é meu e o meu é seu também",
+            alternativaB: "(B) Não deu pra esquecer",
+            alternativaC: "(C) Se reclamar, cê vai casar também",
+            alternativaD: "(D) Eu vim acabar com essa sua vidinha de balada",
+            alternativaCorreta: "alternativaC"
+        },
+
+        {
+            pergunta: "10. Quem eu quero, não me quer...",
+            alternativaA: "(A) Ninguém vai sofrer sozinho",
+            alternativaB: "(B) Quem quiser me amar",
+            alternativaC: "(C) Então já que é assim",
+            alternativaD: "(D) Quem me quer, não vou querer",
+            alternativaCorreta: "alternativaD"
+        }
+
+    ]
+
+    // variáveis globais    
+    let numeroDaQuestaoAtual = 0
+    let pontuacaoFinal = 0
+    let tentativaIncorreta = 0
+    let certas = 0
+    let erradas = 0
+    let quantidadeDeQuestoes = listaDeQuestoes.length
+    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
+
+    function onloadEsconder() {
+        document.getElementById('pontuacao').style.display = "none"
+        document.getElementById('jogo').style.display = "none"
+    }
+
+    function iniciarQuiz() {
+        document.getElementById('pontuacao').style.display = "none"
+        document.getElementById('jogo').style.display = "flex"
+        document.getElementById('iniciarQuiz').style.display = "none"
+
+        document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
+
+        preencherHTMLcomQuestaoAtual(0)
+
+        btnSubmeter.disabled = false
+        btnProx.disabled = true
+        // btnConcluir.disabled = true
+        btnTentarNovamente.disabled = true
+    }
+
+    function preencherHTMLcomQuestaoAtual(index) {
+        habilitarAlternativas(true)
+        const questaoAtual = listaDeQuestoes[index]
+        numeroDaQuestaoAtual = index
+        console.log("questaoAtual")
+        console.log(questaoAtual)
+        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
+        document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+    }
+
+    function submeter() {
+        const options = document.getElementsByName("option"); // recupera alternativas no html
+
+        let hasChecked = false
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                hasChecked = true
+                break
+            }
+        }
+
+        if (!hasChecked) {
+            alert("Não há alternativas escolhidas. Escolha uma opção.")
+        } else {
+            btnSubmeter.disabled = true
+            btnProx.disabled = false
+
+            habilitarAlternativas(false)
+
+            checarResposta()
+        }
+    }
+
+    function habilitarAlternativas(trueOrFalse) {
+        let opcaoEscolhida = trueOrFalse ? false : true
+
+        primeiraOpcao.disabled = opcaoEscolhida
+        segundaOpcao.disabled = opcaoEscolhida
+        terceiraOpcao.disabled = opcaoEscolhida
+        quartaOpcao.disabled = opcaoEscolhida
+
+    }
+
+    function avancar() {
+        btnProx.disabled = true
+        btnSubmeter.disabled = false
+
+        desmarcarRadioButtons()
+
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
+            alert("Atenção... a próxima é a ultima questão!")
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        } else {
+            finalizarJogo()
+        }
+        limparCoresBackgroundOpcoes()
+    }
+
+    function tentarNovamente() {
+        // atualiza a página
+        window.location.reload()
+    }
+
+    function checarResposta() {
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
+        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+
+        const options = document.getElementsByName("option"); // recupera alternativas no html
+
+        let alternativaCorreta = null // variável para armazenar a alternativa correta
+
+        options.forEach((option) => {
+            if (option.value === respostaQuestaoAtual) {
+                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
+                alternativaCorreta = option.labels[0].id
+            }
+        })
+
+        // verifica se resposta assinalada é correta
+        options.forEach((option) => {
+            if (option.checked === true && option.value === respostaQuestaoAtual) {
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                pontuacaoFinal++
+                certas++
+                document.getElementById("spanCertas").innerHTML = certas
+                numeroDaQuestaoAtual++
+            } else if (option.checked && option.value !== respostaQuestaoAtual) {
+                const wrongLabelId = option.labels[0].id
+
+                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                tentativaIncorreta++
+                erradas++
+                document.getElementById("spanErradas").innerHTML = erradas
+                numeroDaQuestaoAtual++
+            }
+        })
+    }
+
+    function limparCoresBackgroundOpcoes() {
+        const options = document.getElementsByName("option");
+        options.forEach((option) => {
+            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
+            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+        })
+    }
+
+    function desmarcarRadioButtons() {
+        const options = document.getElementsByName("option");
+        for (let i = 0; i < options.length; i++) {
+            options[i].checked = false;
+        }
+    }
+
+    function finalizarJogo() {
+        document.getElementById('pontuacao').style.display = "flex"
+        document.getElementById('jogo').style.display = "none"
+        let textoParaMensagemFinal = null
+        let classComCoresParaMensagemFinal = null
+        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+
+        if (porcentagemFinalDeAcertos <= 0.3) {
+            textoParaMensagemFinal = "Calouro do Sertanejo"
+            classComCoresParaMensagemFinal = "text-danger-with-bg"
+        }
+        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.7) {
+            textoParaMensagemFinal = "Fã em formação"
+            classComCoresParaMensagemFinal = "text-warning-with-bg"
+        }
+        else if (porcentagemFinalDeAcertos >= 0.7) {
+            textoParaMensagemFinal = "Modão na Veia!"
+            classComCoresParaMensagemFinal = "text-success-with-bg"
+        }
+
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
+
+
+        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
+        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
+
+        document.getElementById('jogo').classList.add("text-new-gray") 
+
+        btnProx.disabled = true
+        btnSubmeter.disabled = true
+        // btnConcluir.disabled = true
+        btnTentarNovamente.disabled = false
+
+    }
+</script>

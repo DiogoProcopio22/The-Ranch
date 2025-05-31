@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Quiz | Onde Nasceu?</title>
+
+  <link rel="stylesheet" href="style/home/ondeNasceu.css" />
+  <link rel="icon" href="style/assets/icons/chapeu.png">
+</head>
+
+<body onload="onloadEsconder()">
+  
+<div class="container_pai">
+
+    <div class="home">
+        <nav>
+            <div class="logo_nav">
+                <a href="home.html"><img src="style/assets/icons/logoTheRanch(branca).png" alt="Logo The Ranch"></a>
+            </div>
+            <ul>
+                
+                <li><a href="home.html">Home</a></li>
+                <li><a href="cantores.html">Cantores</a></li>
+                <li><a href="quiz.html" id="selecionado"><b>Quiz</b></a></li>
+                <li><a href="historia.html">História</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a class="icone_perfil" href="perfil.html"><img src="style/assets/icons/perfil.png"></a></li>
+                   
+            </ul>
+
+        </nav>
+    </div>
+
+    <div class="container_quiz">
+
+        <h1>Onde Nasceu?</h1>
+
+    <div class="fundo_quiz">
+
+        <div id="pontuacaoEJogo">
+            <button id="iniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+            
+            <div id="pontuacao" class="flexColumn width-fit-content">
+                <div id="pontuacaoDuranteJogo" class="flexColumn padding-8">
+                    <span class="width-fit-content">Quantidade de acertos: <span id="spanCertas"></span></span>
+                    <span class="width-fit-content">Quantidade de erros: <span id="spanErradas"></span></span>
+                </div>
+                <div id="pontuacaoFinalJogo" class="flexColumn padding-8">
+                    <span id="pontuacaoFinal" class="width-fit-content">Pontuação Final:
+                        <span id="spanPontuacaoFinal">***</span>
+                    </span>
+                    <span id="msgFinal" class="width-fit-content">***</span>
+                </div>
+                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+            </div>
+
+            <div id="jogo" class="width-fit-content flexColumn">
+
+                <div id="infoQuestao" class="padding-8">
+                    <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
+                        questões.</span>
+                </div>
+
+                <div id="perguntaDaQuestaoAtual" class="padding-8">
+                    <span id="spanQuestaoExibida" class="pergunta"></span>
+                </div>
+
+                <div id="infoAlternativas" class="padding-8">
+                    <span><em>Escolha uma opção dentre as abaixo:</em></span>
+                </div>
+
+                <div id="opcoes" class="flexColumn padding-8">
+                    <span class="option">
+                        <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                        <label for="primeiraOpcao" id="labelOpcaoUm"></label>
+                    </span>
+                    <span class="option">
+                        <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                        <label for="segundaOpcao" id="labelOpcaoDois"></label>
+                    </span>
+                    <span class="option">
+                        <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                        <label for="terceiraOpcao" id="labelOpcaoTres"></label>
+                    </span>
+                    <span class="option">
+                        <input type="radio" id="quartaOpcao" name="option" class="radio" value="alternativaD" />
+                        <label for="quartaOpcao" id="labelOpcaoQuatro"></label>
+                    </span>
+                </div>
+
+                <div id="botoes" class="padding-8">
+                    <button onclick="submeter()" id="btnSubmeter">Confirmar</button>
+                    <button onclick="avancar()" id="btnProx" disabled>Próxima Pergunta</button>
+                    <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+                </div>
+
+        </div>
+    </div>
+    </div>
+
+    </div>
+    
+</div>
+
+</body>
+
+</html>
+<script>
+    const listaDeQuestoes = [
+
+        {
+            pergunta: "1. Onde nasceu Luan Santana?",
+            alternativaA: "(A) Goiânia - GO",
+            alternativaB: "(B) Campo Grande - MS ",
+            alternativaC: "(C) Maringá - PR",
+            alternativaD: "(D) Ribeirão Preto - SP",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "2. Onde nasceu Marília Mendonça?",
+            alternativaA: "(A) Goiânia - GO",
+            alternativaB: "(B) Anápolis - GO",
+            alternativaC: "(C) Palmas - TO",
+            alternativaD: "(D) Uberaba - MG",
+            alternativaCorreta: "alternativaA"
+        },
+
+        {
+            pergunta: "3. Onde nasceu Gusttavo Lima?",
+            alternativaA: "(A) Presidente Olegário - MG",
+            alternativaB: "(B) Montes Claros - MG",
+            alternativaC: "(C) Goiânia - GO",
+            alternativaD: "(D) Franca - SP",
+            alternativaCorreta: "alternativaA"
+        },
+
+        {
+            pergunta: "4. Onde nasceu Ana Castela?",
+            alternativaA: "(A) Londrina - PR",
+            alternativaB: "(B) Amambai - MS",
+            alternativaC: "(C) Campo Grande - MS",
+            alternativaD: "(D) Maringá - PR",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "5. Onde nasceu Leonardo (da dupla Leandro & Leonardo)?",
+            alternativaA: "(A) Morrinhos - GO",
+            alternativaB: "(B) Itumbiara - GO",
+            alternativaC: "(C) Aparecida de Goiânia - GO",
+            alternativaD: "(D) Trindade - GO",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "6. Onde nasceu Jorge (de Jorge & Mateus)?",
+            alternativaA: "(A) Goiânia - GO",
+            alternativaB: "(B) Itumbiara - GO",
+            alternativaC: "(C) Caldas Novas - GO",
+            alternativaD: "(D) Anápolis - GO",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "7. Onde nasceu Henrique (de Henrique & Juliano)?",
+            alternativaA: "(A) Palmas - TO",
+            alternativaB: "(B) Goiânia - GO",
+            alternativaC: "(C) Barreiras - BA",
+            alternativaD: "(D) Uberlândia - MG",
+            alternativaCorreta: "alternativaA"
+        },
+
+        {
+            pergunta: "8. Onde nasceu Bruno (de Bruno & Marrone)?",
+            alternativaA: "(A) Uberlândia - MG",
+            alternativaB: "(B) Goiânia - GO",
+            alternativaC: "(C) Trindade - GO",
+            alternativaD: "(D) Catalão - GO",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "9. Onde nasceu Daniel?",
+            alternativaA: "(A) Sertãozinho - SP",
+            alternativaB: "(B) Brotas - SP",
+            alternativaC: "(C) Franca - SP",
+            alternativaD: "(D) Barretos - SP",
+            alternativaCorreta: "alternativaB"
+        },
+
+        {
+            pergunta: "10. Onde nasceu Chitãozinho (de Chitãozinho & Xororó)?",
+            alternativaA: "(A) Ourinhos - SP",
+            alternativaB: "(B) Astorga - PR",
+            alternativaC: "(C) Marília - SP",
+            alternativaD: "(D) Assis - SP",
+            alternativaCorreta: "alternativaB"
+        }
+
+    ]
+
+    // variáveis globais    
+    let numeroDaQuestaoAtual = 0
+    let pontuacaoFinal = 0
+    let tentativaIncorreta = 0
+    let certas = 0
+    let erradas = 0
+    let quantidadeDeQuestoes = listaDeQuestoes.length
+    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
+
+    function onloadEsconder() {
+        document.getElementById('pontuacao').style.display = "none"
+        document.getElementById('jogo').style.display = "none"
+    }
+
+    function iniciarQuiz() {
+        document.getElementById('pontuacao').style.display = "none"
+        document.getElementById('jogo').style.display = "flex"
+        document.getElementById('iniciarQuiz').style.display = "none"
+
+        document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
+
+        preencherHTMLcomQuestaoAtual(0)
+
+        btnSubmeter.disabled = false
+        btnProx.disabled = true
+        // btnConcluir.disabled = true
+        btnTentarNovamente.disabled = true
+    }
+
+    function preencherHTMLcomQuestaoAtual(index) {
+        habilitarAlternativas(true)
+        const questaoAtual = listaDeQuestoes[index]
+        numeroDaQuestaoAtual = index
+        console.log("questaoAtual")
+        console.log(questaoAtual)
+        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
+        document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+    }
+
+    function submeter() {
+        const options = document.getElementsByName("option"); // recupera alternativas no html
+
+        let hasChecked = false
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                hasChecked = true
+                break
+            }
+        }
+
+        if (!hasChecked) {
+            alert("Não há alternativas escolhidas. Escolha uma opção.")
+        } else {
+            btnSubmeter.disabled = true
+            btnProx.disabled = false
+
+            habilitarAlternativas(false)
+
+            checarResposta()
+        }
+    }
+
+    function habilitarAlternativas(trueOrFalse) {
+        let opcaoEscolhida = trueOrFalse ? false : true
+
+        primeiraOpcao.disabled = opcaoEscolhida
+        segundaOpcao.disabled = opcaoEscolhida
+        terceiraOpcao.disabled = opcaoEscolhida
+        quartaOpcao.disabled = opcaoEscolhida
+
+    }
+
+    function avancar() {
+        btnProx.disabled = true
+        btnSubmeter.disabled = false
+
+        desmarcarRadioButtons()
+
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
+            alert("Atenção... a próxima é a ultima questão!")
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        } else {
+            finalizarJogo()
+        }
+        limparCoresBackgroundOpcoes()
+    }
+
+    function tentarNovamente() {
+        // atualiza a página
+        window.location.reload()
+    }
+
+    function checarResposta() {
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual] // questão atual 
+        const respostaQuestaoAtual = questaoAtual.alternativaCorreta // qual é a resposta correta da questão atual
+
+        const options = document.getElementsByName("option"); // recupera alternativas no html
+
+        let alternativaCorreta = null // variável para armazenar a alternativa correta
+
+        options.forEach((option) => {
+            if (option.value === respostaQuestaoAtual) {
+                console.log("alternativaCorreta está no componente: " + alternativaCorreta)
+                alternativaCorreta = option.labels[0].id
+            }
+        })
+
+        // verifica se resposta assinalada é correta
+        options.forEach((option) => {
+            if (option.checked === true && option.value === respostaQuestaoAtual) {
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                pontuacaoFinal++
+                certas++
+                document.getElementById("spanCertas").innerHTML = certas
+                numeroDaQuestaoAtual++
+            } else if (option.checked && option.value !== respostaQuestaoAtual) {
+                const wrongLabelId = option.labels[0].id
+
+                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
+                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                tentativaIncorreta++
+                erradas++
+                document.getElementById("spanErradas").innerHTML = erradas
+                numeroDaQuestaoAtual++
+            }
+        })
+    }
+
+    function limparCoresBackgroundOpcoes() {
+        const options = document.getElementsByName("option");
+        options.forEach((option) => {
+            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
+            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+        })
+    }
+
+    function desmarcarRadioButtons() {
+        const options = document.getElementsByName("option");
+        for (let i = 0; i < options.length; i++) {
+            options[i].checked = false;
+        }
+    }
+
+    function finalizarJogo() {
+        document.getElementById('pontuacao').style.display = "flex"
+        document.getElementById('jogo').style.display = "none"
+        let textoParaMensagemFinal = null
+        let classComCoresParaMensagemFinal = null
+        const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
+
+        if (porcentagemFinalDeAcertos <= 0.3) {
+            textoParaMensagemFinal = "Calouro do Sertanejo"
+            classComCoresParaMensagemFinal = "text-danger-with-bg"
+        }
+        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.7) {
+            textoParaMensagemFinal = "Fã em formação"
+            classComCoresParaMensagemFinal = "text-warning-with-bg"
+        }
+        else if (porcentagemFinalDeAcertos >= 0.7) {
+            textoParaMensagemFinal = "Modão na Veia!"
+            classComCoresParaMensagemFinal = "text-success-with-bg"
+        }
+
+        textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
+
+
+        document.getElementById('msgFinal').innerHTML = textoParaMensagemFinal
+        document.getElementById('msgFinal').classList.add(classComCoresParaMensagemFinal) 
+        document.getElementById('spanPontuacaoFinal').innerHTML = pontuacaoFinal
+
+        document.getElementById('jogo').classList.add("text-new-gray") 
+
+        btnProx.disabled = true
+        btnSubmeter.disabled = true
+        // btnConcluir.disabled = true
+        btnTentarNovamente.disabled = false
+
+    }
+</script>
