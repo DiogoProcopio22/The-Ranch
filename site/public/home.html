@@ -28,7 +28,7 @@
                 <li><a href="quiz.html">Quiz</a></li>
                 <li><a href="historia.html">História</a></li>
                 <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a class="icone_perfil" href="#"><img src="style/assets/icons/perfil.png"></a></li>
+                <li><a class="icone_perfil" href="perfil.html"><img src="style/assets/icons/perfil.png"></a></li>
                    
             </ul>
 
@@ -36,7 +36,7 @@
 
         <div class="centro">
 
-            <p class="verVoce">Que bom te ver por <br> aqui Rancheiro!</p>
+            <p class="verVoce">Que bom te ver por aqui <br><span id="nome"></span></p>
 
             <div class="linha"></div>
 
@@ -91,3 +91,21 @@
 </body>
 
 </html>
+
+<script>
+
+    var dados = sessionStorage.dados;
+
+   async function informacoesUsuario() {
+        const resposta = await fetch(`/usuarios/dadosUsuario/${dados}`);
+
+        const dadosUsuario = await resposta.json();
+
+        nome.innerHTML = dadosUsuario[0].Nome;
+
+        console.log(dadosUsuario)
+    }
+
+    informacoesUsuario()
+
+</script>

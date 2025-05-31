@@ -1,16 +1,19 @@
 var database = require("../database/config")
 
-function dadosArtista(Artista) {
+function dadosUsuario(dados) {
     
     var instrucaoSql = `
-        select * from artistas where nome = '${Artista}';
+        select u.nome AS Nome,
+        u.dtNasc AS Nascimento, 
+        u.email AS Email,
+        e.nome AS Estilo
+        from usuario u join estilo_sertanejo e
+        on u.fkEstilo = e.idEstilo;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 module.exports = {
-    // autenticar,
-    // cadastrar,
-    dadosArtista
+    dadosUsuario
 };

@@ -83,10 +83,17 @@ nav ul a {
 }
 
 .verVoce { 
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 70px;
+  padding-left: 5%;
+}
+
+.verVoce span {
   font-family: "Roboto Slab", sans-serif;
   font-weight: 800;
-  font-size: 85px;
-  padding-left: 5%;
+  font-size: 80px;
+
 }
 
 .linha {

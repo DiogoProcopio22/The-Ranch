@@ -99,13 +99,13 @@ nav ul a {
 .logo_perfil {
   position: absolute;
   width: 12%;
-  padding-right: 30%;
+  padding-right: 40%;
   padding-bottom: 20%;
 }
 
 .informacoes {
   position: absolute;
-  padding-left: 17%;
+  padding-left: 15%;
   margin-bottom: 10%;
 }
 
@@ -120,4 +120,22 @@ h3 {
   font-weight: 400;
   font-size: 30px;
   margin-top: 4%;
+}
+
+.botao_sair {
+    margin-top: 20px;
+    padding: 10px 30px;
+    background-color: #1a1513;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0px 0px 5px 0px black;
+}
+
+.botao_sair:hover {
+    transform: scale(1.1);
+    cursor: pointer;
 }

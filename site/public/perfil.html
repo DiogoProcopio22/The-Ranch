@@ -40,10 +40,12 @@
             <img src="style/assets/images/perfil/perfil.png" class="logo_perfil">
 
             <div class="informacoes">
-            <h1>Diogo Procopio</h1>
-            <h3 class="email"><b>Email:</b> diogobiell@gmail.com</h3>
-            <h3 class="idade"><b>Idade:</b> 20 anos</h3>
-            <h3 class="estilo"><b>Estilo Preferido:</b> Universitário</h3>
+            <h1 id="nome"></h1>
+            <h3 class="idade"><b>Nascimento:</b> <span id="nascimento"></span></h3>
+            <h3 class="email"><b>Email:</b> <span id="email"></span></h3>
+            <h3 class="estilo"><b>Estilo Preferido:</b> <span id="estilo"></span></h3>
+
+            <button onclick="sair()" class="botao_sair">Sair</button>
             </div>
 
         </div>
@@ -55,3 +57,30 @@
 </body>
 
 </html>
+
+<script>
+
+    function sair() {
+        sessionStorage.clear();
+
+        window.location = "index.html";
+    }
+
+    var dados = sessionStorage.dados;
+
+   async function informacoesUsuario() {
+        const resposta = await fetch(`/usuarios/dadosUsuario/${dados}`);
+
+        const dadosUsuario = await resposta.json();
+
+        nome.innerHTML = dadosUsuario[0].Nome;
+        nascimento.innerHTML = dadosUsuario[0].Nascimento;
+        email.innerHTML = dadosUsuario[0].Email;
+        estilo.innerHTML = dadosUsuario[0].Estilo;
+
+        console.log(dadosUsuario)
+    }
+
+    informacoesUsuario()
+
+</script>

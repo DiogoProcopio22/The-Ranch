@@ -37,15 +37,19 @@
                   
                 <h1>Login</h1>
                   
-                  <input class="input" id="input_email_login" type="text" placeholder="Email:" required>
+                  <input class="input" id="input_email" type="text" placeholder="Email:" required>
                     <br>
-                  <input class="input" id="input_email_senha" type="password" placeholder="Senha:" required>
+                  <input class="input" id="input_senha" type="password" placeholder="Senha:" required>
                     <br>
 
                     <p id="erros_senha_login" class="Erros_senha"></p>
-                <button onclick="ValidarLogin()" id="button_entrar">Entrar</button>
+                <button onclick="entrar()" id="button_entrar">Entrar</button>
                 
                     <p class="temConta"><b>Não tem uma conta?</b> <a href="cadastro.html">Cadastre-se</a></p>
+
+                    <div id="div_aguardar" class="loading-div">
+                        <img src="style/assets/icons/loading.gif" id="loading-gif">
+                    </div>
 
               </div>
 
@@ -98,45 +102,94 @@
 
 <script>
 
-function ValidarLogin() {
-    const email = document.getElementById("input_email_login").value;
-    const senha = document.getElementById("input_email_senha").value;
+    var senha_correta = false;  
 
-    if (email === "" || senha === "") {
-        alert("Preencha todos os campos!");
-        return;
+    function resetarLogin() {
+        input_email.value = "";
+        input_senha.value = "";
+        document.getElementById("erros_senha_login").innerHTML = "";
     }
 
-    fetch('/login/checar', {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            email: email,
-            senha: senha
-        })
-    })
-    .then(resposta => {
-        if (!resposta.ok) {
-            throw new Error(`Erro na requisição: ${resposta.status}`);
-        }
-        return resposta.json();
-    })
-    .then(resposta => {
-        if (resposta.length === 1) {
-            // Login bem-sucedido
-            const usuario = resposta[0];
+    function senha_validada() {
+        senha_correta = false;
 
-            sessionStorage.setItem('idUsuario', usuario.idUsuario);
-            sessionStorage.setItem('email', usuario.email);
-            sessionStorage.setItem('nome', usuario.nome);
+        var tentativa = ``;
+        var numero = false;
 
-            alert(`Bem-vindo(a), ${usuario.nome}!`);
-            window.location.href = "home.html"; // redireciona pra home
+        var senhaComErro = ``;
+
+        if (formulario.className == `vazio`) {
+            tentativa = input_email.value.replaceAll(` `, ``)
         } else {
-            document.getElementById("erros_senha_login").innerText = "Email ou senha inválidos!";
+            tentativa = input_senha.value.replaceAll(` `, ``)
         }
-    })
-}
+
+        if (tentativa == ``) {
+            erros_senha_login.innerHTML = `Preencha todos os campos!`;
+        } else if (senhaComErro.length > 0) {
+            erros_senha_login.innerHTML = `${senhaComErro}`;
+
+        } else {
+            erros_senha_login.innerHTML = ``;
+            senha_correta = true;
+        }
+    }
+
+    function aguardar() {
+    document.getElementById("div_aguardar").style.display = "flex";
+    }
+
+    function finalizarAguardar() {
+        document.getElementById("div_aguardar").style.display = "none";
+    }
+
+    function entrar() {
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            erros_senha_login.innerHTML = "Preencha todos os campos!";
+            finalizarAguardar();
+            return false;
+        } else {
+            aguardar(); // Ativa o loading assim que começa a verificar
+
+            fetch("/login/autenticar/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: emailVar,
+                    senha: senhaVar
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+
+                        // Mostra o loading por alguns segundos antes de ir pra home
+                        setTimeout(() => {
+                            finalizarAguardar();
+                            window.location = "home.html";
+                        }, 4000); // 4 segundos
+                    });
+                } else {
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                        finalizarAguardar();
+                        erros_senha_login.innerHTML = "Email ou senha inválidos!";
+                    });
+                }
+            }).catch(function (erro) {
+                console.log(erro);
+                finalizarAguardar();
+            });
+
+            return false;
+        }
+    }
 
 
 </script>

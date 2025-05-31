@@ -3,8 +3,8 @@ var router = express.Router();
 
 var usuarioController = require("../controllers/usuarioController");
 
-router.get("/dadosArtista/:Artista", function (req, res) {
-    usuarioController.dadosArtista(req,res);
+router.get("/dadosUsuario/:dados", function (req, res) {
+    usuarioController.dadosUsuario(req,res);
 })
 
 module.exports = router;

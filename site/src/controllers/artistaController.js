@@ -1,9 +1,9 @@
-var usuarioModel = require("../models/usuarioModel");
+var artistaModel = require("../models/artistaModel");
 
-function dadosUsuario(req, res) {
-    var dados = req.params.dados;
+function dadosArtista(req, res) {
+    var Artista = req.params.Artista;
 
-    usuarioModel.dadosUsuario(dados).then(function (resultado) {
+    artistaModel.dadosArtista(Artista).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado); 
         } else {
@@ -17,7 +17,5 @@ function dadosUsuario(req, res) {
 }
 
 module.exports = {
-    // autenticar,
-    // cadastrar,
-    dadosUsuario
+    dadosArtista
 }

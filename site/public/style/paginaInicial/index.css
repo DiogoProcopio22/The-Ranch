@@ -366,7 +366,7 @@ nav ul a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url(assets/images/pagina_inicial/criarContaFundo.png);
+  background-image: url(../assets/images/pagina_inicial/criarContaFundo.png);
   background-size: cover;
   background-repeat: no-repeat;
 
