@@ -149,7 +149,7 @@
     } else if (email.indexOf("@") ==  -1 && email.indexOf(".") ==  -1) {
       alert("Seu email deve conter '@' e '.'");
       return false;
-    } else if (senha.length <= 6) {
+    } else if (senha.length < 6) {
       alert("Sua senha deve conter pelo menos 6 dígitos!");
       return false;
     } else if (confirmacaoSenha != senha) {

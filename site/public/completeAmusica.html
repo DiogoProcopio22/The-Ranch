@@ -91,7 +91,9 @@
                         <label for="quartaOpcao" id="labelOpcaoQuatro"></label>
                     </span>
                 </div>
-
+                
+                <span id="musica"></span>
+                
                 <div id="botoes" class="padding-8">
                     <button onclick="submeter()" id="btnSubmeter">Confirmar</button>
                     <button onclick="avancar()" id="btnProx" disabled>Próxima Pergunta</button>
@@ -118,7 +120,8 @@
             alternativaB: "(B) Apenas bons amigos, namorar, casar, ter filhos ",
             alternativaC: "(C) Um minuto, uma hora, não importa o tempo",
             alternativaD: "(D)  Adoro esse perigo, mexe demais comigo",
-            alternativaCorreta: "alternativaB"
+            alternativaCorreta: "alternativaB",
+            musica: "🎵 Cristiano Araújo – Caso Indefinido"
         },
 
         {
@@ -127,7 +130,8 @@
             alternativaB: "(B) Se entrega pra mim",
             alternativaC: "(C) Minha alma viajante",
             alternativaD: "(D) Te amando feito um louco",
-            alternativaCorreta: "alternativaA"
+            alternativaCorreta: "alternativaA",
+            musica: "🎵 Paula Fernandes – Pássaro de Fogo"
         },
 
         {
@@ -136,7 +140,8 @@
             alternativaB: "(B) Aquele restinho do perfume dela que ficou no frasco",
             alternativaC: "(C) A gente começa a esperar por quem ama",
             alternativaD: "(D) Aquele fio de cabelo comprido",
-            alternativaCorreta: "alternativaD"
+            alternativaCorreta: "alternativaD",
+            musica: "🎵 Chitãozinho & Xororó – Fio de Cabelo"
         },
 
         {
@@ -145,7 +150,8 @@
             alternativaB: "(B) Eu sou paciente, coração é meu doutor",
             alternativaC: "(C) Esquece, jantar fora é bem melhor",
             alternativaD: "(D) Já tomei, funcionou",
-            alternativaCorreta: "alternativaA"
+            alternativaCorreta: "alternativaA",
+            musica: "🎵 Gustavo Mioto (part. Jorge e Mateus) – Anti-Amor"
         },
 
         {
@@ -154,7 +160,8 @@
             alternativaB: "(B) Se alguém fala em Mato Grosso eu sinto o peito despedaçado",
             alternativaC: "(C) Pedaço da minha vida, lembranças do meu passado",
             alternativaD: "(D) Deixei minha própria vida 60 dias apaixonado",
-            alternativaCorreta: "alternativaC"
+            alternativaCorreta: "alternativaC",
+            musica: "🎵 Chitãozinho & Xororó – 60 Dias Apaixonado"
         },
 
         {
@@ -163,7 +170,8 @@
             alternativaB: "(B) Me causaria tédio",
             alternativaC: "(C) Eu nem sei",
             alternativaD: "(D) Em um módulo lunar, oh, que chato",
-            alternativaCorreta: "alternativaB"
+            alternativaCorreta: "alternativaB",
+            musica: "🎵 Marcos & Belutti – Domingo de Manhã"
         },
 
         {
@@ -172,7 +180,8 @@
             alternativaB: "(B) E com você, sou fã da vida",
             alternativaC: "(C) Sou fã da sua roupa",
             alternativaD: "(D) Quero convencer seu coração",
-            alternativaCorreta: "alternativaC"
+            alternativaCorreta: "alternativaC",
+            musica: "🎵 Eduardo Costa – Sou Seu Fã Nº1"
         },
 
         {
@@ -181,7 +190,8 @@
             alternativaB: "(B) E que te faça o que fez comigo",
             alternativaC: "(C) Apesar de tudo que vivi, eu me deixei levar",
             alternativaD: "(D) Me deixando assim",
-            alternativaCorreta: "alternativaB"
+            alternativaCorreta: "alternativaB",
+            musica: "🎵 Bruno & Marrone – Te Amar Foi Ilusão"
         },
 
         {
@@ -190,7 +200,8 @@
             alternativaB: "(B) Não deu pra esquecer",
             alternativaC: "(C) Se reclamar, cê vai casar também",
             alternativaD: "(D) Eu vim acabar com essa sua vidinha de balada",
-            alternativaCorreta: "alternativaC"
+            alternativaCorreta: "alternativaC",
+            musica: "🎵 Henrique & Juliano – Vidinha de Balada"
         },
 
         {
@@ -199,12 +210,13 @@
             alternativaB: "(B) Quem quiser me amar",
             alternativaC: "(C) Então já que é assim",
             alternativaD: "(D) Quem me quer, não vou querer",
-            alternativaCorreta: "alternativaD"
+            alternativaCorreta: "alternativaD",
+            musica: "🎵 Marília Mendonça – Todo Mundo Vai Sofrer"
         }
 
     ]
 
-    // variáveis globais    
+ // variáveis globais    
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
     let tentativaIncorreta = 0
@@ -245,6 +257,7 @@
         document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
         document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
         document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD;
+        document.getElementById("musica").innerHTML = questaoAtual.musica;
     }
 
     function submeter() {
@@ -320,16 +333,17 @@
         // verifica se resposta assinalada é correta
         options.forEach((option) => {
             if (option.checked === true && option.value === respostaQuestaoAtual) {
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                document.getElementById(alternativaCorreta).classList.add("certa")
                 pontuacaoFinal++
                 certas++
                 document.getElementById("spanCertas").innerHTML = certas
                 numeroDaQuestaoAtual++
+
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
                 const wrongLabelId = option.labels[0].id
 
-                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                document.getElementById(wrongLabelId).classList.add("errada")
+                document.getElementById(alternativaCorreta).classList.add("certa")
                 tentativaIncorreta++
                 erradas++
                 document.getElementById("spanErradas").innerHTML = erradas
@@ -341,8 +355,8 @@
     function limparCoresBackgroundOpcoes() {
         const options = document.getElementsByName("option");
         options.forEach((option) => {
-            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
-            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+            document.getElementById(option.labels[0].id).classList.remove("errada")
+            document.getElementById(option.labels[0].id).classList.remove("certa")
         })
     }
 
@@ -361,16 +375,20 @@
         const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
 
         if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Calouro do Sertanejo"
-            classComCoresParaMensagemFinal = "text-danger-with-bg"
+            textoParaMensagemFinal = "Tá precisando ouvir mais!"
+            classComCoresParaMensagemFinal = "errada"
         }
-        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.7) {
-            textoParaMensagemFinal = "Fã em formação"
-            classComCoresParaMensagemFinal = "text-warning-with-bg"
+        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos <= 0.6) {
+            textoParaMensagemFinal = "Quase lá, tá pegando o ritmo!"
+            classComCoresParaMensagemFinal = "errada"
         }
-        else if (porcentagemFinalDeAcertos >= 0.7) {
-            textoParaMensagemFinal = "Modão na Veia!"
-            classComCoresParaMensagemFinal = "text-success-with-bg"
+        else if (porcentagemFinalDeAcertos > 0.6 && porcentagemFinalDeAcertos < 0.9) {
+            textoParaMensagemFinal = "Cantor de coração partido!"
+            classComCoresParaMensagemFinal = "certa"
+        }
+        else if (porcentagemFinalDeAcertos >= 0.9) {
+            textoParaMensagemFinal = "Você é a PRÓPRIA LETRA!"
+            classComCoresParaMensagemFinal = "certa"
         }
 
         textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
@@ -388,4 +406,5 @@
         btnTentarNovamente.disabled = false
 
     }
+
 </script>

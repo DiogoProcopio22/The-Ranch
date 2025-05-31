@@ -204,7 +204,7 @@
 
     ]
 
-    // variáveis globais    
+ // variáveis globais    
     let numeroDaQuestaoAtual = 0
     let pontuacaoFinal = 0
     let tentativaIncorreta = 0
@@ -320,16 +320,17 @@
         // verifica se resposta assinalada é correta
         options.forEach((option) => {
             if (option.checked === true && option.value === respostaQuestaoAtual) {
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                document.getElementById(alternativaCorreta).classList.add("certa")
                 pontuacaoFinal++
                 certas++
                 document.getElementById("spanCertas").innerHTML = certas
                 numeroDaQuestaoAtual++
+
             } else if (option.checked && option.value !== respostaQuestaoAtual) {
                 const wrongLabelId = option.labels[0].id
 
-                document.getElementById(wrongLabelId).classList.add("text-danger-with-bg")
-                document.getElementById(alternativaCorreta).classList.add("text-success-with-bg")
+                document.getElementById(wrongLabelId).classList.add("errada")
+                document.getElementById(alternativaCorreta).classList.add("certa")
                 tentativaIncorreta++
                 erradas++
                 document.getElementById("spanErradas").innerHTML = erradas
@@ -341,8 +342,8 @@
     function limparCoresBackgroundOpcoes() {
         const options = document.getElementsByName("option");
         options.forEach((option) => {
-            document.getElementById(option.labels[0].id).classList.remove("text-danger-with-bg")
-            document.getElementById(option.labels[0].id).classList.remove("text-success-with-bg")
+            document.getElementById(option.labels[0].id).classList.remove("errada")
+            document.getElementById(option.labels[0].id).classList.remove("certa")
         })
     }
 
@@ -361,16 +362,20 @@
         const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
 
         if (porcentagemFinalDeAcertos <= 0.3) {
-            textoParaMensagemFinal = "Calouro do Sertanejo"
-            classComCoresParaMensagemFinal = "text-danger-with-bg"
+            textoParaMensagemFinal = "Tô começando agora…!"
+            classComCoresParaMensagemFinal = "errada"
         }
-        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.7) {
-            textoParaMensagemFinal = "Fã em formação"
-            classComCoresParaMensagemFinal = "text-warning-with-bg"
+        else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos <= 0.6) {
+            textoParaMensagemFinal = "Conhece um pouquinho!"
+            classComCoresParaMensagemFinal = "errada"
         }
-        else if (porcentagemFinalDeAcertos >= 0.7) {
-            textoParaMensagemFinal = "Modão na Veia!"
-            classComCoresParaMensagemFinal = "text-success-with-bg"
+        else if (porcentagemFinalDeAcertos > 0.6 && porcentagemFinalDeAcertos < 0.9) {
+            textoParaMensagemFinal = "Quase um embaixador(a)!"
+            classComCoresParaMensagemFinal = "certa"
+        }
+        else if (porcentagemFinalDeAcertos >= 0.9) {
+            textoParaMensagemFinal = "RAIZ DEMAIS!"
+            classComCoresParaMensagemFinal = "certa"
         }
 
         textoParaMensagemFinal += "<br> Você acertou " + Math.round((porcentagemFinalDeAcertos)*100) + "% das questões."
@@ -388,4 +393,5 @@
         btnTentarNovamente.disabled = false
 
     }
+
 </script>
