@@ -250,7 +250,6 @@ nav ul a {
 .estilos .grafico {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     color: white;
     width: 50%;
@@ -260,6 +259,7 @@ nav ul a {
     background-color: #D9D5D1;
     box-shadow: 0px 0px 5px 0px black;
 }
+
 
 /* DASHBOARD - FIM */
 
