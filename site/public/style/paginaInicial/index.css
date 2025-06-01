@@ -53,6 +53,7 @@ nav {
 
 #selecionado {
   text-decoration: underline;
+  font-weight: 800;
 }
 
 /* nav ul li:after {

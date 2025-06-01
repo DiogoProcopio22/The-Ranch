@@ -6,9 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>The Ranch | Home</title>
+  <title>The Ranch | Dashboard</title>
 
-  <link rel="stylesheet" href="style/home/home.css" />
+  <link rel="stylesheet" href="style/home/dashboard.css" />
   <link rel="icon" href="style/assets/icons/chapeu.png">
 </head>
 
@@ -17,37 +17,78 @@
 <div class="container_pai">
 
     <div class="home">
-         <nav>
+        <nav>
             <div class="logo_nav">
-                <a href="#"><img src="style/assets/icons/logoTheRanch(branca).png" alt="Logo The Ranch"></a>
+                <a href="home.html"><img src="style/assets/icons/logoTheRanch(branca).png" alt="Logo The Ranch"></a>
             </div>
             <ul>
                 
-                <li><a href="home.html" id="selecionado">Home</a></li>
+                <li><a href="home.html">Home</a></li>
                 <li><a href="cantores.html">Cantores</a></li>
                 <li><a href="quiz.html">Quiz</a></li>
                 <li><a href="historia.html">História</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="#" id="selecionado">Dashboard</a></li>
                 <li><a class="icone_perfil" href="perfil.html"><img src="style/assets/icons/perfil.png"></a></li>
                    
             </ul>
 
         </nav>
 
-        <div class="centro">
+        <div class="titulo">
+            <h1>Bem-Vindo(a) à Dashboard</h1>
+        </div>
 
-            <p class="verVoce">Que bom te ver por aqui <br><span id="nome"></span></p>
+        <div class="kpi">
 
-            <div class="linha"></div>
+            <div class="kpiPontos">
 
-            <p class="navegar">Fique à vontade para navegar pelo site <br> e aproveitar cada pedacinho...</p>
+                <h2>Maiores pontuadores do quiz Conhecimentos Gerais</h2>
 
-            <div class="cantores">
-                <img src="style/assets/images/home/c&x_home.png">
+                <div class="ouro">
+                    <img src="style/assets/icons/medalhaOuro.png"> <p>1º Diogo Procopio</p>
+                </div>
+                <div class="prata">
+                    <img src="style/assets/icons/medalhaPrata.png"> <p>2º Andre Lacerda</p>
+                </div>
+                <div class="bronze">
+                    <img src="style/assets/icons/medalhaBronze.png"> <p>3º Filipe Santana</p>
+                </div>
+
+            </div>
+
+            <div class="kpiEstilo">
+
+                <h2>Estilo sertanejo preferido entre os usuários</h2>
+
+                <p>ESTILO AQUI</p>
+
             </div>
 
         </div>
-        
+
+        <div class="ranking">
+
+            <div class="grafico">
+                <p style="font-size: 50px;">GRAFICO AQUI</p>
+            </div>
+
+            <div class="ranking_texto">
+                <img src="style/assets/icons/ranking.png">
+            </div>
+
+        </div>
+
+        <div class="estilos">
+
+            <div class="estilos_texto">
+                <img src="style/assets/icons/estilosPreferidos.png">
+            </div>
+
+            <div class="grafico">
+                <p style="font-size: 50px;">GRAFICO AQUI</p>
+            </div>
+
+        </div>
 
     </div>
 
@@ -91,21 +132,3 @@
 </body>
 
 </html>
-
-<script>
-
-    var dados = sessionStorage.dados;
-
-   async function informacoesUsuario() {
-        const resposta = await fetch(`/usuarios/dadosUsuario/${dados}`);
-
-        const dadosUsuario = await resposta.json();
-
-        nome.innerHTML = dadosUsuario[0].Nome;
-
-        console.log(dadosUsuario)
-    }
-
-    informacoesUsuario()
-
-</script>

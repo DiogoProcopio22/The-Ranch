@@ -24,10 +24,11 @@ html {
 
 .container_pai {
   width: 100%;
-  height: 3500px;
+  height: 2200px;
   background-image: url(../assets/images/fundoTheRanch.png);
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: "Inter", sans-serif;
 }
 
 .home {
@@ -80,73 +81,187 @@ nav ul a {
 
 /* NAVBAR - FIM */
 
-/* HISTÓRIA */
+/* DASHBOARD - INÍCIO */
 
-.historia {
-    margin-top: 5%;
-    font-family: "Roboto Slab", sans-serif;
-    font-weight: 700;
-    font-size: 80px;
+.titulo {
+    width: 100%;
+    height: 8%;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.titulo h1 {
+    font-family: "Roboto Slab", sans-serif;
+    font-weight: 800;
+    font-size: 50px;
     color: #1a1513;
 }
 
-.texto_historia {
+.kpi {
+    width: 100%;
+    height: 14%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.kpiPontos {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: "Inter", sans-serif;
-    font-weight: 300;
+    color: white;
+    width: 40%;
+    height: 90%;
+    margin: 2%;
+    background-color: #1a1513;
+    border-radius: 30px;
+    box-shadow: 0px 0px 20px 0px black;
+}
+
+.kpiPontos h2 {
+    width: 80%;
+    margin-top: 2%;
     font-size: 30px;
-    margin-left: 5%;
-    margin-right: 4%;
-    text-align: justify;
+    font-weight: 600;
+    text-align: center;
 }
 
-.cornelioPires {
-    position: absolute;
-    width: 18%;
-    margin-left: 70%;
-    margin-top: 20%;
-    box-shadow: 0px 0px 20px 0px;
-    border-radius: 10px;
+.kpiPontos img {
+    width: 7%;
 }
 
-.texto_historia .p1 {
-    margin-top: 4%;
+.kpiPontos p {
+    font-family: "Roboto Slab", sans-serif;
+    font-weight: 500;
+    font-size: 25px;
 }
 
-.texto_historia .p2 {
-    padding-right: 25%;
-    margin-top: 3%;
+.ouro {
+    display: flex;
+    align-items: center;
+    margin-left: 10%;
+    margin-top: 2%;
+}
+.prata {
+    display: flex;
+    align-items: center;
+    margin-left: 10%;
+    margin-top: 2%;
+}
+.bronze {
+    display: flex;
+    align-items: center;
+    margin-left: 10%;
+    margin-top: 2%;
 }
 
-.texto_historia .p3 {
-    padding-left: 30%;
-    padding-top: 3%;
+
+.kpiEstilo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    width: 40%;
+    height: 90%;
+    margin: 2%;
+    background-color: #1a1513;
+    border-radius: 30px;
+    box-shadow: 0px 0px 20px 0px black;
 }
 
-.tonicoEtinoco {
-    position: absolute;
-    width: 24%;
-    margin-right: 65%;
-    margin-top: 50%;
-    box-shadow: 0px 0px 20px 0px;
-    border-radius: 10px;
+.kpiEstilo h2 {
+    width: 60%;
+    margin-top: 2%;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
 }
 
-.texto_historia .p4 {
-    margin-top: 3%;
+.kpiEstilo p {
+    font-family: "Roboto Slab", sans-serif;
+    text-align: center;
+    width: 60%;
+    margin-top: 7%;
+    font-size: 50px;
+    font-weight: 600;
 }
 
-.cantores {
-  position: absolute;
-  width: 100%;
-  margin-top: 157%;
-  margin-left: -1%;
+.ranking {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.ranking .grafico {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 50%;
+    height: 90%;
+    margin-left: 1%;
+    border-radius: 30px;
+}
+
+.ranking_texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    width: 50%;
+    height: 90%;
+    margin-right: 1%;
+    border-radius: 30px;
+}
+
+.ranking_texto img {
+    width: 100%;
+}
+
+.estilos {
+    width: 100%;
+    height: 30%;
+    margin-bottom: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.estilos_texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 50%;
+    height: 90%;
+    margin-left: 1%;
+    border-radius: 30px;
+}
+
+.estilos_texto img {
+    width: 100%;
+}
+
+.estilos .grafico {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 50%;
+    height: 90%;
+    margin-right: 1%;
+    border-radius: 30px;
+    background-color: #D9D5D1;
+    box-shadow: 0px 0px 5px 0px black;
+}
+
+/* DASHBOARD - FIM */
 
 /* INICIO FOOTER */
 
