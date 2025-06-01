@@ -135,3 +135,34 @@
 
 </html>
 
+<script>
+    
+const grafico = document.getElementById('graficoEstilos');
+
+new Chart(grafico, {
+  type: 'pie',
+  data: {
+    labels: ['Universitário', 'AgroNejo', 'Modão', 'Raiz'],
+    datasets: [{
+      label: 'Quantidade de usuários',
+      data: [10, 2, 6, 4], // <-- Atualiza aqui com os seus dados reais
+      backgroundColor: [
+        '#C1906E', // universitário
+        '#683212', // agronejo
+        '#7A4C29', // modão
+        '#0E0A08'  // raiz
+      ],
+      borderColor: '#1a1513',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    plugins: {
+      legend: {
+        position: 'right'
+      }
+    }
+  }
+});
+
+</script>
