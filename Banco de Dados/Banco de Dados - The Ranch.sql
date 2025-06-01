@@ -2,6 +2,7 @@ create database theRanch;
 
 use theRanch;
 
+-- CRIANDO A TABELA USUÁRIOS
 create table usuario (
 idUsuario int primary key auto_increment,
 nome varchar(45),
@@ -12,15 +13,35 @@ fkEstilo Int,
 	constraint fkEstilo foreign key (fkEstilo) references estilo_sertanejo (idEstilo)
 );
 
-select * from usuario;
+-- CRIANDO A TABELA QUIZ
+create table quiz (
+idQuiz int primary key auto_increment,
+nome varchar(100),
+totalQuestoes int 
+);
 
+-- INSERINDO DADOS NA TABELA QUIZ
+insert into quiz values
+(default, 'Conhecimentos Gerais do Sertanejo', 10);
+
+-- CRIANDO TABELA RESULTADOS (ASSOCIATIVA)
+create table resultado (
+idResultado int auto_increment,
+fkUsuario int,
+	constraint fkUsuario foreign key (fkUsuario) references usuario (idUsuario),
+fkQuiz int,
+	constraint fkQuiz foreign key (fkQuiz) references quiz (idQuiz),
+acertos int,
+	constraint pkComposta primary key (idResultado, fkUsuario, fkQuiz)
+);
+
+-- CRIANDO A TABELA ESTILOS SERTANEJOS
 create table estilo_sertanejo (
 idEstilo int primary key auto_increment,
 nome varchar(45)
 );
 
-select * from estilo_sertanejo;
-
+-- INSERINDO ESTILOS SERTANEJOS NA TABELA
 insert into estilo_sertanejo values 
 (default, 'Universitário'),
 (default, 'Modão'),
@@ -28,9 +49,12 @@ insert into estilo_sertanejo values
 (default, 'Raíz');
 
 
+-- CRIANDO A TABELA ARTISTAS
 create table artistas (
 idArtista int primary key auto_increment,
 nome varchar(45),
+fkEstilo int,
+	constraint fkEstilo_artista foreign key (fkEstilo) references estilo_sertanejo (idEstilo),
 banner varchar(150),
 biografia text,
 nomeCompleto text,
@@ -41,15 +65,13 @@ algumasMusicas varchar(250),
 foto varchar(150),
 principalHit varchar(100),
 spotify varchar(45),
-youtube varchar(45) 
+youtube varchar(45)
 );
-
-select * from artistas;
 
 -- Inserindo cantores universitários - solo
 insert into artistas values
 (default, 
-'Cristiano Araújo', 
+'Cristiano Araújo', 1,
 'style/assets/images/cantor_específico/universitarios_solo/cristianoAraujo.png',
 'Cristiano Araújo nasceu em Goiânia, Goiás, no dia 24 de janeiro de 1986 numa família de músicos. Com quatro anos já gostava de cantar e segundo seu pai, José Reis de Araújo, mostrava ser afinado. Com seis anos ganhou seu primeiro violão e com nove anos começou a se apresentava em público.
     Com 13 anos gravou seu primeiro CD. Sua carreira deslanchou em 2011, a partir da música “Efeitos”. Com mais de 250 milhões de acessos em seu canal oficial no YouTube. Cristiano gravou dois álbuns em estúdio e três ao vivo, além de três DVDs. Cumpria uma agenda de 280 shows por ano. Entre seus sucessos destacam-se: "Efeitos", "Bara Bara", "Você Mudou", "Maus Bocados", "Cê Que Sabe", "Hoje Eu Tô Terrível".
@@ -63,7 +85,7 @@ insert into artistas values
 'Caso Indefinido - 2013',
 '+139 milhões',
 '+383 milhões'),
-(default, 'Enzo Rabelo',
+(default, 'Enzo Rabelo', 1,
 'style/assets/images/cantor_específico/universitarios_solo/enzoRabelo.png',
 'Enzo Rabelo é um jovem cantor e compositor brasileiro que vem conquistando o cenário musical com seu talento precoce. Filho do cantor Bruno, da dupla Bruno & Marrone, Enzo iniciou sua carreira artística aos 10 anos, em 2018, ao publicar vídeos cantando no YouTube. Seu estilo musical transita entre o sertanejo romântico e o pop, cativando uma ampla audiência. Com uma voz marcante e presença de palco, ele rapidamente ganhou notoriedade, acumulando milhões de visualizações em suas músicas. Enzo já colaborou com artistas renomados como Zé Felipe e Gusttavo Lima, ampliando ainda mais seu alcance. Em 2020, lançou seu primeiro DVD ao vivo, gravado em Uberlândia, Minas Gerais. Desde então, continua ativo na música, lançando novos projetos e singles que reforçam sua posição como uma das promessas da nova geração do sertanejo. Além da música, Enzo também é influente nas redes sociais, compartilhando sua rotina e novidades com seus seguidores. Seu carisma e dedicação indicam uma carreira promissora pela frente.',
 'Enzo Rabelo de Miranda',
@@ -75,7 +97,7 @@ insert into artistas values
 'Tijolinho por Tijolinho (feat. Zé Felipe) - 2018',
 '+63 milhões',
 '+435 milhões'),
-(default, 'Felipe Araújo',
+(default, 'Felipe Araújo', 1,
 'style/assets/images/cantor_específico/universitarios_solo/felipeAraujo.png',
 'Felipe Araújo é um cantor e compositor brasileiro de sertanejo, conhecido por sua voz marcante e por emplacar vários hits nas paradas. Ele é irmão do saudoso Cristiano Araújo, cantor que faleceu em 2015. Inspirado pelo irmão e pela paixão pela música, Felipe decidiu seguir carreira solo ainda em 2015. Seu estilo mistura o sertanejo romântico com toques modernos do sertanejo universitário. Com carisma e presença de palco, ele rapidamente conquistou o público. Seu primeiro grande sucesso foi “A Mala é Falsa”, parceria com Henrique & Juliano. Desde então, lançou vários singles que se destacaram nas rádios e plataformas digitais. Felipe também é conhecido por suas apresentações emocionantes e pelo cuidado com sua imagem artística. Com uma trajetória sólida, ele já se consolidou como um dos nomes fortes da nova geração do sertanejo. Atualmente, segue ativo na música, lançando novos projetos e turnês.',
 'Felipe Francisco Nascimento Araújo',
@@ -87,7 +109,7 @@ insert into artistas values
 'Atrasadinha (feat. Ferrugem) - 2018',
 '+275 milhões',
 '+500 milhões'),
-(default, 'Gabriel Diniz',
+(default, 'Gabriel Diniz', 1,
 'style/assets/images/cantor_específico/universitarios_solo/gabrielDiniz.png',
 'Gabriel Diniz, nascido José Gabriel de Souza Diniz, foi um cantor e compositor brasileiro que se destacou no cenário musical nordestino. Nascido em Campo Grande, Mato Grosso do Sul, mudou-se ainda criança para João Pessoa, na Paraíba, onde iniciou sua trajetória musical. Durante a faculdade de engenharia elétrica, formou uma banda de garagem com amigos, o que o levou a ingressar em grupos como Capim com Mel e Cavaleiros do Forró. Em 2011, lançou sua própria banda, Forró na Farra, e posteriormente seguiu carreira solo. Seu estilo musical era uma fusão de forró com elementos de swingueira, destacando-se pela energia e carisma nas apresentações. Em 2018, alcançou sucesso nacional com o hit “Jenifer”, que se tornou a música mais tocada no Carnaval de 2019. Infelizmente, sua carreira promissora foi interrompida por um trágico acidente aéreo em maio de 2019. Gabriel deixou um legado marcante na música brasileira, sendo lembrado por sua alegria e talento.',
 'José Gabriel de Souza Diniz',
@@ -99,7 +121,7 @@ insert into artistas values
 'Jenifer - 2019',
 '+97 milhões',
 '+372 milhões'),
-(default, 'Gustavo Mioto',
+(default, 'Gustavo Mioto', 1,
 'style/assets/images/cantor_específico/universitarios_solo/gustavoMioto.png',
 'Gustavo Pieroni Mioto é um cantor, compositor e multi-instrumentista brasileiro, nascido em Votuporanga, interior de São Paulo. Desde pequeno, demonstrou interesse pela música, compondo sua primeira canção aos 10 anos. Em 2012, lançou seu álbum de estreia, Fora de Moda, iniciando sua carreira profissional. Ganhou notoriedade nacional com o hit “Impressionando os Anjos” em 2016, consolidando-se no cenário sertanejo. Seu estilo musical transita entre o sertanejo romântico e o pop, com letras que abordam temas como amor e relacionamentos. Em 2020, sua música “Com ou Sem Mim” foi a mais tocada nas rádios brasileiras. Ao longo de sua carreira, colaborou com diversos artistas renomados, como Anitta e Jorge & Mateus. Além de cantor, Mioto é conhecido por sua habilidade em tocar instrumentos como violão, guitarra, piano e banjo. Atualmente, continua ativo na música, lançando novos projetos e singles. Seu talento e carisma o tornam uma das principais vozes da nova geração do sertanejo.',
 'Gustavo Pieroni Mioto',
@@ -111,7 +133,7 @@ insert into artistas values
 'Com ou Sem Mim - 2020',
 '+179 milhões',
 '+305 milhões'),
-(default, 'Gusttavo Lima',
+(default, 'Gusttavo Lima', 1,
 'style/assets/images/cantor_específico/universitarios_solo/gusttavoLima.png',
 'Gusttavo Lima, nome artístico de Nivaldo Batista Lima, nasceu em Presidente Olegário, Minas Gerais, em 3 de setembro de 1989. Desde cedo, demonstrou interesse pela música, aprendendo a tocar diversos instrumentos de forma autodidata. Aos nove anos, saiu de casa para seguir carreira musical, formando uma banda com os irmãos. Em 2009, iniciou sua carreira solo, mas foi em 2011 que alcançou fama nacional com o hit “Balada (Tchê Tchê Rere)”. Conhecido por sua voz marcante e presença de palco, Gusttavo consolidou-se como um dos principais nomes do sertanejo universitário. Além de cantor, é compositor, produtor musical e empresário. Seu estilo musical transita entre o sertanejo tradicional e o romântico, com influências de arrocha e bachata. Ao longo de sua carreira, lançou diversos álbuns e DVDs de sucesso. Atualmente, continua ativo na música, realizando turnês e lançando novos projetos. Seu carisma e talento o tornaram uma referência no cenário musical brasileiro.',
 'Nivaldo Batista Lima',
@@ -123,7 +145,7 @@ insert into artistas values
 'Balada - 2012',
 '+239 milhões',
 '+338 milhões'),
-(default, 'Hugo Henrique',
+(default, 'Hugo Henrique', 1,
 'style/assets/images/cantor_específico/universitarios_solo/hugoHenrique.png',
 'Hugo Henrique é um cantor e compositor brasileiro nascido em 1º de junho de 2004, em São Paulo. Ele começou sua trajetória musical aos 5 anos, incentivado por sua tia, e logo passou a se apresentar em programas de TV regionais. Sua grande inspiração foi o cantor Cristiano Araújo, com quem teve a oportunidade de dividir o palco ainda criança. Aos 9 anos, lançou seu primeiro CD, “Anjo Sem Asas”, com participações de Thiago Brava e Cristiano Araújo. Em 2017, gravou o DVD “Só Dessa Vez”, que contou com colaborações de Marília Mendonça, Maiara & Maraisa e Naiara Azevedo. Além de intérprete, Hugo é um compositor talentoso, tendo escrito músicas para artistas como Marília Mendonça e Murilo Huff. Seu estilo mistura o sertanejo romântico com influências pop, destacando-se pela voz marcante e letras emotivas. Em 2024, lançou o álbum “Autoral”, reunindo composições próprias e regravações de sucessos seus na voz de outros artistas. Atualmente, Hugo continua ativo na música, realizando shows e lançando novos projetos. Seu carisma e talento o consolidam como uma das promessas da nova geração do sertanejo.',
 'Hugo Henrique',
@@ -135,7 +157,7 @@ insert into artistas values
 'Mala - 2017',
 '+26 milhões',
 '+76 milhões'),
-(default, 'Lauana Prado',
+(default, 'Lauana Prado', 1,
 'style/assets/images/cantor_específico/universitarios_solo/lauanaPrado.png',
 'Lauana Prado, nascida Mayara Lauana Pereira e Vieira do Prado, é uma cantora e compositora brasileira de música sertaneja. Natural de Goiânia, cresceu em Araguaína, Tocantins, onde começou a cantar em bares locais. Participou de programas de calouros como “Jovens Talentos” e “The Voice Brasil”, utilizando o nome artístico Mayara Prado. Em 2014, lançou seu primeiro EP, mas foi em 2018, já como Lauana Prado, que alcançou sucesso nacional com a música “Cobaia”. Desde então, lançou álbuns como “Verdade”, “Livre” e “Natural”, este último indicado ao Grammy Latino. Seu estilo mistura sertanejo com influências de pop e MPB, destacando-se por sua voz potente e letras emotivas. Lauana também é reconhecida por regravações de clássicos sertanejos em projetos como “Raiz” e “Raiz Goiânia”. Em 2024, lançou o álbum “Transcende”, gravado ao vivo no Ginásio do Ibirapuera, com participações de artistas renomados. Além da música, é conhecida por sua autenticidade e representatividade no cenário sertanejo. Atualmente, continua ativa na música, realizando shows e lançando novos projetos.',
 'Mayara Lauana Pereira e Vieira do Prado',
@@ -147,7 +169,7 @@ insert into artistas values
 'Cobaia (feat. Maiara & Maraisa) - 2018',
 '+269 milhões',
 '+609 milhões'),
-(default, 'Lucas Lucco',
+(default, 'Lucas Lucco', 1,
 'style/assets/images/cantor_específico/universitarios_solo/lucasLucco.png',
 'Lucas Lucco Corrêa de Oliveira, conhecido artisticamente como Lucas Lucco, é um cantor, compositor e ator brasileiro. Natural de Patrocínio, Minas Gerais, iniciou sua carreira musical em 2007 com o trio sertanejo Skypiras. Em 2011, seguiu carreira solo, ganhando destaque com a música “Pra Te Fazer Lembrar”. Além da música, atuou em novelas como “Malhação” e participou de reality shows. Seu estilo musical transita entre o sertanejo universitário, pop e funk, com letras que abordam temas como amor e relacionamentos. Lucas também é conhecido por sua atuação como modelo e empresário no ramo fitness. Lançou álbuns como “Nem Te Conto” e “O Destino”, consolidando-se no cenário musical brasileiro. Parcerias com artistas como Marília Mendonça e Wesley Safadão ampliaram seu alcance. Atualmente, continua ativo na música, lançando novos projetos e singles. Seu carisma e versatilidade o tornam uma figura marcante no entretenimento brasileiro.',
 'Lucas Lucco Corrêa de Oliveira',
@@ -159,7 +181,7 @@ insert into artistas values
 'Mozão - 2014',
 '+10 milhões',
 '+132 milhões'),
-(default, 'Luiza Martins',
+(default, 'Luiza Martins', 1,
 'style/assets/images/cantor_específico/universitarios_solo/luizaMartins.png',
 'Luiza Martins Passos Firpe Santos é uma cantora e compositora brasileira de música sertaneja. Natural de Belo Horizonte, iniciou sua carreira em 2016 ao formar a dupla Luiza & Maurílio. A dupla ganhou destaque com músicas como “S de Saudade” e “Furando o Sinal”. Em 2021, com o falecimento de Maurílio, Luiza entrou em um período sabático. Retornou à música em 2022, iniciando sua carreira solo. Em 2023, lançou o álbum “Continua”, com músicas inéditas e regravações da antiga dupla. Seu estilo é marcado por uma voz potente e letras que exploram emoções profundas. Luiza é conhecida como a “Alcione do Sertanejo” por sua voz marcante. Além da música, é reconhecida por sua autenticidade e representatividade no cenário sertanejo. Atualmente, continua ativa na música, realizando shows e lançando novos projetos.',
 'Luiza Martins Passos Firpe Santos',
@@ -171,7 +193,7 @@ insert into artistas values
 'Ponto Final (feat. Murilo Huff) - 2023',
 '+21 milhões',
 '+41 milhões'),
-(default, 'Luan Santana',
+(default, 'Luan Santana', 1,
 'style/assets/images/cantor_específico/universitarios_solo/luanSantana.png',
 'Luan Rafael Domingos Santana nasceu em 13 de março de 1991, em Campo Grande, Mato Grosso do Sul. Desde pequeno, demonstrou talento musical, começando a cantar aos três anos. Em 2009, lançou seu álbum de estreia, "Tô de Cara", que o projetou nacionalmente com o hit "Meteoro". Com uma carreira consolidada, Luan é conhecido por sua versatilidade, transitando entre o sertanejo romântico e o pop. Ao longo dos anos, lançou diversos álbuns e DVDs de sucesso, como "Ao Vivo no Rio" e "1977". Recebeu múltiplas indicações ao Grammy Latino e é um dos artistas mais premiados do Brasil. Além da música, participou de campanhas publicitárias e programas de TV. Seu carisma e talento o tornaram um ícone da música jovem brasileira. Atualmente, continua ativo, lançando novos projetos e realizando turnês. Luan é reconhecido por sua dedicação aos fãs e por inovar constantemente em sua carreira.',
 'Luan Rafael Domingos Santana',
@@ -183,7 +205,7 @@ insert into artistas values
 'Abalo Emocional - 2023',
 '+209 milhões',
 '+160 milhões'),
-(default, 'Marília Mendonça',
+(default, 'Marília Mendonça', 1,
 'style/assets/images/cantor_específico/universitarios_solo/mariliaMendonca.png',
 'Marília Dias Mendonça nasceu em 22 de julho de 1995, em Cristianópolis, Goiás. Iniciou sua carreira como compositora, escrevendo para diversos artistas sertanejos. Em 2016, lançou seu primeiro DVD homônimo, que a consagrou nacionalmente com o hit "Infiel". Reconhecida como a "Rainha da Sofrência", suas músicas abordavam temas de amor e empoderamento feminino. Em 2019, lançou o projeto "Todos os Cantos", gravando shows em todas as capitais brasileiras. Recebeu diversos prêmios, incluindo o Grammy Latino de Melhor Álbum de Música Sertaneja. Infelizmente, faleceu em 5 de novembro de 2021, vítima de um acidente aéreo. Mesmo após sua morte, suas músicas continuam fazendo sucesso e emocionando fãs. Marília deixou um legado importante na música brasileira, influenciando uma geração de artistas. Sua voz e autenticidade permanecem vivas nas canções que eternizou.',
 'Marília Dias Mendonça',
@@ -195,7 +217,7 @@ insert into artistas values
 'Leão - 2020',
 '+480 milhões',
 '+438 milhões'),
-(default, 'Michel Teló',
+(default, 'Michel Teló', 1,
 'style/assets/images/cantor_específico/universitarios_solo/michelTelo.png',
 'Michel Teló nasceu em 21 de janeiro de 1981, em Medianeira, Paraná. Começou sua carreira musical ainda criança, participando de bandas escolares. Ganhou notoriedade nacional como vocalista do grupo Tradição, onde permaneceu por 11 anos. Em 2009, iniciou carreira solo, alcançando sucesso mundial com o hit "Ai Se Eu Te Pego" em 2011. A música liderou paradas em diversos países e se tornou um fenômeno global. Michel é conhecido por seu carisma e habilidade com instrumentos como sanfona e violão. Além da música, participou como técnico no programa "The Voice Brasil". Lançou vários álbuns e DVDs ao longo da carreira, consolidando-se no cenário sertanejo. Recebeu prêmios e indicações importantes, incluindo o Grammy Latino. Atualmente, continua ativo, lançando novas músicas e realizando shows.',
 'Michel Teló',
@@ -207,7 +229,7 @@ insert into artistas values
 'Ai Se Eu Te Pego - 2011',
 '+322 milhões',
 '+1,2 bilhão'),
-(default, 'Murilo Huff',
+(default, 'Murilo Huff', 1,
 'style/assets/images/cantor_específico/universitarios_solo/muriloHuff.png',
 'Murilo Huff nasceu em 14 de outubro de 1995, em Goiânia, Goiás. Iniciou sua trajetória na música como compositor, tendo canções gravadas por diversos artistas. Em 2018, lançou seu primeiro álbum, "Pra Ouvir Tomando Uma", que o destacou como cantor. Foi namorado da cantora Marília Mendonça, com quem teve um filho, Léo. Após a morte de Marília em 2021, Murilo continuou sua carreira, lançando novos projetos. É conhecido por suas letras emotivas e voz marcante no sertanejo romântico. Lançou álbuns como "Ao Vivão" e "Pra Ouvir Tomando Uma 2". Suas músicas frequentemente abordam temas de amor e superação. Murilo é considerado uma das promessas do sertanejo atual. Atualmente, segue ativo, realizando shows e compondo novas canções.',
 'Murilo Huff',
@@ -219,7 +241,7 @@ insert into artistas values
 'Dois Enganados (feat. Marília Mendonça) - 2019',
 '+251 milhões',
 '+313 milhões'),
-(default, 'Naiara Azevedo',
+(default, 'Naiara Azevedo', 1,
 'style/assets/images/cantor_específico/universitarios_solo/naiaraAzevedo.png',
 'Naiara de Fátima Azevedo nasceu em 30 de outubro de 1989, em Campo Mourão, Paraná. Desde jovem, demonstrou interesse pela música, cantando em corais de igreja. Formou-se em Estética e Cosmetologia, mas decidiu seguir carreira musical. Ganhou destaque com a música "50 Reais", lançada em 2016. Seu estilo mistura sertanejo com elementos de outros gêneros, abordando temas de empoderamento feminino. Participou de programas de TV e realizou shows por todo o Brasil. Lançou álbuns como "Totalmente Diferente" e "Contraste". É conhecida por sua energia no palco e letras impactantes. Naiara também participou do reality show "Big Brother Brasil" em 2022. Atualmente, continua ativa na música, lançando novos projetos.',
 'Naiara de Fátima Azevedo',
@@ -231,7 +253,7 @@ insert into artistas values
 'Palhaça (feat. Ana Castela) - 2023',
 '+164 milhões',
 '+302 milhões'),
-(default, 'Paula Fernandes',
+(default, 'Paula Fernandes', 1,
 'style/assets/images/cantor_específico/universitarios_solo/paulaFernandes.png',
 'Paula Fernandes de Souza nasceu em 28 de agosto de 1984, em Sete Lagoas, Minas Gerais. Começou a cantar aos oito anos e, aos dez, lançou seu primeiro álbum independente. Aos doze, mudou-se para São Paulo, onde foi contratada por uma companhia de rodeios, ganhando experiência em apresentações ao vivo. Em 2005, sua música “Ave Maria Natureza” integrou a trilha sonora da novela “América”, aumentando sua visibilidade nacional. Seu álbum “Paula Fernandes: Ao Vivo” (2011) foi um marco em sua carreira, consolidando-a como uma das principais vozes do sertanejo romântico. Paula é conhecida por sua voz doce e por mesclar sertanejo com elementos de pop e música romântica. Ao longo dos anos, lançou diversos álbuns de sucesso e realizou turnês nacionais e internacionais. Recebeu prêmios importantes, incluindo dois Grammy Latinos. Em 2023, lançou o álbum “11:11”, mostrando sua constante evolução artística. Atualmente, continua ativa na música, encantando fãs com seu talento e carisma.',
 'Paula Fernandes de Souza',
@@ -243,7 +265,7 @@ insert into artistas values
 'Não Precisa (feat. Victor & Leo) - 2010',
 '+42 milhões',
 '+239 milhões'),
-(default, 'Yasmin Santos',
+(default, 'Yasmin Santos', 1,
 'style/assets/images/cantor_específico/universitarios_solo/yasminSantos.png',
 'Yasmin dos Santos de Jesus nasceu em 10 de janeiro de 1998, em Guarujá, São Paulo. Iniciou sua carreira tocando em bares locais e ganhou notoriedade ao publicar um vídeo cantando “Amante Não Tem Lar”, de Marília Mendonça, que viralizou na internet. Em 2018, lançou seu primeiro single, “Saudade Nível Hard”, que ficou entre as 10 músicas mais tocadas nas rádios e plataformas de streaming. Assinou contrato com a Sony Music em 2019 e, no mesmo ano, gravou seu primeiro DVD, “Ao Vivo em São Paulo”, com participações de artistas renomados como Marília Mendonça e Wesley Safadão. Yasmin é conhecida por seu timbre de voz semelhante ao de Marília Mendonça e por suas músicas que abordam temas de amor e sofrência. Lançou diversos EPs e singles de sucesso, consolidando-se como uma das promessas do sertanejo atual. Em 2022, lançou o DVD “Ao Vivo em Goiânia”, expandindo ainda mais seu alcance nacional. Além de cantora, é compositora e toca instrumentos como violão e guitarra. Sua autenticidade e talento têm conquistado uma base sólida de fãs. Atualmente, segue ativa na música, lançando novos projetos e realizando shows por todo o Brasil.',
 'Yasmin dos Santos de Jesus',
@@ -259,7 +281,7 @@ insert into artistas values
 -- Inserindo cantores universitários - duplas
 insert into artistas values
 (default, 
-'Bruninho & Davi', 
+'Bruninho & Davi', 1,
 'style/assets/images/cantor_específico/universitarios_dupla/bruninho&davi.png',
 'Bruninho e Davi são naturais de Campo Grande, Mato Grosso do Sul. Amigos desde a infância, começaram na música tocando em uma banda de rock chamada Vega. Em 2009, decidiram formar a dupla sertaneja Bruninho & Davi, lançando a primeira música de trabalho, "Zona Sul". Em 2010, ganharam destaque com o clipe "Vamo Mexê", em parceria com Michel Teló. O sucesso nacional veio com "Se Namorar Fosse Bom", lançada em 2012. Assinaram contrato com a Sony Music em 2014 e lançaram o DVD "Ao Vivo em Campo Grande". A dupla é conhecida por misturar sertanejo universitário com pop e humor em suas músicas. Participaram de programas de TV e conquistaram uma base sólida de fãs. Continuam ativos, lançando novos projetos e realizando shows por todo o país. Em 2024, lançaram o álbum "Ao Vivo em Curitiba".',
 'Bruno Alessandro da Silva Cerri e Davi Garcia de Ávila Filho',
@@ -272,7 +294,7 @@ insert into artistas values
 '+93 milhões',
 '+79 milhões'),
 (default, 
-'Bruno & Barretto', 
+'Bruno & Barretto', 1,
 'style/assets/images/cantor_específico/universitarios_dupla/bruno&barretto.png',
 'Bruno e Barretto formam a dupla Bruno & Barretto, originária do Paraná. Se conheceram em 2010 na cidade de Londrina e decidiram formar a dupla sertaneja. Ganhando notoriedade com vídeos na internet, chamaram a atenção de empresários do ramo musical. Em 2015, lançaram o álbum de estreia "Farra, Pinga e Foguete", que os projetou nacionalmente. Participaram de programas de TV e conquistaram fãs com seu estilo irreverente e animado. A dupla é conhecida por mesclar sertanejo tradicional com influências do sertanejo universitário. Continuam ativos, lançando novas músicas e realizando shows por todo o Brasil. Em 2023, lançaram o álbum "Blessed", com destaque para a faixa "Bruno & Barretto - Blessed - Episódio 8 (EPK / Tour USA)". São reconhecidos por sua energia contagiante e carisma no palco. A dupla mantém uma forte presença nas redes sociais e plataformas de streaming.',
 'Bruno César Bortholazzi (Bruno) eAndré Luiz Evaristo Bonini Tavares (Barretto)',
@@ -285,7 +307,7 @@ insert into artistas values
 '+90 milhões',
 '+165 milhões'),
 (default, 
-'Clayton & Romário', 
+'Clayton & Romário', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/clayton&romario.png',
 'Clayton e Romário são irmãos naturais de Goiânia, Goiás, que começaram a cantar ainda na infância. Inicialmente, se apresentavam em barzinhos e churrascarias, ganhando experiência e visibilidade. Moraram por um período na Espanha e, ao retornarem ao Brasil, estabeleceram-se em Belo Horizonte, Minas Gerais. A carreira da dupla ganhou força na capital mineira, onde conquistaram uma base sólida de fãs. Em 2020, lançaram o álbum "No Churrasco 2", que consolidou seu estilo descontraído e animado. São conhecidos por suas letras bem-humoradas e por mesclar sertanejo com outros ritmos. A dupla mantém uma forte presença nas redes sociais e plataformas de streaming. Continuam ativos, lançando novos projetos e realizando shows por todo o Brasil. Em 2023, lançaram a música "Pingaiada", que se tornou um dos seus maiores sucessos. Clayton & Romário são considerados uma das duplas mais promissoras do sertanejo atual.',
 'Clayton Moreira Lemos e Romário Moreira Lemos',
@@ -298,7 +320,7 @@ insert into artistas values
 '+174 milhões',
 '+162 milhões'),
 (default, 
-'Cleber & Cauan', 
+'Cleber & Cauan', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/cleber&cauan.png',
 'Cleber e Cauan são amigos de infância naturais de Ceres, interior de Goiás. Cleber começou a cantar aos 8 anos e participou de outras duplas antes de formar a atual. A dupla foi formada em 2010 e começou se apresentando em bares do Distrito Federal e entorno. Em 2013, alcançaram sucesso nacional com a música "Mel Nesse Trem". O hit "Solteiro Desapegado", com participação de Wesley Safadão, aumentou ainda mais sua notoriedade. Em 2017, lançaram o álbum "Resenha", seguido por "Resenha 2 (Ao Vivo)" em 2018. A dupla é conhecida por suas músicas animadas e letras que falam sobre relacionamentos e festas. Receberam diversas certificações da Pro-Música Brasil. Continuam ativos, lançando novos projetos e realizando shows por todo o país. Cleber & Cauan são considerados uma das duplas mais populares do sertanejo atual.',
 'Cleber Oliveira Araujo e Cauan Marco Aurélio Moraes',
@@ -311,7 +333,7 @@ insert into artistas values
 '+85 milhões',
 '+105 milhões'),
 (default, 
-'Diego & Victor Hugo', 
+'Diego & Victor Hugo', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/diego&victorHugo.png',
 'Diego Felix Pereira e Elias Anderson de Souza (Victor Hugo), formam a dupla Diego & Victor Hugo. Antes de se unirem, atuavam como compositores, escrevendo músicas para artistas como Henrique & Juliano e Wesley Safadão. A união da dupla marcou o início de uma carreira de sucesso no cenário sertanejo. Em 2017, lançaram a música "O Alvo", em parceria com Henrique & Juliano, que ficou estourada nas rádios. Em 2018, lançaram "Infarto", uma das músicas mais ouvidas nas rádios naquele ano. Victor Hugo é autor da música "Largado às Traças", sucesso da dupla Zé Neto & Cristiano. A dupla é conhecida por suas letras românticas e melodias envolventes. Continuam ativos, lançando novos projetos e realizando shows por todo o Brasil. Em 2023, lançaram a música "Sem Contra Indicação", com participação especial de Bruno & Marrone.',
 'Diego Felix Pereira e Elias Anderson de Souza',
@@ -324,7 +346,7 @@ insert into artistas values
 '+292 milhões',
 '+569 milhões'),
 (default, 
-'Fernando & Sorocaba', 
+'Fernando & Sorocaba', 1,
 'style/assets/images/cantor_específico/universitarios_dupla/fernando&sorocaba.png',
 'Fernando Zorzanello Bonifácio e Fernando Fakri de Assis, conhecido como Sorocaba, formam a dupla Fernando & Sorocaba. A dupla foi criada em 2006 e começou a tocar em bares e boates em Londrina e região. Com o sucesso instantâneo, nasceu a dupla Fernando & Sorocaba. A partir de 2014, transferiram sua carreira para sua gravadora independente, a FS Produções Artísticas. Criaram um show beneficente e a fundação "FS Premium" para causas sociais. Fernando é também produtor musical e já trabalhou com artistas como Chitãozinho & Xororó, Marcos & Belutti e Luan Santana. Sorocaba é conhecido por seu trabalho como compositor e empresário no meio sertanejo. A dupla é reconhecida por suas apresentações inovadoras e uso de tecnologia nos shows. Continuam ativos, lançando novos projetos e realizando shows por todo o Brasil.',
 'Fernando Zorzanello Bonifácio e Fernando Fakri de Assis (Sorocaba)',
@@ -337,7 +359,7 @@ insert into artistas values
 '+96 milhões',
 '+227 milhões'),
 (default, 
-'Fred & Fabrício', 
+'Fred & Fabrício', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/fred&fabricio.png',
 'Adliel MArtins e Fabrício Fiori formam a dupla Fred & Fabrício, oficializada em 2021. Antes de se unirem, Fred fez parte da primeira formação da dupla Fred & Gustavo, enquanto Fabrício era da dupla Geovany Reis e Fabrício. A formação da dupla surgiu de forma inesperada durante um show em que precisaram cantar juntos. Em 2021, lançaram o projeto "Acústico de Primeira", regravando sucessos da música sertaneja. Assinaram com a Som Livre e lançaram, em 2022, o DVD "Ao Quadrado", com participações especiais. Em 2023, gravaram o DVD "Infinito Pra Sempre", com faixas inéditas e regravações. A dupla é conhecida por alternar entre primeira e segunda voz nas músicas, o que chamou atenção do público. Continuam ativos, lançando novos projetos e realizando shows por todo o Brasil. Em 2024, lançaram a música "Gotejou no Celular", que ficou no Top 100 do Spotify Brasil.',
 'Adliel Martins Rodrigues (Fred) e Fabrício Medeiros Barbosa',
@@ -350,7 +372,7 @@ insert into artistas values
 '+49 milhões',
 '+26 milhões'),
 (default, 
-'George Henrique & Rodrigo', 
+'George Henrique & Rodrigo', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/georgeHenrique&rodrigo.png',
 'George Henrique e Rodrigo são irmãos naturais de Goiânia, Goiás. A dupla foi formada após George Henrique perceber o talento vocal de Rodrigo durante cantorias familiares. Iniciaram a carreira em bares locais, com Rodrigo assumindo a primeira voz. Em 2011, lançaram "Receita de Amar", que chamou a atenção de Bruno, da dupla Bruno & Marrone, tornando-se seu mentor. Em 2013, lançaram o álbum "Conto Até Dez", com várias composições próprias. O álbum "Ouça com o Coração" (2016) contou com participações de Jorge & Mateus e Henrique & Juliano. Em 2017, assinaram com a Universal Music Brasil e lançaram "De Copo em Copo", produzido por Eduardo Pepato. Em 2019, lançaram o EP "Bagunça Minha Vida", produzido por Ivan Miyazato. O EP "Ao Vivo em Brasília" (2022) destacou-se com a música "Vai Lá em Casa Hoje", em parceria com Marília Mendonça, tornando-se um dos maiores sucessos da dupla. Em 2023, lançaram o álbum "Influências", com regravações de clássicos sertanejos, e o single "Beijo Equivocado", em parceria com Guilherme & Benuto.',
 'George Henrique Guadelup de Carvalho e Rodrigo Guadelup de Carvalho',
@@ -363,7 +385,7 @@ insert into artistas values
 '+346 milhões',
 '+321 milhões'),
 (default, 
-'Guilherme & Benuto', 
+'Guilherme & Benuto', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/guilherme&benuto.png',
 'Guilherme Antônio Artioli e Haroldo Bevenuto Machado Artioli, conhecidos como Guilherme & Benuto, são irmãos nascidos em Campinas, São Paulo. Desde cedo, demonstraram talento musical, com Gui aprendendo sanfona aos nove anos e Nuto, formado em música erudita, tocando violino desde os 11. Iniciaram a carreira tocando chorinho, forró e samba em bares locais. Antes de formarem a dupla, integraram o trio Villa Baggage por uma década. Destacaram-se como compositores, escrevendo para artistas como Jorge & Mateus e Zé Neto & Cristiano. Em 2020, lançaram o álbum "Amando, Bebendo e Sofrendo", seguido por "DRIVE-IN" em 2021. Em 2024, lançaram "Deu Rolo de Novo", celebrando mais de 13 milhões de ouvintes no Spotify. Atualmente, trabalham no projeto "In Casa", gravado em Ribeirão Preto.',
 'Guilherme Antônio Artioli e Haroldo Bevenuto Machado Artioli (Benuto)',
@@ -376,7 +398,7 @@ insert into artistas values
 '+317 milhões',
 '+353 milhões'),
 (default, 
-'Guilherme & Santiago', 
+'Guilherme & Santiago', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/guilherme&santiago.png',
 'Guilherme e Santiago são irmãos naturais de Goiânia, Goiás. Guilherme iniciou a carreira musical nos Estados Unidos, retornando ao Brasil no início dos anos 90. Durante as férias, gravaram um jingle para um candidato a prefeito, que fez sucesso local. Decidiram formar a dupla e começaram a se apresentar em eventos políticos e bares. Trabalharam na feira hippie de Goiânia para financiar o primeiro disco. A primeira apresentação ao vivo foi na abertura de um show de Chrystian & Ralf. Ao longo dos anos, consolidaram-se como uma das principais duplas sertanejas do Brasil. Em 2017, Guilherme participou do programa "Dancing Brasil", exibido pela RecordTV. Em 2018, participou do programa "Bancando o Chef", também na RecordTV.',
 'Herickson Cardozo Rosa (Guilherme) e Edson Cardozo Rosa (Santiago)',
@@ -389,7 +411,7 @@ insert into artistas values
 '+92 milhões',
 '+39 milhões'),
 (default, 
-'Henrique & Diego', 
+'Henrique & Diego', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/henrique&diego.png',
 'Henrique e Diego são naturais de Cuiabá, Mato Grosso. Formaram a dupla em 2005, iniciando a carreira musical na região Centro-Oeste. Em 2010, lançaram o álbum "Top do Verão", com destaque para a faixa homônima. O sucesso nacional veio com "Festa Boa" (2013), em parceria com Gusttavo Lima. Em 2015, "Suíte 14", com MC Guimê, alcançou o topo das paradas brasileiras. Outros sucessos incluem "Senha do Celular" e "Raspão", com Simone & Simaria. Em 2017, lançaram o álbum "De Braços Abertos - Ao Vivo no Rio de Janeiro". Continuam ativos, lançando novos projetos e realizando shows por todo o Brasil.',
 'Luiz Henrique Teixeira (Henrique) e Diego Barros da Silva',
@@ -402,7 +424,7 @@ insert into artistas values
 '+135 milhões',
 '+278 milhões'),
 (default, 
-'Henrique & Juliano', 
+'Henrique & Juliano', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/henrique&juliano.png',
 'Henrique & Juliano são irmãos naturais de Palmeirópolis, Tocantins. Formaram a dupla em 2011 e rapidamente conquistaram o cenário sertanejo brasileiro. Com vozes marcantes e letras que falam de amor e cotidiano, tornaram-se referência no gênero. Lançaram diversos álbuns ao vivo, como "Ao Vivo em Palmas" (2013) e "Ao Vivo em Brasília" (2014). Em 2015, ganharam o Prêmio Multishow na categoria Melhor Show. Em 2021, lançaram o álbum "Manifesto Musical", consolidando ainda mais sua carreira. Em 2023, lançaram "To Be Ao Vivo Em Brasília" e "To Be". São conhecidos por arrastar multidões em seus shows, com média de público de 35 mil pessoas por apresentação. Atualmente, são considerados os artistas mais populares do Brasil, segundo a Billboard Artistas 25. Continuam ativos, lançando novos projetos e realizando turnês por todo o país.',
 'Ricelly Henrique Tavares Reis (Henrique) e Edson Alves dos Reis Júnior (Juliano)',
@@ -415,7 +437,7 @@ insert into artistas values
 '+414 milhões',
 '+561 milhões'),
 (default, 
-'Hugo & Guilherme', 
+'Hugo & Guilherme', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/hugo&guilherme.png',
 'Hugo e Guilherme são naturais de Morrinhos e Goiânia, respectivamente. Formaram a dupla em 2015 após se conhecerem em uma casa de shows em Goiânia. Hugo já havia trilhado carreira solo, enquanto Guilherme cursava agronomia. Contaram com o apoio de Henrique & Juliano para iniciar a carreira. Lançaram o álbum de estreia "Acústico e Ao Vivo" em 2016. Emplacaram sucessos como "Coração na Cama" e "Namorada Reserva". A música "Mal Feito", com participação de Marília Mendonça, foi um dos maiores hits da dupla. Em 2023, lançaram o álbum "Original", seguido por "062" em 2024. São conhecidos por mesclar o sertanejo tradicional com elementos modernos. Continuam ativos, realizando shows e lançando novos projetos.',
 'Spártaco Luiz Neves Vezzani (Hugo) e Matheus Neves (Guilherme)',
@@ -428,7 +450,7 @@ insert into artistas values
 '+366 milhões',
 '+355 milhões'),
 (default, 
-'Ícaro & Gilmar', 
+'Ícaro & Gilmar', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/icaro&gilmar.png',
 'Ícaro e Gilmar são naturais de Periquito, Minas Gerais. Formaram a dupla em 2009 após o fim de uma banda de pop rock que integravam. Iniciaram a carreira tocando em bares e festas locais. Em 2017, mudaram-se para Goiânia em busca de novas oportunidades. Em 2019, ingressaram na NA Produções Artísticas, escritório da cantora Naiara Azevedo. Lançaram o álbum "Na Bebida e Na Sofrência" em 2018, com destaque para a música "Despedida". O projeto "Sextou BB", iniciado em 2019, trouxe regravações de clássicos sertanejos. Em 2022, lançaram "Ao Vivo em Campo Grande", com os hits "Imperfeitos" e "Não Me Esquecerás". Em 2023, lançaram o álbum "Nunca Deixe de Sonhar", com participações de Hugo & Guilherme e Eduardo Costa. Continuam ativos, lançando novos projetos e realizando shows por todo o Brasil.',
 'Ícaro da Silva Mantovani e Gilmar Rodrigues de Castro',
@@ -441,7 +463,7 @@ insert into artistas values
 '+32 milhões',
 '+55 milhões'),
 (default, 
-'Israel & Rodolffo', 
+'Israel & Rodolffo', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/israel&rodolffo.png',
 'Israel Antônio Ribeiro e Rodolffo Matthaus da Silva Rios são naturais de Goianésia e Uruaçu, Goiás, respectivamente. Formaram a dupla em 1999, incentivados por seus pais. Gravaram um CD demo ainda crianças e começaram a se apresentar em comícios e festas locais. Em 2011, lançaram o álbum "Do Jeito Que Eu Queria", com destaque para as músicas "Largadão" e "Louco Desejo". Em 2012, lançaram o álbum "Marca Evidente", com participações de Jorge & Mateus e Gusttavo Lima. A música "Batom de Cereja", lançada em 2021, tornou-se um dos maiores sucessos da dupla. Participaram de diversos programas de televisão, aumentando sua visibilidade nacional. Em 2022, participaram do álbum de Paula Fernandes com a música "Tá Tudo Bem". São conhecidos por suas composições autorais e por mesclar o sertanejo tradicional com o moderno. Continuam ativos, lançando novos projetos e realizando turnês por todo o país. ',
 'Israel Antônio Ribeiro e Rodolffo Matthaus da Silva Rios',
@@ -454,7 +476,7 @@ insert into artistas values
 '+369 milhões',
 '+217 milhões'),
 (default, 
-'Jads & Jadson', 
+'Jads & Jadson', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/jads&jadson.png',
 'Jads & Jadson são irmãos naturais de Catanduvas, Paraná. Iniciaram a carreira musical ainda jovens, participando de festivais em Ponta Porã, Mato Grosso do Sul. Gravaram o primeiro CD em 1990 e, em 2003, lançaram o álbum "Acústico", com composições próprias. O sucesso nacional veio com a música "Com Todos Menos Comigo", do álbum "Dom Brasileiro" (2004). Em 2012, lançaram "Pra Acabar Com Tudo", com destaque para a faixa-título. O DVD "É Divino - Ao Vivo em Campo Grande" (2014) consolidou a dupla no cenário sertanejo. Em 2015, lançaram o álbum "Diamante Bruto", com o single "Noite Fracassada". A dupla é conhecida por seu estilo "bruto" e influências da música caipira. Continuam ativos, realizando shows e lançando novos projetos.',
 'Jads Paulo Alves dos Santos e Jadson Alves dos Santos',
@@ -467,7 +489,7 @@ insert into artistas values
 '+61 milhões',
 '+89 milhões'),
 (default, 
-'João Bosco & Vinícius', 
+'João Bosco & Vinícius', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/joaoBosco&vinicius.png',
 'João Bosco & Vinícius são amigos de infância que se conheceram em Coxim, Mato Grosso do Sul. Formaram a dupla em 1994 e são considerados pioneiros do sertanejo universitário. O primeiro álbum, "Acústico no Bar", foi lançado em 2003. O sucesso nacional veio com o hit "Chora, Me Liga", do álbum "Curtição" (2009). Receberam o Grammy Latino de Melhor Álbum de Música Sertaneja em 2011. Lançaram diversos álbuns ao longo da carreira, incluindo "A Festa" (2012) e "Ao Vivo em Goiânia" (2020). A dupla é conhecida por suas letras românticas e melodias cativantes. Continuam ativos, realizando shows e lançando novos projetos.',
 'João Bosco Homem de Carvalho Filho e Vinícius Fernando Karlinke',
@@ -480,7 +502,7 @@ insert into artistas values
 '+80 milhões',
 '+38 milhões'),
 (default, 
-'João Lucas & Marcelo', 
+'João Lucas & Marcelo', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/joaoLucas&marcelo.png',
 'João Lucas & Marcelo formaram a dupla em 2010, conquistando rapidamente o cenário sertanejo. O sucesso veio com o hit "Eu Quero Tchu, Eu Quero Tcha" (2012), que alcançou destaque nacional. Lançaram outros sucessos como "Louca Louquinha" e "Agora É Pra Valer", com participações de MC K9 e Wesley Safadão. Em 2013, lançaram o DVD "A Vida É Uma Festa! (Ao Vivo)". A dupla se destacou por mesclar sertanejo com elementos de funk e música eletrônica. Em 2019, após divergências financeiras, a dupla se separou. Marcelo Martins seguiu carreira solo, enquanto João Lucas tentou carreira política. Apesar da separação, suas músicas continuam populares nas plataformas digitais.',
 'Rafael Ribeiro de França (João Lucas) e Marcelo Bernardes de Oliveira',
@@ -493,7 +515,7 @@ insert into artistas values
 '+24 milhões',
 '+34 milhões'),
 (default, 
-'João Neto & Frederico', 
+'João Neto & Frederico', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/joaoNeto&frederico.png',
 'João Neto & Frederico são irmãos naturais de Goiânia, Goiás. Iniciaram a carreira musical ainda crianças, participando de eventos em feiras e pecuárias. Gravaram o primeiro CD em 2004, mas o sucesso nacional veio com o hit "Pega Fogo Cabaré" (2007). A dupla é conhecida por suas letras animadas e estilo sertanejo universitário. Lançaram diversos álbuns, incluindo "Ao Vivo" (2007) e "Ao Vivo em Goiânia" (2010). Em 2012, participaram da novela "Cheias de Charme", da Rede Globo. Continuam ativos, realizando shows e lançando novos projetos.',
 'João Neto Nunes e Frederico Augusto Silva Nunes',
@@ -506,7 +528,7 @@ insert into artistas values
 '+83 milhões',
 '+148 milhões'),
 (default, 
-'Jorge & Mateus', 
+'Jorge & Mateus', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/jorge&mateus.png',
 'Naturais de Itumbiara (GO), Jorge & Mateus são uma das maiores duplas sertanejas do Brasil. Começaram cantando em bares da cidade até se destacarem nacionalmente. Lançaram o primeiro CD e DVD em 2007, chamado "Ao Vivo em Goiânia". A partir daí, estouraram com músicas românticas e animadas, se tornando referência no sertanejo universitário. A dupla é conhecida por manter uma agenda lotada, inclusive com turnês internacionais. Sempre inovaram no mercado, sendo uma das primeiras duplas a apostar fortemente em plataformas digitais. Suas músicas falam de amor, saudade e relacionamentos. Continuam sendo uma das maiores potências do sertanejo. Influenciam uma geração de novos artistas.',
 'Jorge Alves Barcelos e Mateus Pedro Liduário de Oliveira',
@@ -519,7 +541,7 @@ insert into artistas values
 '+289 milhões',
 '+511 milhões'),
 (default, 
-'Júlia & Rafaela', 
+'Júlia & Rafaela', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/julia&rafaela.png',
 'Júlia e Rafaela, a dupla sertaneja que tem conquistado corações por todo o Brasil, emergiu de pequenas apresentações em sua cidade natal no Mato Grosso para se tornarem fenômenos nacionais no cenário musical. Com suas vozes harmoniosas e uma química inigualável, as irmãs gêmeas têm se destacado no gênero sertanejo, um feito notável em um mercado tão competitivo. O sucesso veio cedo para Júlia e Rafaela com o lançamento de hits que rapidamente escalaram as paradas de sucesso. Músicas como "Paredes Pintadas" e "Na Mesma Moeda" são apenas alguns exemplos de seu talento para criar canções que falam diretamente ao coração de seus ouvintes, abordando temas de amor, desilusão e empoderamento com uma maturidade impressionante para sua idade.',
 'Júlia e Rafaela',
@@ -532,7 +554,7 @@ insert into artistas values
 '+36 milhões',
 '+11 milhões'),
 (default, 
-'Júnior & Cezar', 
+'Júnior & Cezar', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/junior&cezar.png',
 'Naturais de Liberato Sauzano e Constantina, cidades do interior do estado do Rio Grande do Sul, os irmãos Júnior e Cézar nasceram destinados para a música. Os pais da dupla cultivavam o sonho de ver os filhos seguirem carreira artística mesmo antes do nascimento dos meninos. Com esse incentivo, ele começaram a trilhar esse caminho ainda crianças, quando tinham 9 e 7 anos. Começaram com apresentações em festas familiares, aniversários e rodas de amigos. Com o passar dos anos, receberam convites para cantar em eventos da região e casas noturnas. Gravaram, em 1999, o primeiro CD “Nas Calçadas da Rua”. Nove anos depois, veio o segundo álbum “Coisa de Bar”, que conta com 05 faixas inéditas, e fortaleceu o reconhecimento dos cantores pelo sul do Brasil.',
 'Júnior e Cézar ',
@@ -545,7 +567,7 @@ insert into artistas values
 '+95 milhões',
 '+33 milhões'),
 (default, 
-'Maiara & Maraisa', 
+'Maiara & Maraisa', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/maiara&maraisa.png',
 'As gêmeas Maiara & Maraisa são de São José dos Quatro Marcos (MT) e cantam juntas desde a infância. A carreira começou profissionalmente em 2013, mas o sucesso veio em 2015 com o DVD "Ao Vivo em Goiânia", que trouxe hits como "10%". Elas são conhecidas por dar voz ao empoderamento feminino dentro do sertanejo, especialmente na vertente da sofrência. Além da carreira própria, já compuseram para grandes nomes, como Jorge & Mateus e Henrique & Juliano. Foram grandes amigas e parceiras musicais de Marília Mendonça, com quem gravaram vários projetos. Suas letras falam de amor, superação, bebidas e liberdade feminina. São atualmente uma das maiores duplas femininas do Brasil.',
 'Maiara Carla Henrique Pereira e Carla Maraisa Henrique Pereira',
@@ -558,7 +580,7 @@ insert into artistas values
 '+199 milhões',
 '+696 milhões'),
 (default, 
-'Marcos & Belutti', 
+'Marcos & Belutti', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/marcos&belutti.png',
 'A dupla é formada por Leonardo Prado de Souza (Marcos) e Bruno Belucci Pereira (Belutti), naturais de São Paulo. Se conheceram em 2007 através de amigos em comum e, rapidamente, perceberam a química musical. No mesmo ano lançaram seu primeiro DVD “Ao Vivo”, que os colocou no cenário nacional. Misturam sertanejo romântico com baladas animadas e já fizeram parcerias com artistas de vários estilos. O sucesso veio com músicas como “Domingo de Manhã”, que ficou meses nas paradas. São conhecidos pela potência vocal e pelo carisma no palco. Gravaram projetos internacionais, como em Punta del Este e em São Paulo com pegada mais intimista. A dupla segue ativa, sempre inovando no sertanejo.',
 'Leonardo Prado de Souza (Marcos) e Bruno Belucci Pereira (Belutti)',
@@ -571,7 +593,7 @@ insert into artistas values
 '+97 milhões',
 '+278 milhões'),
 (default, 
-'Matheus & Kauan', 
+'Matheus & Kauan', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/matheus&kauan.png',
 'Irmãos de Itapuranga (GO), Matheus & Kauan começaram a carreira no início dos anos 2010. Matheus já era compositor de sucesso, com músicas gravadas por Luan Santana, Jorge & Mateus, Michel Teló e outros. A dupla começou oficialmente em 2010, com um som moderno e letras românticas. Ganharam grande espaço no sertanejo universitário e no pop sertanejo, com hits que viralizaram. Músicas como “Que Sorte a Nossa” e “O Nosso Santo Bateu” os consolidaram nas paradas. Sempre presentes nas plataformas digitais, acumulam bilhões de streams. Seus projetos costumam ter grande repercussão, como os DVDs "Na Praia". Atualmente são referência na nova geração do sertanejo.',
 'Matheus Aleixo Pinto Rosa e Osvaldo Pinto Rosa Filho (Kauan)',
@@ -584,7 +606,7 @@ insert into artistas values
 '+283 milhões',
 '+746 milhões'),
 (default, 
-'Munhoz & Mariano', 
+'Munhoz & Mariano', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/munhoz&mariano.png',
 'Naturais de Campo Grande (MS), Munhoz e Mariano se conheceram na faculdade. Começaram a cantar juntos em 2006 e conquistaram o Brasil com o hit “Camaro Amarelo”. O primeiro grande sucesso veio em 2010 com o DVD “Ao Vivo em Campo Grande”. São conhecidos pelo estilo descontraído e por misturar sertanejo com pegada universitária e balada. Suas letras geralmente trazem humor, festas e relacionamentos. Apesar de terem diminuído o ritmo nos últimos anos, continuam ativos e lançando projetos. A dupla foi uma das pioneiras em viralizar músicas através de coreografias e redes sociais. Mantêm uma base de fãs fiel por todo o país.',
 'Raphael Calux Munhoz Pinheiro (Munhoz) e Ricardo Mariano Bijos Gomes (Mariano)',
@@ -597,7 +619,7 @@ insert into artistas values
 '+29 milhões',
 '+61 milhões'),
 (default, 
-'Simone & Simaria', 
+'Simone & Simaria', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/simone&simaria.png',
 'Naturais de Uibaí, Bahia, Simone e Simaria começaram como backing vocals de Frank Aguiar. A carreira como dupla começou em 2012, quando lançaram o álbum "As Coleguinhas - Vol. 1". Elas conquistaram o país misturando sertanejo, forró e sofrência, com letras sobre amor, empoderamento e superação. O sucesso veio com hits como “Meu Violão e o Nosso Cachorro” e “Loka” (feat. Anitta). Conhecidas pelo carisma e pela autenticidade, as irmãs sempre foram muito queridas pelo público. Em 2022, anunciaram uma pausa na carreira como dupla para seguir projetos individuais. Mesmo assim, o legado delas segue muito forte no sertanejo.',
 'Simone Mendes Rocha Diniz e Simaria Mendes Rocha',
@@ -610,7 +632,7 @@ insert into artistas values
 '+164 milhões',
 '+357 milhões'),
 (default, 
-'Thaeme & Thiago', 
+'Thaeme & Thiago', 1, 
 'style/assets/images/cantor_específico/universitarios_dupla/thaeme&thiago.png',
 'A dupla surgiu em 2011, formada por Thaeme Mariôto (vencedora do programa Ídolos, em 2007) e Guilherme Bertoldo, o Thiago. Misturam sertanejo romântico com pegada universitária. O apadrinhamento de Sorocaba (da dupla Fernando & Sorocaba) impulsionou a carreira logo de início. Ganharam projeção nacional com hits como “Ai Que Dó”. Passaram por uma troca de integrantes em 2013, quando o primeiro Thiago saiu e Guilherme Bertoldo (outro Thiago) assumiu. Com vozes muito afinadas e carisma no palco, conquistaram fãs por todo o Brasil. Já gravaram DVDs em locais paradisíacos e seguem ativos na música sertaneja.',
 'Thaeme Fernanda Mariôto Elias e Guilherme Steffler Bertoldo (Thiago)',
@@ -623,7 +645,7 @@ insert into artistas values
 '+18 milhões',
 '+71 milhões'),
 (default, 
-'Victor & Leo', 
+'Victor & Leo', 1,
 'style/assets/images/cantor_específico/universitarios_dupla/victor&leo.png',
 'Irmãos nascidos em Ponte Nova (MG) e criados em Abre Campo (MG), Victor & Leo revolucionaram o sertanejo no início dos anos 2000, trazendo uma pegada mais acústica e letras poéticas. Lançaram o álbum "Ao Vivo em Uberlândia" (2007), que explodiu no Brasil inteiro. Músicas como “Borboletas” e “Deus e Eu no Sertão” marcaram época. A dupla fez muito sucesso até 2018, quando anunciaram uma pausa para projetos individuais, mas retornaram em 2022. Eles são conhecidos pela mistura de sertanejo, folk, pop e MPB. Victor também se destacou como compositor e produtor de diversos artistas.',
 'Vitor Chaves Zapalá Pimentel e Leonardo Chaves Zapalá Pimentel',
@@ -636,7 +658,7 @@ insert into artistas values
 '+83 milhões',
 '+114 milhões'),
 (default, 
-'Zé Neto & Cristiano', 
+'Zé Neto & Cristiano', 1,
 'style/assets/images/cantor_específico/universitarios_dupla/zeNeto&cristiano.png',
 'A dupla, natural de São José do Rio Preto (SP), começou a ganhar espaço no sertanejo universitário a partir de 2011, mas o sucesso nacional veio em 2016 com o hit “Seu Polícia”. Conhecidos por mesclar sofrência, modão e sertanejo romântico, conquistaram o Brasil inteiro. Suas vozes potentes e afinadas, além de letras emocionantes, os colocaram no topo do sertanejo atual. Emplacaram uma sequência de hits que dominaram rádios, streamings e redes sociais. A dupla é famosa também pela conexão com os fãs e pela simplicidade. Atualmente são referência no sertanejo de “sofrência”.',
 'José Toscano Martins Neto (Zé Neto) e Irineu Táparo Vaccari (Cristiano)',
@@ -652,7 +674,7 @@ insert into artistas values
 -- Inserindo cantores modão - solo
 insert into artistas values
 (default, 
-'Daniel', 
+'Daniel', 2, 
 'style/assets/images/cantor_específico/modao_solo/daniel.png',
 'Daniel começou sua carreira na década de 1980, ao lado de João Paulo, formando a dupla João Paulo & Daniel. Eles conquistaram o Brasil com seu sertanejo romântico, até a morte trágica de João Paulo em 1997. Após isso, Daniel seguiu carreira solo, mantendo o mesmo estilo romântico que encanta gerações. Além de cantor, também é ator e jurado de programas de TV, como The Voice Brasil. Suas músicas falam de amor, saudade e esperança, sempre com uma pegada leve e romântica. Daniel também se envolve em projetos sociais e é considerado um dos artistas mais queridos do Brasil. Ao longo da carreira, vendeu milhões de discos e recebeu diversos prêmios. Nunca abandonou suas raízes sertanejas, mas sempre moderniza seu som. Continua ativo na música e nos palcos, levando seu talento para todo o país.',
 'José Daniel Camillo',
@@ -664,7 +686,7 @@ insert into artistas values
 'O Menino da Porteira - 2009',
 '+17 milhões',
 '+52 milhões'),
-(default, 'Eduardo Costa',
+(default, 'Eduardo Costa', 2,
 'style/assets/images/cantor_específico/modao_solo/eduardoCosta.png',
 'Eduardo Costa nasceu em uma família humilde e começou a cantar ainda criança, se apresentando em bares e festas. Ele ficou conhecido pelo seu estilo que mistura modão sertanejo com muito romantismo e sofrência, atraindo multidões. Tem uma voz potente, que virou sua marca registrada. Ficou famoso nacionalmente a partir dos anos 2000, com músicas que falam de amor, traição e saudade. É conhecido também por sua personalidade polêmica e pelas declarações sinceras nas redes sociais. Ao longo da carreira, Eduardo coleciona discos de ouro e platina, além de participações em DVDs de outros artistas sertanejos. Gravou projetos acústicos e modões, valorizando o sertanejo raiz. Atualmente, continua rodando o Brasil com seus shows lotados. Ele também é compositor e empresário no meio musical.',
 'Edson Vander da Costa Batista',
@@ -676,7 +698,7 @@ insert into artistas values
 'Amor de Violeiro - 2004',
 '+78 milhões',
 '+97 milhões'),
-(default, 'Leonardo',
+(default, 'Leonardo', 2,
 'style/assets/images/cantor_específico/modao_solo/leonardo.png',
 'Leonardo começou sua carreira ao lado do irmão Leandro, formando uma das duplas mais queridas do Brasil: Leandro & Leonardo. Eles conquistaram o país nos anos 80 e 90, com sucessos românticos e bem-humorados. Após a morte de Leandro em 1998, Leonardo seguiu carreira solo, mantendo o carinho do público. Sua voz marcante e o jeito simples e carismático conquistaram milhões de fãs. Leonardo também é famoso pelas músicas animadas e pelas românticas, sempre com aquele jeitão de bom humor goiano. É pai do cantor Zé Felipe, mostrando que o talento continua na família. Dono de uma carreira consolidada, ele vendeu mais de 35 milhões de discos. Além da música, participa de programas de TV e projetos culturais. Continua fazendo shows e se mantendo relevante na música sertaneja.',
 'Emival Eterno Costa',
@@ -688,7 +710,7 @@ insert into artistas values
 'Liga Lá Em Casa - 2014',
 '+14 milhões',
 '+110 milhões'),
-(default, 'Roberta Miranda',
+(default, 'Roberta Miranda', 2,
 'style/assets/images/cantor_específico/modao_solo/robertaMiranda.png',
 'Roberta Miranda é considerada a Rainha da Música Sertaneja, uma das primeiras mulheres a quebrar as barreiras de um cenário dominado por homens. Começou sua carreira no fim dos anos 1980, após muito lutar para ser reconhecida. Sua voz marcante e suas composições sensíveis falam de amor, dor, saudade e força. Roberta é também uma grande compositora, tendo músicas gravadas por artistas como Chitãozinho & Xororó e Fafá de Belém. Foi a primeira cantora sertaneja a vender mais de 1,5 milhão de cópias em seu álbum de estreia, um marco incrível na época. Suas canções têm uma pegada romântica, com aquele tom sofrido que o povo ama. Além de cantora, é poeta, escritora e artista plástica. Ao longo dos anos, se tornou referência e inspiração para mulheres no sertanejo. E o melhor: continua na ativa, levando sua arte por todo o Brasil.',
 'Maria Albuquerque Miranda',
@@ -700,7 +722,7 @@ insert into artistas values
 'A Majestade, o Sabiá – 1989',
 '+28 milhões',
 '+44 milhões'),
-(default, 'Sérgio Reis',
+(default, 'Sérgio Reis', 2,
 'style/assets/images/cantor_específico/modao_solo/sergioReis.png',
 'Sérgio Reis é um dos maiores nomes do sertanejo e da música brasileira. Curiosamente, começou sua carreira no rock nos anos 60, mas logo migrou para o sertanejo, onde se encontrou de verdade. Dono de uma voz grave e inconfundível, ele canta sobre a vida no campo, amores simples e as belezas do interior. Se tornou ícone da cultura caipira, sempre levando a essência do sertanejo de raiz para os palcos e também para novelas e programas de TV. Suas músicas são verdadeiros hinos, que atravessam gerações. Além de cantor, Sérgio também foi ator em várias novelas e filmes sertanejos. Ele ajudou a popularizar a música sertaneja em todo o Brasil, principalmente na época em que o gênero ainda tinha pouco espaço na mídia. Mesmo com problemas de saúde nos últimos anos, segue sendo respeitadíssimo e continua ativo na música.',
 'Sérgio Bavini',
@@ -712,7 +734,7 @@ insert into artistas values
 'Panela Velha – 1984',
 '+35 milhões',
 '+12 milhões'),
-(default, 'Sula Miranda',
+(default, 'Sula Miranda', 2,
 'style/assets/images/cantor_específico/modao_solo/sulaMiranda.png',
 'Sula Miranda, conhecida como a "Rainha dos Caminhoneiros", começou sua carreira no grupo feminino As Mirandas, junto com as irmãs, e depois no grupo As Melindrosas, que fazia música pop. Em 1986, ela migrou pro sertanejo e estourou no Brasil, principalmente com músicas que homenageiam os caminhoneiros, se tornando símbolo desse público. Sua imagem sempre foi muito associada à estrada, liberdade e romantismo, o que fez dela uma das figuras mais queridas do sertanejo dos anos 80 e 90. Sula tem uma pegada bem romântica, com letras que falam de amor, estrada e saudade. Ao longo da carreira, também apresentou programas de TV, fez participações em rádios e eventos culturais. É irmã da também famosa Gretchen, mas seguiu um caminho bem diferente no mundo da música. Até hoje faz shows, lives e eventos, mantendo viva sua relação com o público das estradas.',
 'Suely Brito de Miranda',
@@ -728,7 +750,7 @@ insert into artistas values
 -- Inserindo cantores modão - duplas
 insert into artistas values 
 (default, 
-'Bruno & Marrone', 
+'Bruno & Marrone', 2, 
 'style/assets/images/cantor_específico/modao_dupla/bruno&marrone.png',
 'Bruno & Marrone começaram sua trajetória no final dos anos 80, cantando em bares e eventos de Goiás. A carreira decolou no início dos anos 2000, quando lançaram o DVD Acústico (2001), que virou febre no Brasil inteiro. Bruno é dono de uma voz poderosa, enquanto Marrone faz a segunda voz e toca diversos instrumentos, trazendo equilíbrio à dupla. O repertório é recheado de músicas românticas, sofrência e hits que grudam na cabeça. São conhecidos por emplacar um hit atrás do outro, principalmente nas rádios e nos botecos do Brasil. Além disso, são respeitados por manter uma carreira sólida e longe de polêmicas. A química entre os dois é perfeita: a voz forte de Bruno combinada com a suavidade de Marrone. Eles ajudaram a moldar o sertanejo dos anos 2000, sendo referência até hoje. Continuam lotando shows e lançando novos projetos.',
 'Vinícius Félix de Miranda (Bruno) / José Roberto Ferreira (Marrone)', 
@@ -741,7 +763,7 @@ insert into artistas values
 '+152 milhões',
 '+217 milhões'),
 (default, 
-'César Menotti & Fabiano', 
+'César Menotti & Fabiano', 2, 
 'style/assets/images/cantor_específico/modao_dupla/cesarMenotti&fabiano.png',
 'César Menotti & Fabiano são irmãos e formam uma das duplas mais queridas do sertanejo universitário, com uma pegada de modão com romantismo. Eles começaram a carreira tocando em bares de Belo Horizonte, até serem descobertos e estourarem nacionalmente em 2005. São conhecidos por valorizar a música sertaneja de raiz, mas com uma pegada moderna e bem humorada. Ficaram famosos também pelo carisma, as brincadeiras e aquele jeitão mineiro de ser. A dupla sempre fez questão de manter letras leves, românticas e que falam da simplicidade da vida. Ganharam Grammy Latino e diversos outros prêmios, além de vender milhões de discos. Eles ajudaram a abrir espaço para várias duplas na era do sertanejo universitário. São referência quando o assunto é misturar tradição com modernidade. Estão na ativa, lotando shows e rodando o Brasil.',
 'César Menotti da Silva (César) / Fabiano José da Silva (Fabiano)', 
@@ -754,7 +776,7 @@ insert into artistas values
 '+48 milhões',
 '+22 milhões'),
 (default, 
-'Chitãozinho & Xororó', 
+'Chitãozinho & Xororó', 2, 
 'style/assets/images/cantor_específico/modao_dupla/chitaozinho&xororo.png',
 'Chitãozinho & Xororó são considerados os pais do sertanejo moderno, pioneiros na profissionalização e na popularização do gênero em todo o Brasil. Começaram a carreira na infância, no final dos anos 60, e foram os primeiros a unir a música sertaneja com arranjos modernos, pop e elementos de orquestra. A dupla foi responsável por levar o sertanejo para grandes palcos, programas de TV e até para fora do Brasil. São donos de uma carreira sólida, com dezenas de álbuns, DVDs e participações internacionais. As letras falam de amor, saudade, família e vida no interior, sempre com muita emoção. Influenciaram praticamente todas as duplas que vieram depois. Já ultrapassaram 50 anos de carreira e continuam sendo reverenciados no Brasil inteiro. Lotam shows, teatros, festivais e seguem produzindo música de qualidade.',
 'José Lima Sobrinho (Chitãozinho) / Durval de Lima (Xororó)', 
@@ -767,7 +789,7 @@ insert into artistas values
 '+123 milhões',
 '+99 milhões'),
 (default, 
-'Chrystian & Ralf', 
+'Chrystian & Ralf', 2, 
 'style/assets/images/cantor_específico/modao_dupla/chrystian&ralf.png',
 'Chrystian & Ralf são conhecidos como a dupla "mais afinada do Brasil", graças às vozes potentes, agudas e extremamente bem trabalhadas. Começaram cantando na juventude, com Chrystian até arriscando carreira internacional no pop antes de formar a dupla com Ralf. Estouraram nos anos 80 com músicas românticas e de modão, se tornando referência de qualidade vocal no sertanejo. Suas músicas são verdadeiros hinos, combinando poesia, romantismo e aquela pegada apaixonada que só eles sabem fazer. A dupla teve alguns períodos de separação, mas sempre voltou, com o mesmo sucesso e qualidade de antes. São muito respeitados tanto pelos sertanejos quanto pelos músicos de outros estilos. Quem entende de música sempre coloca Chrystian & Ralf no topo quando o assunto é técnica vocal. E seguem encantando gerações, seja nos palcos, nas rádios ou nas plataformas digitais.',
 'José Pereira da Silva Neto (Chrystian) e Ralf Richardson da Silva (Ralf)', 
@@ -780,7 +802,7 @@ insert into artistas values
 '+36 milhões',
 '+26 milhões'),
 (default, 
-'Cleiton & Camargo', 
+'Cleiton & Camargo', 2, 
 'style/assets/images/cantor_específico/modao_dupla/cleiton&camargo.png',
 'Cleiton & Camargo surgiram na onda do sertanejo romântico dos anos 90, conquistando rapidamente o Brasil com músicas que falam de amor, saudade e superação. Camargo, da famosa família Camargo, é sobrinho de Zezé Di Camargo e Luciano, o que ajudou na projeção da dupla, mas eles mostraram que tinham talento de sobra. Ficaram conhecidos por letras românticas, refrões chiclete e um estilo bem característico. A dupla se separou em 2005, com Cleiton seguindo carreira gospel e Camargo como compositor. Mas, para alegria dos fãs, voltaram oficialmente em 2014. A química voltou como se nunca tivessem parado. São queridos até hoje, especialmente por quem viveu o sertanejo romântico dos anos 2000. Continuam na ativa, gravando e fazendo shows pelo Brasil.',
 'Luciano dos Santos (Cleiton) / Werley José de Camargo (Camargo)', 
@@ -793,7 +815,7 @@ insert into artistas values
 '+25 milhões',
 '+65 milhões'),
 (default, 
-'Di Paullo & Paulino', 
+'Di Paullo & Paulino', 2, 
 'style/assets/images/cantor_específico/modao_dupla/diPaullo&paulino.png',
 'Di Paullo & Paulino são uma das duplas mais tradicionais do sertanejo, com uma história marcada por muita luta, amor à música e respeito às tradições. Começaram a carreira cantando em praças, feiras e circos, percorrendo o Brasil na raça. Suas músicas trazem temas do campo, da vida simples, do amor sofrido e da saudade. Mesmo com o avanço do sertanejo universitário, eles se mantiveram firmes no estilo raiz, sempre preservando a sonoridade da viola e das harmonias caipiras. A dupla se destacou nos anos 90 e 2000, quando várias músicas se tornaram hinos nas rádios do interior. Recentemente, conquistaram uma nova geração com DVDs repletos de participações de cantores jovens. Eles são símbolo de resistência, tradição e muito amor pela música sertaneja.',
 'Elias Antônio de Paula (Di Paullo) e Geraldo Aparecido de Paula (Paulino)', 
@@ -806,7 +828,7 @@ insert into artistas values
 '+110 milhões',
 '+504 milhões'),
 (default, 
-'Edson & Hudson', 
+'Edson & Hudson', 2, 
 'style/assets/images/cantor_específico/modao_dupla/edson&hudson.png',
 'Irmãos, Edson & Hudson começaram cantando desde crianças em circos, incentivados pelo pai. Misturam como ninguém o sertanejo romântico com uma pegada de rock, graças às guitarras pesadas e aos solos de Hudson, que é considerado um dos maiores guitarristas do Brasil. A dupla explodiu no início dos anos 2000, com sucessos que dominaram as rádios e festas. Após uma separação conturbada em 2009, eles voltaram em 2011, mais fortes do que nunca. Suas músicas falam de amor, sofrência e superação, sempre com aquele som inconfundível da guitarra misturada à viola. São muito queridos tanto no meio sertanejo quanto no rock nacional, por essa mistura de estilos. A dupla segue produzindo novos trabalhos, fazendo shows e inovando no sertanejo.',
 'Huelinton Cadorini Silva (Edson) e Udson Cadorini Silva (Hudson)', 
@@ -819,7 +841,7 @@ insert into artistas values
 '+38 milhões',
 '+61 milhões'),
 (default, 
-'Gian & Giovani', 
+'Gian & Giovani', 2, 
 'style/assets/images/cantor_específico/modao_dupla/gian&giovani.png',
 'Gian & Giovani são irmãos que começaram a cantar desde crianças, inspirados pelas rodas de viola da família. Estouraram nos anos 90 e se consolidaram como uma das maiores duplas do sertanejo romântico da época. Suas músicas marcaram gerações, com letras que falam de amor, dor, reconciliação e paixão. A dupla se separou em 2014 por problemas pessoais, mas para felicidade dos fãs, reataram em 2018 e voltaram aos palcos. São donos de uma sonoridade muito própria, com melodias marcantes e refrões que todo mundo canta até hoje. Além do romantismo, também têm músicas bem animadas, que embalam festas e encontros sertanejos. Gian & Giovani seguem sendo muito respeitados, mantendo a essência do sertanejo romântico dos anos 90.',
 'Aparecido dos Reis Morais (Gian) e Marcelo dos Reis Morais (Giovani)', 
@@ -832,7 +854,7 @@ insert into artistas values
 '+36 milhões',
 '+66 milhões'),
 (default, 
-'João Paulo & Daniel', 
+'João Paulo & Daniel', 2, 
 'style/assets/images/cantor_específico/modao_dupla/joaoPaulo&daniel.png',
 'João Paulo & Daniel formaram uma das duplas mais queridas do Brasil, com um estilo que mesclava romantismo, carisma e simplicidade. Começaram a cantar juntos em barzinhos e festivais no interior de São Paulo até conquistarem o país nos anos 90. Suas músicas falam de amor, relacionamentos e saudade, com letras que tocam fundo no coração. A carreira foi interrompida tragicamente em 1997, quando João Paulo faleceu em um acidente de carro. Mesmo com a perda, o legado da dupla é eterno e suas músicas continuam emocionando gerações. Após a tragédia, Daniel seguiu carreira solo, se tornando também um dos maiores cantores do Brasil. A história da dupla é marcada pela humildade e pelo amor à música sertaneja.',
 'José Henrique dos Reis (João Paulo) e José Daniel Camillo (Daniel)', 
@@ -845,7 +867,7 @@ insert into artistas values
 '+67 milhões',
 '+10 milhões'),
 (default, 
-'Leandro & Leonardo', 
+'Leandro & Leonardo', 2,
 'style/assets/images/cantor_específico/modao_dupla/leandro&leonardo.png',
 'Leandro & Leonardo foram um dos maiores fenômenos da música sertaneja e da música brasileira como um todo. Irmãos, saíram de uma infância simples e difícil, trabalhando na roça, até se tornarem ícones nos anos 90. Suas músicas falam de amor, diversão e sofrimento amoroso, sempre com muito carisma e simpatia. Leandro faleceu em 1998, vítima de um câncer raro (tumor de Askin), o que abalou profundamente o Brasil inteiro. A carreira da dupla foi interrompida, mas suas canções seguem eternas nos corações dos fãs. Leonardo seguiu carreira solo e também se tornou um dos maiores cantores do país. A história deles é uma verdadeira inspiração de superação, fé e amor pela música.',
 'Luiz José da Costa (Leandro) e Emival Eterno Costa (Leonardo)', 
@@ -858,7 +880,7 @@ insert into artistas values
 '+84 milhões',
 '+10 milhões'),
 (default, 
-'Rick & Renner', 
+'Rick & Renner', 2, 
 'style/assets/images/cantor_específico/modao_dupla/rick&renner.png',
 'Rick & Renner são conhecidos por seu sertanejo romântico com uma pegada leve, divertida e extremamente popular. A dupla estourou no final dos anos 90 e começo dos anos 2000, dominando as rádios com músicas que falam de amor, paixão e sofrência, sempre com um toque bem-humorado. Enfrentaram separações em 2010 e 2015, mas voltaram e seguem na ativa. Rick também se destacou como produtor musical e compositor, enquanto Renner teve alguns projetos paralelos. A dupla é amada por sua simplicidade e pelo jeito descontraído de fazer música. Suas músicas são trilhas sonoras de muitos relacionamentos, festas e lembranças inesquecíveis. Eles seguem encantando públicos de todas as idades.',
 'Geraldo Antônio de Carvalho (Rick) e Ivair dos Reis Gonçalves (Renner)', 
@@ -871,7 +893,7 @@ insert into artistas values
 '+50 milhões',
 '+31 milhões'),
 (default, 
-'Rionegro & Solimões', 
+'Rionegro & Solimões', 2, 
 'style/assets/images/cantor_específico/modao_dupla/rionegro&solimoes.png',
 'Rionegro & Solimões são uma das duplas mais carismáticas e autênticas do sertanejo, conhecidos pelo bom humor, músicas animadas e refrões grudentos. Com vozes bem distintas — o grave de Rionegro e o agudo marcante de Solimões —, eles conquistaram o Brasil nos anos 90 com um sertanejo alegre, que fala de amor, festas e do dia a dia no interior. A química dos dois é inconfundível, com apresentações cheias de energia, brincadeiras e irreverência. A dupla nunca saiu de moda e continua lançando hits e lotando shows. São muito respeitados tanto pelo público quanto por outros artistas, sempre mantendo a essência sertaneja com aquele jeitão divertido que só eles têm.',
 'José Divino Neves (Rionegro) e Luiz Felizardo (Solimões)', 
@@ -884,7 +906,7 @@ insert into artistas values
 '+50 milhões',
 '+81 milhões'),
 (default, 
-'Zezé Di Camargo & Luciano', 
+'Zezé Di Camargo & Luciano', 2, 
 'style/assets/images/cantor_específico/modao_dupla/zezeDiCamargo&luciano.png',
 'Zezé Di Camargo & Luciano são simplesmente uma das maiores duplas sertanejas da história, conhecidos mundialmente, especialmente após o sucesso do filme "2 Filhos de Francisco" (2005), que conta sua história de vida. A carreira começou oficialmente em 1991, com o mega hit É o Amor, que virou um marco na música brasileira. Suas músicas misturam romantismo, superação e histórias de vida, sempre com letras fortes e emocionantes. A química entre os irmãos, apesar de altos e baixos pessoais, sempre se refletiu no palco e no sucesso da dupla. Venderam milhões de discos, ganharam diversos prêmios nacionais e internacionais e são referência total no sertanejo romântico. Eles seguem firmes na estrada, renovando públicos e mantendo o legado vivo.',
 'Mirosmar José de Camargo (Zezé Di Camargo) e Welson David de Camargo (Luciano)', 
@@ -900,7 +922,7 @@ insert into artistas values
 -- Inserindo cantores agronejo
 insert into artistas values 
 (default, 
-'Ana Castela', 
+'Ana Castela', 3, 
 'style/assets/images/cantor_específico/agronejo/anaCastela.png',
 'Ana Castela, conhecida como a “Boiadeira”, é um dos maiores fenômenos do agronejo atual. Começou postando vídeos no Instagram e TikTok, chamando atenção pelo carisma e pela voz potente. Sua pegada mistura sertanejo, agro e até funk em alguns feats. Estourou em 2022 com o hit “Pipoco” e não parou mais. Ela representa muito bem o público jovem do interior, com looks country e letras que exaltam o agro. Apesar de nova, já liderou rankings no Spotify Brasil e bate recordes de visualizações no YouTube. Seu sucesso é reflexo de autenticidade, simplicidade e conexão com o público. Está consolidando a carreira com feats de peso e shows por todo o Brasil.',
 'Ana Flávia Castela', 
@@ -913,7 +935,7 @@ insert into artistas values
 '+479 milhões',
 '+410 milhões'),
 (default, 
-'Bruna Viola', 
+'Bruna Viola', 3, 
 'style/assets/images/cantor_específico/agronejo/brunaViola.png',
 'Bruna Viola é uma das maiores representantes do sertanejo raiz da nova geração. Cresceu no interior, apaixonada pela música caipira e, principalmente, pela viola caipira, que virou sua marca registrada. Começou se apresentando em festas locais e rodeios. Sua carreira decolou ao participar de programas de TV e festivais sertanejos. Bruna leva a cultura sertaneja tradicional com orgulho, quebrando barreiras em um gênero dominado por homens. Seu carisma, autenticidade e amor pela música fizeram dela uma referência feminina no sertanejo raiz. Ela coleciona prêmios e é reconhecida nacionalmente.',
 'Bruna Villas Bôas Kamphorst', 
@@ -926,7 +948,7 @@ insert into artistas values
 '+8 milhões',
 '+44 milhões'),
 (default, 
-'João Carreiro', 
+'João Carreiro', 3, 
 'style/assets/images/cantor_específico/agronejo/joaoCarreiro.png',
 'João Carreiro é um dos maiores nomes do sertanejo bruto. Fez muito sucesso na dupla João Carreiro & Capataz, famosa por suas modas brutas, chapéu aba larga e letras que falam da vida simples e do campo. Em 2014, a dupla se separou e ele deu uma pausa para cuidar da saúde mental, lidando com depressão. Voltou solo, mantendo sua essência sertaneja raiz. Ele é reconhecido pela voz grave, marcante e pela pegada bruta, autêntica, que encanta quem gosta do sertanejão raiz. Hoje segue em carreira solo, lotando shows em todo o país.',
 'João Sérgio Batista Corrêa Filho', 
@@ -939,7 +961,7 @@ insert into artistas values
 '+19 milhões',
 '+31 milhões'),
 (default, 
-'Loubet', 
+'Loubet', 3, 
 'style/assets/images/cantor_específico/agronejo/loubet.png',
 'Loubet é conhecido como um dos precursores do agronejo, trazendo nas suas letras o amor pelo campo, rodeios, fazenda e vida no interior. Começou compondo para outros artistas, até que decidiu seguir carreira solo. Seu primeiro grande hit, Made in Roça, explodiu no Brasil e virou hino do agro. Seu estilo mistura sertanejo com uma pegada mais country e romântica, com muita influência da vida rural. Sempre de chapéu, bota e cinturão, é um dos símbolos do sertanejo agro. Além dos hits, é reconhecido pela simpatia e autenticidade.',
 'Emerson Carlos Loubet', 
@@ -952,7 +974,7 @@ insert into artistas values
 '+53 milhões',
 '+93 milhões'),
 (default, 
-'Luan Pereira', 
+'Luan Pereira', 3, 
 'style/assets/images/cantor_específico/agronejo/luanPereira.png',
 'Luan Pereira é um dos fenômenos mais recentes do agronejo e do sertanejo digital. Começou postando vídeos nas redes sociais e viralizou rapidamente com músicas que misturam sertanejo, eletrônico, funk e piseiro. Suas letras falam sobre o agro, festas, caminhonetes, rodeio e vida no interior. É conhecido por ser um dos principais nomes da geração Z do sertanejo. Cheio de collabs com DJ’s e artistas de diversos gêneros, ele tem lotado festas agro, baladas e rodeios pelo Brasil. Seu visual combina boné, jeans, bota e muito estilo.',
 'Luan Pereira', 
@@ -965,7 +987,7 @@ insert into artistas values
 '+214 milhões',
 '+277 milhões'),
 (default, 
-'Zé Felipe', 
+'Zé Felipe', 3, 
 'style/assets/images/cantor_específico/agronejo/zeFelipe.png',
 'Filho de ninguém menos que Leonardo, Zé Felipe carrega o sertanejo no DNA. Começou a cantar bem novo e logo ganhou espaço com um estilo mais romântico e dançante. Com o tempo, incorporou batidas de funk, piseiro e reggaeton, tornando-se um dos nomes mais populares da música atual. Estourou nas plataformas digitais e virou rei do TikTok, com músicas sempre nas trends. É conhecido por sua energia, carisma e shows animados. Além da música, Zé Felipe bomba nas redes sociais junto com sua esposa, a influenciadora Virgínia Fonseca.',
 'José Felipe Rocha Costa', 
@@ -978,7 +1000,7 @@ insert into artistas values
 '+213 milhões',
 '+275 milhões'),
 (default, 
-'Antony & Gabriel', 
+'Antony & Gabriel', 3, 
 'style/assets/images/cantor_específico/agronejo/antony&gabriel.png',
 'Antony & Gabriel ficaram conhecidos como a “dupla da pinga”, por suas músicas bem-humoradas, que falam de bebedeira, resenha e sofrência. Começaram postando vídeos no YouTube com covers e logo viralizaram, conquistando fãs pelo país. O diferencial deles é misturar sertanejo bruto, humor e letras que retratam situações cotidianas dos jovens do interior. A pegada da dupla é descontraída, com muita influência da vida caipira, rodeios e festas. Eles se tornaram referência no sertanejo universitário e no agrosertanejo.',
 'Édico Antônio (Antony) e Jhony Cristhian de Oliveira (Gabriel)', 
@@ -991,7 +1013,7 @@ insert into artistas values
 '+58 milhões',
 '+39 milhões'),
 (default, 
-'Fiduma & Jeca', 
+'Fiduma & Jeca', 3, 
 'style/assets/images/cantor_específico/agronejo/fiduma&jeca.png',
 'Fiduma & Jeca são conhecidos pelo bom humor, irreverência e músicas que misturam sertanejo com moda de viola, humor e histórias do agro. Começaram na época da faculdade, fazendo brincadeiras musicais, e logo se profissionalizaram. A marca da dupla são letras divertidas, mas também sabem fazer moda romântica e de raiz. Os caras são referência em rodeios, festas agro e universitárias. Sempre aparecem de chapéu, fivela e muita resenha no palco.',
 'Pedro Juliano (Fiduma) e Marcelo Dadona (Jeca)', 
@@ -1004,7 +1026,7 @@ insert into artistas values
 '+58 milhões',
 '+81 milhões'),
 (default, 
-'João Nelore & Texano', 
+'João Nelore & Texano', 3, 
 'style/assets/images/cantor_específico/agronejo/joaoNelore&texano.png',
 'João Nelore & Texano são a cara da nova geração do agro sertanejo. A dupla viralizou no TikTok e no YouTube, trazendo músicas que falam da vida no campo, caminhonetes, vaquejada e do dia a dia do agro. Com visual típico de peão — chapéu, fivela, bota e calça justa — eles se tornaram referência para o público jovem ligado ao agro. As músicas mesclam sertanejo bruto, piseiro e eletrônico, criando um som atual, dançante e raiz ao mesmo tempo. Crescem muito no cenário nacional e são presença garantida em festas do agro.',
 'João Marcos e Fernando (Texano)', 
@@ -1017,7 +1039,7 @@ insert into artistas values
 '+12 milhões',
 '+10 milhões'),
 (default, 
-'Léo & Raphael', 
+'Léo & Raphael', 3, 
 'style/assets/images/cantor_específico/agronejo/leo&raphael.png',
 'Léo & Raphael são grandes representantes do agronejo. Suas músicas falam sobre vida no campo, vaquejada, cachaça e festa. A dupla surgiu com uma pegada bem humorada, mas ao longo dos anos também começou a trazer modas românticas e mais pesadas no repertório. O estilo deles é rústico, bruto e com identidade muito forte no agro. Eles são presença garantida nos maiores rodeios e festas sertanejas do Brasil.',
 'Leonardo Oliveira e Raphael Soares', 
@@ -1030,7 +1052,7 @@ insert into artistas values
 '+66 milhões',
 '+126 milhões'),
 (default, 
-'US Agroboy', 
+'US Agroboy', 3, 
 'style/assets/images/cantor_específico/agronejo/usAgroboy.png',
 'US Agroboy surgiu como um projeto que une música, agro, lifestyle do campo e redes sociais. Os caras são mais que uma dupla sertaneja — são influenciadores do agro. Começaram no Instagram e TikTok mostrando o dia a dia no campo, tratores, caminhonetes e boiadas. Depois começaram a lançar músicas com a pegada agro, misturando sertanejo, piseiro, eletrônico e batidas urbanas. São hoje ícones do agro lifestyle, com letras que falam sobre fazenda, churrasco, rodeio e o orgulho de ser do campo.',
 'Gabriel Vittor e Jota Lennon', 
@@ -1046,7 +1068,7 @@ insert into artistas values
 -- Inserindo cantores raíz
 insert into artistas values 
 (default, 
-'As Galvão', 
+'As Galvão', 4, 
 'style/assets/images/cantor_específico/raiz/asGalvao.png',
 'As Galvão foram a dupla feminina mais longeva da música sertaneja. Começaram ainda crianças e conquistaram o Brasil com modas que falavam do interior, da vida caipira e do amor. Com mais de 70 anos de carreira, foram pioneiras no espaço feminino na música sertaneja. Depois do falecimento de Marilene em 2022, Mary encerrou a carreira da dupla. Elas deixaram um legado gigantesco pro sertanejo raiz.',
 'Mary Zuil Galvão (Meire) e Marilene Galvão', 
@@ -1059,7 +1081,7 @@ insert into artistas values
 '+970 mil',
 '+2 milhões'),
 (default, 
-'As Marcianas', 
+'As Marcianas', 4, 
 'style/assets/images/cantor_específico/raiz/asMarcianas.png',
 'As Marcianas surgiram nos anos 80 como uma dupla feminina que fazia uma ponte entre o sertanejo romântico e o modão, filhas do cantor João Mineiro que fazia dupla com Marciano. Suas músicas falam de amor, desilusão e sofrência, sempre com uma pegada raiz. A dupla foi sucesso absoluto nas décadas de 80 e 90, marcando época com vozes potentes e letras emocionantes. Mesmo com mudanças na formação, o projeto segue ativo levando o sertanejo raiz por todo o país.',
 'Celina SantAngelo e Ivone SantAngelo', 
@@ -1072,7 +1094,7 @@ insert into artistas values
 '+4 milhões',
 '+15 milhões'),
 (default, 
-'Belmonte & Amaraí', 
+'Belmonte & Amaraí', 4, 
 'style/assets/images/cantor_específico/raiz/belmonte&amarai.png',
 'A dupla teve uma das carreiras mais curtas, mas mais marcantes da história do sertanejo. Belmonte & Amaraí ficaram conhecidos como os “reis do romantismo sertanejo”, trazendo uma nova roupagem para as modas, com letras mais sensíveis e melodias mais suaves. Infelizmente, Belmonte faleceu em um acidente de carro em 1972, encerrando a trajetória da dupla. Amaraí seguiu depois carreira solo.',
 'Paschoal Zanetti Todorelli (Belmonte) e Domingos Sabino da Cunha (Amaraí)', 
@@ -1085,7 +1107,7 @@ insert into artistas values
 '+7 milhões',
 '+5 milhões'),
 (default, 
-'Chico Rey & Paraná', 
+'Chico Rey & Paraná', 4, 
 'style/assets/images/cantor_específico/raiz/chicoRey&parana.png',
 'Irmãos, Chico Rey & Paraná começaram a cantar ainda crianças em festivais e rádios no Paraná. Se destacaram pelo sertanejo romântico, com vozes potentes e interpretações apaixonadas. Nos anos 90 foram uma das duplas mais tocadas nas rádios do Brasil, com músicas que até hoje estão na boca do povo. Após a morte de Chico Rey, Paraná seguiu carreira solo.',
 'Francisco Aparecido Gomes (Chico Rey) e José Cláudio Gomes (Paraná)', 
@@ -1098,7 +1120,7 @@ insert into artistas values
 '+56 milhões',
 '+59 milhões'),
 (default, 
-'Duduca & Dalvan', 
+'Duduca & Dalvan', 4, 
 'style/assets/images/cantor_específico/raiz/duduca&dalvan.png',
 'A dupla se destacou por um sertanejo romântico, com vozes fortes e letras marcantes. Fizeram muito sucesso no fim dos anos 70 e na década de 80. Mesmo após a morte de Duduca, Dalvan manteve o projeto com outros parceiros, sempre mantendo viva a essência da música sertaneja raiz.',
 'José Trindade (Duduca) e José Gomes de Almeida (Dalvan)', 
@@ -1111,7 +1133,7 @@ insert into artistas values
 '+9 milhões',
 '+6 milhões'),
 (default, 
-'Gino & Geno',
+'Gino & Geno', 4,
 'style/assets/images/cantor_específico/raiz/gino&geno.png',
 'Gino & Geno são os reis do “sertanejo bem-humorado”, sempre com letras irreverentes, dançantes e que fazem muito sucesso nas festas e rodeios. A dupla explodiu nos anos 2000 com músicas que falam de pinga, mulher e festa, mantendo também modões românticos no repertório. Após a aposentadoria de Geno, Gino seguiu com um novo parceiro, mantendo o nome e o legado da dupla.',
 'Sebastião Ribeiro de Almeida (Gino) e Geraldo Alves dos Santos (Geno)', 
@@ -1124,7 +1146,7 @@ insert into artistas values
 '+38 milhões',
 '+8 milhões'),
 (default, 
-'Goiano & Paranaense', 
+'Goiano & Paranaense', 4, 
 'style/assets/images/cantor_específico/raiz/goiano&paranaense.png',
 'Ícones do sertanejo raiz, ficaram conhecidos pelas letras que retratam a vida do homem simples, do interior e da roça. Suas músicas misturam romantismo, religiosidade e tradição. Paranaense faleceu em 2002 e, desde então, Goiano manteve a carreira, mas com outros parceiros. O timbre grave e marcante da dupla é reconhecido em qualquer roda de viola.',
 'Valdomiro Neres Ferreira (Goiano) e João Roberto Alonso (Paranaense)', 
@@ -1137,7 +1159,7 @@ insert into artistas values
 '+17 milhões',
 '+33 milhões'),
 (default, 
-'João Mineiro & Marciano', 
+'João Mineiro & Marciano', 4, 
 'style/assets/images/cantor_específico/raiz/joaoMineiro&marciano.png',
 'A dupla foi um dos maiores fenômenos do sertanejo romântico nos anos 80. Suas músicas marcaram gerações com letras de amor, saudade e sofrência. Após a separação, cada um seguiu carreira solo. Mesmo assim, o legado deles permanece eterno nas playlists dos apaixonados por modão.',
 'João Sant’ Ângelo (João Mineiro) e José Marciano (Marciano)', 
@@ -1150,7 +1172,7 @@ insert into artistas values
 '+59 milhões',
 '+25 milhões'),
 (default, 
-'Liu & Léu', 
+'Liu & Léu', 4, 
 'style/assets/images/cantor_específico/raiz/liu&leu.png',
 'Pioneiros do sertanejo raiz, foram uma das duplas que mais preservaram a cultura da moda de viola. Suas músicas são verdadeiras fotografias sonoras da vida caipira, falando de natureza, fé e amores do sertão. A afinação impecável e as segundas vozes afinadíssimas são marcas registradas dessa dupla lendária.',
 'Lincoln Paulino da Costa (Liu) e Walter Paulino da Costa (Léu)', 
@@ -1163,7 +1185,7 @@ insert into artistas values
 '+7 milhões',
 '+9 milhões'),
 (default, 
-'Lourenço & Lourival', 
+'Lourenço & Lourival', 4, 
 'style/assets/images/cantor_específico/raiz/lourenco&lourival.png',
 'Lourenço & Lourival são irmãos filhos de lavradores que começaram a cantar ainda crianças em rádios de Ribeirão Preto. Aos 15 anos, mudaram-se para São Paulo e construíram uma sólida carreira nas rádios América, Bandeirantes, Nacional e Record, onde ficaram conhecidos como “As Vozes de Cristal”. Gravaram mais de 30 LPs, 15 CDs e vários DVDs, com sucessos como “Menina da Aldeia”, “Como Eu Chorei” e “Franguinho na Panela”. A dupla se mantém ativa, levando a música sertaneja raiz para todo o Brasil e exterior. Apesar da fama, continuam valorizando suas origens e a vida no interior.',
 'Arlindo Cassol (Lourenço) e Antônio Cassol (Lourival)', 
@@ -1176,7 +1198,7 @@ insert into artistas values
 '+15 milhões',
 '+20 milhões'),
 (default, 
-'Matogrosso & Mathias', 
+'Matogrosso & Mathias', 4, 
 'style/assets/images/cantor_específico/raiz/matogrosso&mathias.png',
 'Uma das duplas mais queridas do sertanejo romântico, Matogrosso & Mathias se destacam por melodias doces, letras apaixonadas e harmonia vocal impecável. Mesmo após a morte do Matogrosso original, a dupla se manteve com outro integrante na primeira voz, levando adiante sucessos que marcaram gerações. Eles atravessam décadas sempre se renovando, sem perder a essência romântica.',
 'João Batista Bernardo (Matogrosso) e Anísio Roberto de Carvalho (Mathias)', 
@@ -1189,7 +1211,7 @@ insert into artistas values
 '+121 milhões',
 '+42 milhões'),
 (default, 
-'Milionário & José Rico', 
+'Milionário & José Rico', 4, 
 'style/assets/images/cantor_específico/raiz/milionario&joseRico.png',
 'Milionário & José Rico formaram a dupla sertaneja mais famosa do Brasil, conhecidos como "As Gargantas de Ouro do Brasil". Vindos de origens humildes, se conheceram em São Paulo e uniram forças em 1970. Com vozes marcantes, arranjos ousados com orquestras e letras que falam de amor, saudade e vida simples, conquistaram multidões. Seu visual com roupas extravagantes, óculos escuros (marca registrada de José Rico) e cabelos longos virou identidade. A dupla vendeu mais de 35 milhões de discos. Foram protagonistas do filme "Estrada da Vida" (1981), que conta parte de sua história. Após a morte de José Rico, Milionário seguiu com projetos solo.',
 'Romeu Januário de Matos (Milionário) e José Alves dos Santos (José Rico)', 
@@ -1202,7 +1224,7 @@ insert into artistas values
 '+96 milhões',
 '+22 milhões'),
 (default, 
-'Ronaldo Viola & João Carvalho', 
+'Ronaldo Viola & João Carvalho', 4, 
 'style/assets/images/cantor_específico/raiz/ronaldoViola&joaoCarvalho.png',
 'A dupla ficou conhecida por valorizar a moda de viola autêntica, com letras que exaltam a vida no campo, as dificuldades e as belezas do interior. Ronaldo Viola tinha uma voz marcante e era violeiro de mão cheia, sendo considerado um dos melhores violeiros do Brasil. João Carvalho, com sua segunda voz afinadíssima, completava perfeitamente a dupla. Foram sucesso no interior, especialmente em Minas, São Paulo e Paraná. Com a morte de Ronaldo, João seguiu com outros parceiros mantendo viva a tradição.',
 'Ronaldo Carandina e Manoel João de Carvalho', 
@@ -1215,7 +1237,7 @@ insert into artistas values
 '+6 milhões',
 '+7 milhões'),
 (default, 
-'Tião Carreiro & Pardinho', 
+'Tião Carreiro & Pardinho', 4, 
 'style/assets/images/cantor_específico/raiz/tiaoCarreiro&pardinho.png',
 'Tião Carreiro & Pardinho são considerados os criadores do pagode de viola, um estilo único dentro do sertanejo raiz. A dupla revolucionou a música caipira ao introduzir levadas rápidas e mais animadas. Tião era um exímio violeiro e inventor de batidas que até hoje influenciam gerações. Pardinho, com sua voz grave e forte, completava a harmonia perfeita. Juntos, lançaram dezenas de álbuns e eternizaram sucessos que atravessaram gerações.',
 'José Dias Nunes (Tião Carreiro) e Antônio Henrique de Lima (Pardinho)', 
@@ -1228,7 +1250,7 @@ insert into artistas values
 '+35 milhões',
 '+5 milhões'),
 (default, 
-'Tonico & Tinoco', 
+'Tonico & Tinoco', 4, 
 'style/assets/images/cantor_específico/raiz/tonico&tinoco.png',
 'Tonico & Tinoco são considerados a maior dupla sertaneja de todos os tempos em popularidade e pioneirismo. Começaram a carreira na roça, cantando em festas e rádios do interior. Gravaram mais de 1.000 músicas, venderam mais de 150 milhões de discos, recorde até hoje imbatível na música sertaneja. Foram responsáveis por popularizar o gênero no Brasil e levar a música caipira a rádios, TV, cinema e teatros. Tinoco seguiu carreira solo após a morte do irmão até 2012.',
 'João Salvador Perez (Tonico) e José Perez (Tinoco)', 
@@ -1241,7 +1263,7 @@ insert into artistas values
 '+10 milhões',
 '+7 milhões'),
 (default, 
-'Trio Parada Dura', 
+'Trio Parada Dura', 4, 
 'style/assets/images/cantor_específico/raiz/trioParadaDura.png',
 'O Trio Parada Dura surgiu em Minas Gerais e se tornou símbolo da música sertaneja, especialmente pelo som inconfundível da sanfona de Mangabinha e as vozes marcantes de Creone e Barrerito. Após o acidente que deixou Barrerito paraplégico, o trio seguiu forte e se manteve na ativa com diferentes formações. Atualmente, Creone e Parrerito (irmão de Barrerito, falecido em 2020) mantiveram o trio, e hoje seguem com novas vozes, levando adiante o legado sertanejo.',
 'Floriovaldo Alves Ferreira (Creone), Carlos Alberto Ribeiro (Mangabinha) e Élcio Neves Borges (Barrerito)', 
@@ -1254,7 +1276,7 @@ insert into artistas values
 '+79 milhões',
 '+204 milhões'),
 (default, 
-'Zilo & Zalo', 
+'Zilo & Zalo', 4, 
 'style/assets/images/cantor_específico/raiz/zilo&zalo.png',
 'Zilo & Zalo são ícones da moda de viola e uma das duplas mais afinadas da história do sertanejo raiz. Irmãos de sangue, começaram ainda jovens a cantar nas rádios do interior de São Paulo. Eles se destacaram pelas letras poéticas, bem-humoradas e cheias de amor à vida rural. Gravaram dezenas de discos e são referência no universo sertanejo, especialmente pela preservação da verdadeira música caipira.',
 'Aníbio Pereira de Souza (Zilo) e Belizário Pereira de Souza (Zalo)', 
@@ -1267,8 +1289,56 @@ insert into artistas values
 '+2 milhões',
 '+5 milhões');
 
+-- CONFERINDO TABELAS
+select * from usuario;
+select * from resultado;
+select * from quiz;
+select * from estilo_sertanejo;
 select * from artistas;
 
-select * from artistas where nome = 'Cristiano Araújo';
+-- INFORMAÇÕES DO USUÁRIO CADASTRADO NO SITE
+SELECT 
+    u.nome AS Nome,
+    CONCAT(
+        DATE_FORMAT(u.dtNasc, '%d'),
+        ' de ',
+        CASE DATE_FORMAT(u.dtNasc, '%m')
+            WHEN '01' THEN 'Janeiro'
+            WHEN '02' THEN 'Fevereiro'
+            WHEN '03' THEN 'Março'
+            WHEN '04' THEN 'Abril'
+            WHEN '05' THEN 'Maio'
+            WHEN '06' THEN 'Junho'
+            WHEN '07' THEN 'Julho'
+            WHEN '08' THEN 'Agosto'
+            WHEN '09' THEN 'Setembro'
+            WHEN '10' THEN 'Outubro'
+            WHEN '11' THEN 'Novembro'
+            WHEN '12' THEN 'Dezembro'
+        END,
+        ' de ',
+        CASE DATE_FORMAT(u.dtNasc, '%y')
+			WHEN '60' THEN '1960' WHEN '61' THEN '1961' WHEN '62' THEN '1962' WHEN '63' THEN '1963' WHEN '64' THEN '1964' WHEN '65' THEN '1965' WHEN '66' THEN '1966' WHEN '67' THEN '1967' WHEN '68' THEN '1968' WHEN '69' THEN '1969'
+            WHEN '70' THEN '1970' WHEN '71' THEN '1971' WHEN '72' THEN '1972' WHEN '73' THEN '1973' WHEN '74' THEN '1974' WHEN '75' THEN '1975' WHEN '76' THEN '1976' WHEN '77' THEN '1977' WHEN '78' THEN '1978' WHEN '79' THEN '1979'
+            WHEN '80' THEN '1980' WHEN '81' THEN '1981' WHEN '82' THEN '1982' WHEN '83' THEN '1983' WHEN '84' THEN '1984' WHEN '85' THEN '1985' WHEN '86' THEN '1986' WHEN '87' THEN '1987' WHEN '88' THEN '1988' WHEN '89' THEN '1989'
+            WHEN '90' THEN '1990' WHEN '91' THEN '1991' WHEN '92' THEN '1992' WHEN '93' THEN '1993' WHEN '94' THEN '1994' WHEN '95' THEN '1995' WHEN '96' THEN '1996' WHEN '97' THEN '1997' WHEN '98' THEN '1998' WHEN '99' THEN '1999'
+            WHEN '00' THEN '2000' WHEN '01' THEN '2001' WHEN '02' THEN '2002' WHEN '03' THEN '2003' WHEN '04' THEN '2004' WHEN '05' THEN '2005' WHEN '06' THEN '2006' WHEN '07' THEN '2007' WHEN '08' THEN '2008' WHEN '09' THEN '2009'
+            WHEN '10' THEN '2010'
+        END
+    ) AS Nascimento,
+    u.email AS Email,
+    e.nome AS Estilo
+FROM 
+    usuario u 
+JOIN 
+    estilo_sertanejo e ON u.fkEstilo = e.idEstilo;
+    
+-- QUAIS OS ESTILOS SERTANEJO PREFERIDO DOS USUÁRIOS
+SELECT es.nome AS Estilo, 
+COUNT(u.idUsuario) AS Quantidade
+FROM usuario u RIGHT JOIN estilo_sertanejo es 
+ON u.fkEstilo = es.idEstilo
+GROUP BY es.nome
+ORDER BY quantidade DESC;
 
-SELECT DATE_FORMAT(dtNasc , '%d de %m de %y') FROM artistas  WHERE nome = "Cristiano Araújo";
+-- 
